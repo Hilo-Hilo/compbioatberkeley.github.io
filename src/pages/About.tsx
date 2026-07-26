@@ -1,89 +1,61 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Dna, Brain, Network, Globe } from "lucide-react";
+import { PageHeader, SectionHeading } from "@/components/PageHeader";
 
-const About = () => {
-  return (
-    <div className="min-h-screen py-16 px-4">
-      <div className="max-w-4xl mx-auto">
-        {/* Mission Statement */}
-        <section className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-bio bg-clip-text text-transparent">
-            Our Mission
-          </h1>
-          <div className="bg-gradient-to-r from-bio-green/10 to-compute-blue/10 rounded-2xl p-8 border border-bio-green/20">
-            <p className="text-lg md:text-xl leading-relaxed text-foreground">
-              Computational Biology at Berkeley is a student organization dedicated to bridging the gap between biology and computation. We provide a collaborative environment where students can deepen their knowledge, work on interdisciplinary projects, and connect with leaders in academia and industry.
-            </p>
-          </div>
-        </section>
+const work = [
+  {
+    n: "01",
+    title: "Educational excellence",
+    body: "Educational workshops in computational biology provide foundational knowledge in biology and computer science, connecting theory with practical application.",
+  },
+  {
+    n: "02",
+    title: "Research and projects",
+    body: "Research and project teams work on current problems at the intersection of computation and biology.",
+  },
+  {
+    n: "03",
+    title: "Professional networking",
+    body: "Networking opportunities with faculty, alumni, and biotech companies help members build meaningful professional relationships.",
+  },
+  {
+    n: "04",
+    title: "Community impact",
+    body: "Community projects use computational biology to support healthcare, sustainability, and related fields.",
+  },
+];
 
-        {/* What We Do */}
-        <section>
-          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-compute bg-clip-text text-transparent">
-            What We Do
-          </h2>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-bio-green/20 hover:border-bio-green/50 transition-all duration-300 hover:shadow-bio">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-gradient-bio rounded-lg flex items-center justify-center mr-4">
-                    <Dna className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-semibold text-bio-green">Educational Excellence</h3>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  Educational workshops in computational biology, designed to provide foundational knowledge on both biology and computer science, bridging the gap between theoretical knowledge and practical application.
-                </p>
-              </CardContent>
-            </Card>
+const About = () => (
+  <div>
+    <PageHeader
+      eyebrow="01 / about"
+      title="Our mission"
+      lede="Computational Biology at Berkeley is a student organization dedicated to bridging the gap between biology and computation."
+    />
 
-            <Card className="border-compute-blue/20 hover:border-compute-blue/50 transition-all duration-300 hover:shadow-compute">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-gradient-compute rounded-lg flex items-center justify-center mr-4">
-                    <Brain className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-semibold text-compute-blue">Research & Projects</h3>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  Research and project teams working on cutting-edge problems at the intersection of computation and biology.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-glow">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-gradient-hero rounded-lg flex items-center justify-center mr-4">
-                    <Network className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-semibold text-primary">Professional Networking</h3>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  Networking opportunities with faculty, alumni, and biotech companies to build meaningful professional relationships.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-accent/20 hover:border-accent/50 transition-all duration-300 hover:shadow-glow">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mr-4">
-                    <Globe className="w-6 h-6 text-accent-foreground" />
-                  </div>
-                  <h3 className="text-2xl font-semibold text-accent-foreground">Community Impact</h3>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  Community projects using computational biology to positively impact healthcare, sustainability, and beyond.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+      <div className="border-l-2 border-gold pl-6 md:pl-8">
+        <p className="max-w-[62ch] text-lg leading-relaxed md:text-xl">
+          We provide a collaborative environment where students can deepen their knowledge, work on
+          interdisciplinary projects, and connect with leaders in academia and industry.
+        </p>
       </div>
-    </div>
-  );
-};
+
+      <div className="mt-16">
+        <SectionHeading title="What we do" meta="04 areas" />
+        <div className="grid gap-4 md:grid-cols-2">
+          {work.map((item) => (
+            <article
+              key={item.n}
+              className="rounded border border-border bg-card p-6 transition-colors hover:border-border-strong"
+            >
+              <p className="text-[11px] text-label">[{item.n}]</p>
+              <h3 className="mt-3 text-lg font-bold text-heading">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+);
 
 export default About;

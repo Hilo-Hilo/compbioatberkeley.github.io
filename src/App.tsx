@@ -2,21 +2,22 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import Navigation from "./components/Navigation";
+import { ThemeProvider } from "next-themes";
+import { lazy, Suspense, useEffect } from "react";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Calendar from "./pages/Calendar";
-import Collaborations from "./pages/Collaborations";
-import Officers from "./pages/Officers";
-import SignUp from "./pages/SignUp";
-import NotFound from "./pages/NotFound";
+import Navigation from "./components/Navigation";
 import {
   ConceptFrame,
   ConceptReviewHome,
 } from "./concepts/ConceptReview";
+import About from "./pages/About";
+import Calendar from "./pages/Calendar";
+import Collaborations from "./pages/Collaborations";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import Officers from "./pages/Officers";
+import SignUp from "./pages/SignUp";
 
 const ResearchEditorial = lazy(
   () => import("./concepts/research-editorial/ResearchEditorial"),
@@ -30,10 +31,23 @@ const BioNetwork = lazy(
 
 const queryClient = new QueryClient();
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [pathname]);
+
+  return null;
+};
+
 const StandardSite = () => (
-  <div className="flex flex-col min-h-screen">
+  <div className="flex min-h-[100dvh] flex-col">
+    <a className="skip-link" href="#main-content">
+      Skip to content
+    </a>
     <Navigation />
-    <main className="flex-1">
+    <main id="main-content" className="flex-1">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -103,15 +117,26 @@ const AppRoutes = () => {
 };
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <ThemeProvider
+    attribute="class"
+    defaultTheme="system"
+    enableSystem
+    disableTransitionOnChange
+    storageKey="compbio-theme"
+  >
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter
+          future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+        >
+          <ScrollToTop />
+          <AppRoutes />
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;

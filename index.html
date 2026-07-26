@@ -6,7 +6,29 @@
     <title>Computational Biology at Berkeley</title>
     <meta name="description" content="A student-driven community exploring the intersection of computer science, biology, and healthcare at UC Berkeley." />
     <meta name="author" content="Computational Biology at Berkeley" />
-    
+    <meta name="theme-color" content="#FFFFFF" />
+    <link rel="canonical" href="https://compbioatberkeley.com/" />
+    <link rel="icon" type="image/svg+xml" href="/comp-bio-logo-berkeley.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&display=swap" rel="stylesheet" />
+
+    <script>
+      (function () {
+        try {
+          var savedTheme = localStorage.getItem("compbio-theme");
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme = savedTheme === "light" || savedTheme === "dark"
+            ? savedTheme
+            : (prefersDark ? "dark" : "light");
+          document.documentElement.classList.toggle("dark", theme === "dark");
+          document.documentElement.style.colorScheme = theme;
+        } catch (error) {
+          document.documentElement.classList.remove("dark");
+        }
+      })();
+    </script>
+
     <!-- GitHub Pages SPA redirect handler -->
     <script>
       // Check if we were redirected from 404.html
@@ -22,8 +44,13 @@
     <meta property="og:title" content="Computational Biology at Berkeley" />
     <meta property="og:description" content="A student-driven community exploring the intersection of computer science, biology, and healthcare at UC Berkeley." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/src/assets/preview.png" />
-
+    <meta property="og:url" content="https://compbioatberkeley.com/" />
+    <meta property="og:image" content="https://compbioatberkeley.com/comp-bio-logo-berkeley.svg" />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Computational Biology at Berkeley" />
+    <meta name="twitter:description" content="A student-driven community exploring computer science, biology, and healthcare at UC Berkeley." />
+    <meta name="twitter:image" content="https://compbioatberkeley.com/comp-bio-logo-berkeley.svg" />
   </head>
 
   <body>

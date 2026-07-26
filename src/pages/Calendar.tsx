@@ -1,59 +1,45 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar as CalendarIcon, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { EnhancedButton } from "@/components/ui/enhanced-button";
+import { PageHeader } from "@/components/PageHeader";
 
-const Calendar = () => {
-  return (
-    <div className="min-h-screen py-16 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-bio bg-clip-text text-transparent">
-            Events Calendar
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Stay up to date with our workshops, meetings, and special events.
-          </p>
+const CALENDAR_SRC =
+  "https://calendar.google.com/calendar/embed?src=c_89fd0fd6639f6879e54e29cf6160bd6b715c0d824d84fdc0166332e82c13404c%40group.calendar.google.com&ctz=America%2FLos_Angeles";
+
+const Calendar = () => (
+  <div>
+    <PageHeader
+      eyebrow="02 / calendar"
+      title="Events calendar"
+      lede="Stay up to date with our workshops, meetings, and special events."
+    />
+
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+      <div className="overflow-hidden rounded border border-border">
+        <div className="flex flex-col gap-1 border-b border-border bg-muted px-4 py-3 text-[11px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <span className="uppercase tracking-[0.12em]">Google Calendar</span>
+          <span>Pacific time</span>
         </div>
-
-        <Card className="border-bio-green/20 hover:shadow-bio transition-all duration-300">
-          <CardHeader className="text-center">
-            <CardTitle className="flex items-center justify-center text-2xl text-bio-green">
-              <CalendarIcon className="w-6 h-6 mr-2" />
-              Computational Biology at Berkeley Calendar
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-6">
-            <div className="w-full overflow-hidden rounded-lg border border-bio-green/20">
-              <iframe 
-                src="https://calendar.google.com/calendar/embed?src=c_89fd0fd6639f6879e54e29cf6160bd6b715c0d824d84fdc0166332e82c13404c%40group.calendar.google.com&cctz=America%2FLos_Angeles" 
-                className="w-full h-[600px] border-0"
-                title="Computational Biology at Berkeley Events Calendar"
-              />
-            </div>
-            
-            <div className="mt-6 text-center">
-              <a 
-                href="https://calendar.google.com/calendar/embed?src=c_89fd0fd6639f6879e54e29cf6160bd6b715c0d824d84fdc0166332e82c13404c%40group.calendar.google.com&ctz=America%2FLos_Angeles" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <EnhancedButton variant="bio-outline" size="lg">
-                  View Full Calendar
-                  <ExternalLink className="w-4 h-4" />
-                </EnhancedButton>
-              </a>
-            </div>
-          </CardContent>
-        </Card>
-
-        <div className="mt-8 text-center">
-          <p className="text-muted-foreground">
-            All times are shown in PST. Subscribe to our calendar to get notifications about upcoming events!
-          </p>
-        </div>
+        <iframe
+          src={CALENDAR_SRC}
+          className="h-[600px] w-full border-0 bg-background"
+          title="Computational Biology at Berkeley events calendar"
+          loading="lazy"
+        />
       </div>
-    </div>
-  );
-};
+
+      <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+        <EnhancedButton asChild variant="outline">
+          <a href={CALENDAR_SRC} target="_blank" rel="noopener noreferrer">
+            open full calendar
+            <ExternalLink />
+          </a>
+        </EnhancedButton>
+        <p className="text-sm text-muted-foreground">
+          Subscribe to get notifications about upcoming events.
+        </p>
+      </div>
+    </section>
+  </div>
+);
 
 export default Calendar;

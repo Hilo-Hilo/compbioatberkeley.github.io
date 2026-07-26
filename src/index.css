@@ -2,124 +2,129 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Computational Biology at Berkeley Design System
-All colors MUST be HSL - Biology meets Computation theme
-*/
+/*
+ * Computational Biology at Berkeley
+ * Signal Light theme from the supplied design direction.
+ * Berkeley blue carries structure; California gold marks action and emphasis.
+ */
 
 @layer base {
   :root {
-    /* Core biology-inspired palette */
-    --background: 0 0% 100%;
-    --foreground: 210 24% 16%;
+    color-scheme: light;
 
-    --card: 0 0% 100%;
-    --card-foreground: 210 24% 16%;
+    --background: 0 0% 100%;
+    --foreground: 220 42.9% 11%;
+
+    --card: 220 100% 99.4%;
+    --card-foreground: 220 42.9% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 24% 16%;
+    --popover-foreground: 220 42.9% 11%;
 
-    /* Primary: Deep forest green for biology */
-    --primary: 155 68% 31%;
-    --primary-foreground: 0 0% 98%;
-    --primary-glow: 155 68% 45%;
+    --primary: 209.4 100% 19.2%;
+    --primary-foreground: 216 45.5% 97.8%;
+    --primary-glow: 210.4 56.5% 51.4%;
 
-    /* Secondary: Soft scientific blue */
-    --secondary: 210 45% 95%;
-    --secondary-foreground: 210 24% 16%;
+    --secondary: 216 45.5% 97.8%;
+    --secondary-foreground: 220 42.9% 11%;
 
-    /* Bio-green accents from the course table */
-    --bio-green: 122 83% 67%; /* #73EC8B */
-    --bio-green-light: 82 100% 71%; /* #D2FF72 */
-    --bio-green-foreground: 155 68% 12%;
+    --muted: 216 45.5% 97.8%;
+    --muted-foreground: 218.3 17.3% 40.8%;
 
-    /* Computation blue accent */
-    --compute-blue: 215 84% 65%;
-    --compute-blue-light: 215 84% 85%;
-    --compute-blue-foreground: 215 84% 15%;
+    --accent: 41.4 98.3% 53.7%;
+    --accent-foreground: 209.4 100% 19.2%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --gold: 41.4 98.3% 53.7%;
+    --gold-foreground: 209.4 100% 19.2%;
+    --heading: 209.4 100% 19.2%;
+    --label: 38.3 100% 33.1%;
+    --link: 209.4 100% 19.2%;
+    --link-hover: 210.4 56.5% 31%;
+    --button-surface: 0 0% 100%;
+    --border-strong: 213.3 35.4% 75.1%;
+    --grid: 216 38.5% 94.9%;
 
-    --accent: 122 83% 67%;
-    --accent-foreground: 155 68% 12%;
-
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 45%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 155 68% 31%;
+    --border: 216.9 27.7% 90.8%;
+    --input: 216.9 27.7% 90.8%;
+    --ring: 209.4 100% 19.2%;
+    --radius: 0.25rem;
 
-    --radius: 0.5rem;
+    --bio-green: 41.4 98.3% 53.7%;
+    --bio-green-light: 41.4 98.3% 75%;
+    --bio-green-foreground: 209.4 100% 19.2%;
+    --compute-blue: 209.4 100% 19.2%;
+    --compute-blue-light: 213.3 35.4% 75.1%;
+    --compute-blue-foreground: 216 45.5% 97.8%;
 
-    /* Beautiful gradients for hero sections */
-    --gradient-bio: linear-gradient(135deg, hsl(155 68% 31%), hsl(122 83% 67%));
-    --gradient-compute: linear-gradient(135deg, hsl(215 84% 65%), hsl(155 68% 31%));
-    --gradient-hero: linear-gradient(135deg, hsl(155 68% 31%) 0%, hsl(122 83% 67%) 50%, hsl(215 84% 65%) 100%);
-    
-    /* Elegant shadows with bio-green glow */
-    --shadow-bio: 0 10px 30px -10px hsl(122 83% 67% / 0.3);
-    --shadow-glow: 0 0 40px hsl(122 83% 67% / 0.2);
-    --shadow-compute: 0 10px 30px -10px hsl(215 84% 65% / 0.3);
-    
-    /* Smooth scientific transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-glow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --gradient-bio: linear-gradient(hsl(var(--primary)), hsl(var(--primary)));
+    --gradient-compute: linear-gradient(hsl(var(--primary)), hsl(var(--primary)));
+    --gradient-hero: linear-gradient(hsl(var(--primary)), hsl(var(--primary)));
 
-    --sidebar-background: 0 0% 98%;
+    --shadow-bio: 0 1px 2px hsl(209.4 100% 19.2% / 0.06);
+    --shadow-glow: 0 1px 2px hsl(209.4 100% 19.2% / 0.06);
+    --shadow-compute: 0 1px 2px hsl(209.4 100% 19.2% / 0.06);
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glow: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 216 45.5% 97.8%;
+    --sidebar-foreground: 218.3 17.3% 40.8%;
+    --sidebar-primary: 209.4 100% 19.2%;
+    --sidebar-primary-foreground: 216 45.5% 97.8%;
+    --sidebar-accent: 216 45.5% 97.8%;
+    --sidebar-accent-foreground: 220 42.9% 11%;
+    --sidebar-border: 216.9 27.7% 90.8%;
+    --sidebar-ring: 209.4 100% 19.2%;
   }
 
   .dark {
-    --background: 210 24% 8%;
-    --foreground: 0 0% 95%;
+    color-scheme: dark;
 
-    --card: 210 24% 10%;
-    --card-foreground: 0 0% 95%;
+    --background: 218.2 52.4% 8.2%;
+    --foreground: 216 32.3% 87.8%;
 
-    --popover: 210 24% 10%;
-    --popover-foreground: 0 0% 95%;
+    --card: 216.5 45.1% 10%;
+    --card-foreground: 216 32.3% 87.8%;
 
-    --primary: 122 83% 67%;
-    --primary-foreground: 155 68% 12%;
-    --primary-glow: 122 83% 80%;
+    --popover: 216.5 45.1% 10%;
+    --popover-foreground: 216 32.3% 87.8%;
 
-    --secondary: 210 24% 16%;
-    --secondary-foreground: 0 0% 95%;
+    --primary: 210.7 60.9% 44.1%;
+    --primary-foreground: 216 45.5% 97.8%;
+    --primary-glow: 210.4 56.5% 51.4%;
 
-    --bio-green: 122 83% 67%;
-    --bio-green-light: 82 100% 71%;
-    --bio-green-foreground: 155 68% 12%;
+    --secondary: 218.3 45% 15.7%;
+    --secondary-foreground: 216 32.3% 87.8%;
 
-    --compute-blue: 215 84% 65%;
-    --compute-blue-light: 215 84% 85%;
-    --compute-blue-foreground: 215 84% 15%;
+    --muted: 216 43.9% 11.2%;
+    --muted-foreground: 217.3 21.6% 66.5%;
 
-    --muted: 210 24% 16%;
-    --muted-foreground: 215 16% 57%;
+    --accent: 41.4 98.3% 53.7%;
+    --accent-foreground: 211.3 59% 7.6%;
 
-    --accent: 122 83% 67%;
-    --accent-foreground: 155 68% 12%;
+    --gold: 41.4 98.3% 53.7%;
+    --gold-foreground: 211.3 59% 7.6%;
+    --heading: 215.5 40.5% 94.3%;
+    --label: 41.4 98.3% 53.7%;
+    --link: 210.9 69.5% 70.4%;
+    --link-hover: 210.8 75.5% 80.8%;
+    --button-surface: 218.3 45% 15.7%;
+    --border-strong: 214.6 33.7% 34.3%;
+    --grid: 218.3 45% 15.7%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --border: 217.5 37% 21.2%;
+    --input: 217.5 37% 21.2%;
+    --ring: 210.9 69.5% 70.4%;
 
-    --border: 210 24% 20%;
-    --input: 210 24% 20%;
-    --ring: 122 83% 67%;
+    --bio-green: 41.4 98.3% 53.7%;
+    --bio-green-light: 41.4 98.3% 70%;
+    --bio-green-foreground: 211.3 59% 7.6%;
+    --compute-blue: 210.9 69.5% 70.4%;
+    --compute-blue-light: 210.8 75.5% 80.8%;
+    --compute-blue-foreground: 211.3 59% 7.6%;
   }
 }
 
@@ -128,7 +133,94 @@ All colors MUST be HSL - Biology meets Computation theme
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background font-sans text-foreground;
+    min-width: 320px;
+    font-feature-settings: "kern", "liga";
+  }
+
+  ::selection {
+    background: hsl(var(--gold));
+    color: hsl(var(--gold-foreground));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.025em;
+  }
+
+  a {
+    color: hsl(var(--link));
+  }
+
+  a:hover {
+    color: hsl(var(--link-hover));
+  }
+
+  :focus-visible {
+    outline-color: hsl(var(--ring));
+  }
+}
+
+@layer components {
+  .bg-lab-grid {
+    background-image:
+      linear-gradient(hsl(var(--grid)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--grid)) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .eyebrow {
+    @apply text-[11px] uppercase tracking-[0.14em] text-label;
+  }
+
+  .gold-mark {
+    background: hsl(var(--gold));
+    color: hsl(var(--gold-foreground));
+    padding: 0 0.15em;
+  }
+
+  .logo-plate {
+    background: transparent;
+  }
+
+  .dark .logo-plate {
+    background: hsl(0 0% 100%);
+    padding: 2px;
+  }
+
+  .hero-logo-plate {
+    background: transparent;
+  }
+
+  .dark .hero-logo-plate {
+    background: hsl(0 0% 100%);
+    padding: 1.25rem;
+  }
+
+  .skip-link {
+    @apply fixed left-4 top-4 z-50 -translate-y-20 rounded bg-primary px-4 py-2 text-sm font-bold text-primary-foreground transition-transform focus:translate-y-0 focus:text-primary-foreground;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

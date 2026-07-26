@@ -1,116 +1,127 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ExternalLink } from "lucide-react";
 import { EnhancedButton } from "@/components/ui/enhanced-button";
-import { GraduationCap, Users, Building, Mail, ExternalLink } from "lucide-react";
+import { PageHeader, SectionHeading } from "@/components/PageHeader";
 
-const Collaborations = () => {
-  return (
-    <div className="min-h-screen py-16 px-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-bio bg-clip-text text-transparent">
-            Work With Us
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            We welcome collaboration with students, alumni, faculty, and industry partners to advance computational biology education and research.
-          </p>
+const LINKEDIN =
+  "https://www.linkedin.com/company/computational-biology-at-berkeley/";
+const LINKTREE = "https://linktr.ee/compbioatberkeley";
+
+const Collaborations = () => (
+  <div>
+    <PageHeader
+      eyebrow="03 / collaborations"
+      title="Work with us"
+      lede="We welcome collaboration with students, alumni, faculty, and industry partners to advance computational biology education and research."
+    />
+
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+      <SectionHeading title="Ways to work together" meta="03 tracks" />
+
+      <div className="border-y border-border">
+        <div className="grid gap-6 py-8 md:grid-cols-[180px_1fr] md:gap-10">
+          <div>
+            <p className="text-[11px] text-label">[01]</p>
+            <h3 className="mt-2 text-lg font-bold text-heading">Research projects</h3>
+          </div>
+          <div>
+            <p className="max-w-[62ch] text-sm leading-relaxed text-muted-foreground">
+              We can help you build computational tools and analyze data to accelerate your biological research.
+            </p>
+            <EnhancedButton asChild variant="outline" className="mt-4">
+              <a href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+                contact our projects lead
+                <ExternalLink />
+              </a>
+            </EnhancedButton>
+          </div>
         </div>
 
-        <div className="grid gap-8">
-          {/* Research Section */}
-          <Card className="border-bio-green/20 hover:shadow-bio transition-all duration-300">
-            <CardHeader>
-              <CardTitle className="flex items-center text-2xl text-bio-green">
-                <GraduationCap className="w-6 h-6 mr-3" />
-                Research Projects
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-muted-foreground">
-                We can help you build computational tools and analyze data to accelerate your biological research.
-              </p>
-              <EnhancedButton variant="bio-solid" size="lg">
-                Contact our Projects Lead
-                <ExternalLink className="w-4 h-4" />
-              </EnhancedButton>
-            </CardContent>
-          </Card>
-
-          {/* Presentation Section */}
-          <Card className="border-compute-blue/20 hover:shadow-compute transition-all duration-300">
-            <CardHeader>
-              <CardTitle className="flex items-center text-2xl text-compute-blue">
-                <Users className="w-6 h-6 mr-3" />
-                Share your experiences
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-muted-foreground">
-                Give a presentation on industry or research topics related to computational biology.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <EnhancedButton variant="compute-solid" size="lg">
-                  Contact our Academic Lead
-                  <Mail className="w-4 h-4" />
-                </EnhancedButton>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Industry Section */}
-          <Card className="border-primary/20 hover:shadow-glow transition-all duration-300">
-            <CardHeader>
-              <CardTitle className="flex items-center text-2xl text-primary">
-                <Building className="w-6 h-6 mr-3" />
-                Industry Partners
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-muted-foreground">
-                Partner with us through sponsorships, guest lectures, workshop collaborations, and internship opportunities. Help us bridge the gap between academia and industry. 
-              </p>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
-                  <h4 className="font-semibold mb-2 text-primary">What we can provide</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Top undergraduates in computational biology</li>
-                    <li>• Software development for research</li>
-                    <li>• A platform to promote your events and opportunities</li>
-                  </ul>
-                </div>
-                <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
-                  <h4 className="font-semibold mb-2 text-primary">What we are looking for (open to discussion)</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Company tours and connections</li>
-                    <li>• Computational resources and mentorship</li>
-                    <li>• Research partnerships</li>
-                  </ul>
-                </div>
-              </div>
-              <EnhancedButton variant="hero" size="lg">
-                Contact EVP for Partnerships
-                <Mail className="w-4 h-4" />
-              </EnhancedButton>
-            </CardContent>
-          </Card>
+        <div className="grid gap-6 border-t border-border py-8 md:grid-cols-[180px_1fr] md:gap-10">
+          <div>
+            <p className="text-[11px] text-label">[02]</p>
+            <h3 className="mt-2 text-lg font-bold text-heading">Share your experience</h3>
+          </div>
+          <div>
+            <p className="max-w-[62ch] text-sm leading-relaxed text-muted-foreground">
+              Give a presentation on industry or research topics related to computational biology.
+            </p>
+            <EnhancedButton asChild variant="outline" className="mt-4">
+              <a href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+                contact our academic lead
+                <ExternalLink />
+              </a>
+            </EnhancedButton>
+          </div>
         </div>
 
-        <div className="mt-12 text-center p-8 bg-gradient-to-r from-bio-green/10 to-compute-blue/10 rounded-2xl border border-bio-green/20">
-          <h3 className="text-2xl font-semibold mb-4 bg-gradient-compute bg-clip-text text-transparent">
-            Ready to Collaborate?
-          </h3>
-          <p className="text-muted-foreground mb-6">
-            We're always looking for new opportunities to work with passionate individuals and organizations who share our vision for advancing computational biology.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <EnhancedButton variant="bio-outline" size="lg">
-              Send us an Email
-              <Mail className="w-4 h-4" />
+        <div className="grid gap-6 border-t border-border py-8 md:grid-cols-[180px_1fr] md:gap-10">
+          <div>
+            <p className="text-[11px] text-label">[03]</p>
+            <h3 className="mt-2 text-lg font-bold text-heading">Industry partners</h3>
+          </div>
+          <div>
+            <p className="max-w-[62ch] text-sm leading-relaxed text-muted-foreground">
+              Partner with us through sponsorships, guest lectures, workshop collaborations, and internship
+              opportunities. Help us bridge the gap between academia and industry.
+            </p>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="rounded border border-border bg-card p-5">
+                <h4 className="text-[11px] uppercase tracking-[0.12em] text-label">
+                  What we can provide
+                </h4>
+                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                  <li>Top undergraduates in computational biology</li>
+                  <li>Software development for research</li>
+                  <li>A platform to promote events and opportunities</li>
+                </ul>
+              </div>
+              <div className="rounded border border-border bg-card p-5">
+                <h4 className="text-[11px] uppercase tracking-[0.12em] text-label">
+                  What we are looking for
+                </h4>
+                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                  <li>Company tours and connections</li>
+                  <li>Computational resources and mentorship</li>
+                  <li>Research partnerships</li>
+                </ul>
+                <p className="mt-3 text-[11px] text-muted-foreground">open to discussion</p>
+              </div>
+            </div>
+
+            <EnhancedButton asChild variant="primary" className="mt-6">
+              <a href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+                contact partnerships
+                <ExternalLink />
+              </a>
             </EnhancedButton>
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+
+      <div className="mt-14 rounded border border-border bg-muted p-8 md:p-10">
+        <h2 className="text-2xl font-bold text-heading">Ready to collaborate?</h2>
+        <p className="mt-3 max-w-[62ch] text-sm leading-relaxed text-muted-foreground">
+          We are always looking for opportunities to work with people and organizations who share our
+          commitment to computational biology.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <EnhancedButton asChild variant="gold">
+            <a href={LINKTREE} target="_blank" rel="noopener noreferrer">
+              contact us
+              <ExternalLink />
+            </a>
+          </EnhancedButton>
+          <EnhancedButton asChild variant="outline">
+            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+              message us on linkedin
+              <ExternalLink />
+            </a>
+          </EnhancedButton>
+        </div>
+      </div>
+    </section>
+  </div>
+);
 
 export default Collaborations;

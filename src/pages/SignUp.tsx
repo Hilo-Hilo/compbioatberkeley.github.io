@@ -1,122 +1,102 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { EnhancedButton } from "@/components/ui/enhanced-button";
 import { ExternalLink } from "lucide-react";
+import { EnhancedButton } from "@/components/ui/enhanced-button";
+import { PageHeader } from "@/components/PageHeader";
 
-const SignUp = () => {
-  return (
-    <div className="min-h-screen py-16 px-4 bg-gradient-to-br from-bio-green/5 to-compute-blue/5">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-bio bg-clip-text text-transparent">
-            Join Our Community
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Stay connected with Computational Biology at Berkeley and be the first to know about events, opportunities, and updates.
-          </p>
-        </div>
+const INTEREST_FORM = "https://forms.gle/rD4XLxwZkxusCx5w5";
+const NEWSLETTER_FORM = "https://forms.gle/qCxn93mfunF3Dtep7";
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Sign Up Form */}
-          <Card className="border-bio-green/20 hover:shadow-bio transition-all duration-300">
-            <CardHeader>
-              <CardTitle className="text-2xl text-bio-green text-center">Get Updates</CardTitle>
-            </CardHeader>
-            <CardContent className="text-center">
-              <p className="text-muted-foreground mb-6">
-                Sign up for our newsletter to receive updates about events, courses, and opportunities.
-              </p>
-              <iframe 
-                src="https://forms.gle/rD4XLxwZkxusCx5w5"
-                width="100%" 
-                height="400"
-                className="rounded-lg border border-bio-green/20"
-                title="Interest Form"
-              >
-                Loading...
-              </iframe>
-              <div className="mt-4">
-                <a 
-                  href="https://forms.gle/rD4XLxwZkxusCx5w5" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <EnhancedButton variant="bio-solid" size="lg">
-                    Open Form in New Tab
-                    <ExternalLink className="w-4 h-4" />
-                  </EnhancedButton>
+const forms = [
+  {
+    n: "01",
+    title: "Get updates",
+    body: "Sign up for our interest form to receive updates about events, courses, and opportunities.",
+    src: INTEREST_FORM,
+    label: "Interest form",
+  },
+  {
+    n: "02",
+    title: "Newsletter",
+    body: "Subscribe to our newsletter for in-depth articles and exclusive content.",
+    src: NEWSLETTER_FORM,
+    label: "Newsletter form",
+  },
+];
+
+const socials = [
+  { name: "instagram", url: "https://www.instagram.com/ucb_compbio/" },
+  {
+    name: "linkedin",
+    url: "https://www.linkedin.com/company/computational-biology-at-berkeley/",
+  },
+  { name: "linktree", url: "https://linktr.ee/compbioatberkeley" },
+];
+
+const SignUp = () => (
+  <div>
+    <PageHeader
+      eyebrow="05 / sign up"
+      title="Join our community"
+      lede="Stay connected with Computational Biology at Berkeley and be the first to know about events, opportunities, and updates."
+    />
+
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+      <div className="grid items-start gap-4 lg:grid-cols-3">
+        {forms.map((form) => (
+          <article key={form.n} className="flex flex-col overflow-hidden rounded border border-border bg-card">
+            <div className="border-b border-border p-5">
+              <p className="text-[11px] text-label">[{form.n}]</p>
+              <h2 className="mt-2 text-lg font-bold text-heading">{form.title}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{form.body}</p>
+            </div>
+            <iframe
+              src={form.src}
+              title={form.label}
+              className="h-[400px] w-full border-0 bg-background"
+              loading="lazy"
+            >
+              Loading...
+            </iframe>
+            <div className="border-t border-border p-4">
+              <EnhancedButton asChild variant="outline" size="sm" className="w-full">
+                <a href={form.src} target="_blank" rel="noopener noreferrer">
+                  open in new tab
+                  <ExternalLink />
                 </a>
-              </div>
-            </CardContent>
-          </Card>
+              </EnhancedButton>
+            </div>
+          </article>
+        ))}
 
-          {/* Newsletter Form */}
-          <Card className="border-bio-green/20 hover:shadow-bio transition-all duration-300">
-            <CardHeader>
-              <CardTitle className="text-2xl text-bio-green text-center">Newsletter</CardTitle>
-            </CardHeader>
-            <CardContent className="text-center">
-              <p className="text-muted-foreground mb-6">
-                Subscribe to our newsletter for in-depth articles and exclusive content.
-              </p>
-              <iframe 
-                src="https://forms.gle/qCxn93mfunF3Dtep7"
-                width="100%" 
-                height="400"
-                className="rounded-lg border border-bio-green/20"
-                title="Newsletter Form"
+        <article className="flex min-h-[526px] flex-col overflow-hidden rounded border border-border bg-card lg:min-h-0 lg:self-stretch">
+          <div className="border-b border-border p-5">
+            <p className="text-[11px] text-label">[03]</p>
+            <h2 className="mt-2 text-lg font-bold text-heading">Connect with us</h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Follow along between meetings. Events, recaps, and opportunities go out here first.
+            </p>
+          </div>
+
+          <div className="flex flex-1 flex-col gap-2 p-5">
+            {socials.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-11 items-center justify-between rounded border border-border px-4 text-[13px] text-heading hover:border-border-strong hover:bg-muted hover:text-heading"
               >
-                Loading...
-              </iframe>
-              <div className="mt-4">
-                <a 
-                  href="https://forms.gle/qCxn93mfunF3Dtep7" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <EnhancedButton variant="bio-solid" size="lg">
-                    Open Form in New Tab
-                    <ExternalLink className="w-4 h-4" />
-                  </EnhancedButton>
-                </a>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Social Links */}
-          <Card className="border-compute-blue/20 hover:shadow-compute transition-all duration-300 flex flex-col">
-            <CardHeader>
-              <CardTitle className="text-2xl text-compute-blue text-center">Connect With Us</CardTitle>
-            </CardHeader>
-            <CardContent className="flex-1 flex flex-col justify-center items-center space-y-6">
-              <div className="text-center w-full">
-                <h3 className="text-lg font-semibold mb-4">Follow us on social media</h3>
-                
-                <div className="space-y-4 max-w-xs mx-auto">
-                  
-                  
-                  <EnhancedButton variant="bio-outline" size="lg" className="w-full">
-                    Follow on Instagram
-                    <ExternalLink className="w-4 h-4" />
-                  </EnhancedButton>
-                  
-                  <EnhancedButton variant="compute-outline" size="lg" className="w-full">
-                    Connect on LinkedIn
-                    <ExternalLink className="w-4 h-4" />
-                  </EnhancedButton>
-                </div>
-              </div>
-
-              <div className="pt-6 border-t border-border w-full max-w-xs">
-                <p className="text-sm text-muted-foreground text-center">
-                  Questions? Reach out to us through any of these platforms, and we'll get back to you soon!
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+                {social.name}
+                <ExternalLink className="h-4 w-4 text-muted-foreground" />
+              </a>
+            ))}
+            <p className="mt-auto border-t border-border pt-4 text-sm leading-relaxed text-muted-foreground">
+              Questions? Reach out through any of these platforms and we will get back to you soon.
+            </p>
+          </div>
+        </article>
       </div>
-    </div>
-  );
-};
+    </section>
+  </div>
+);
 
 export default SignUp;

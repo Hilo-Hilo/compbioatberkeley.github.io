@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -18,12 +19,28 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Carlito', 'Calibri', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				mono: ['Carlito', 'Calibri', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
+				'border-strong': 'hsl(var(--border-strong))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				heading: 'hsl(var(--heading))',
+				label: 'hsl(var(--label))',
+				link: {
+					DEFAULT: 'hsl(var(--link))',
+					hover: 'hsl(var(--link-hover))'
+				},
+				gold: {
+					DEFAULT: 'hsl(var(--gold))',
+					foreground: 'hsl(var(--gold-foreground))'
+				},
+				'button-surface': 'hsl(var(--button-surface))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
@@ -90,8 +107,8 @@ export default {
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				md: 'var(--radius)',
+				sm: 'calc(var(--radius) - 1px)'
 			},
 			keyframes: {
 				'accordion-down': {
@@ -117,5 +134,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindcssAnimate],
 } satisfies Config;

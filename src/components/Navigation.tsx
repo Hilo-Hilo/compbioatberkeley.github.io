@@ -1,93 +1,131 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
-import compBioLogo from "@/assets/comp-bio-logo.png";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import { useTheme } from "next-themes";
+
+const LOGO_SRC = "/comp-bio-logo-berkeley.svg";
+
+const navItems = [
+  { name: "home", path: "/" },
+  { name: "about", path: "/about" },
+  { name: "calendar", path: "/calendar" },
+  { name: "collabs", path: "/collaborations" },
+  { name: "officers", path: "/officers" },
+];
+
+const ThemeToggle = ({ mobile = false }: { mobile?: boolean }) => {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const isDark = mounted && resolvedTheme === "dark";
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const themeColor = isDark ? "#0A1220" : "#FFFFFF";
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", themeColor);
+  }, [isDark, mounted]);
+
+  return (
+    <button
+      type="button"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
+      className={`inline-flex min-h-9 items-center justify-center gap-1.5 rounded border border-border bg-button-surface font-sans text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-heading focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:translate-y-px ${
+        mobile ? "w-full px-3" : "px-2.5"
+      }`}
+    >
+      {isDark ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+      {isDark ? "light" : "dark"}
+    </button>
+  );
+};
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-
-  const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Calendar", path: "/calendar" },
-    { name: "Collaborations", path: "/collaborations" },
-    { name: "Officers", path: "/officers" },
-    { name: "Sign Up", path: "/signup" },
-  ];
-
   const isActive = (path: string) => location.pathname === path;
 
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
   return (
-    <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <img 
-              src={compBioLogo} 
-              alt="Computational Biology at Berkeley" 
-              className="h-10 w-10 object-contain"
-            />
-            <span className="font-semibold text-lg bg-gradient-bio bg-clip-text text-transparent">
-              Computational Biology at Berkeley
+    <nav className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-md">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between gap-6">
+          <Link
+            to="/"
+            className="flex shrink-0 items-center gap-2.5 text-heading hover:text-heading"
+            aria-label="Computational Biology at Berkeley home"
+          >
+            <span className="logo-plate flex h-8 w-8 items-center justify-center overflow-hidden rounded">
+              <img src={LOGO_SRC} alt="" className="h-8 w-8 object-contain" />
+            </span>
+            <span className="text-[13px] font-bold tracking-[-0.01em]">
+              compbio<span className="text-gold">@</span>berkeley
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden items-center gap-5 lg:flex">
             {navItems.map((item) => (
-              <Link key={item.path} to={item.path}>
-                <Button
-                  variant={isActive(item.path) ? "default" : "ghost"}
-                  className={`transition-all duration-300 ${
-                    isActive(item.path)
-                      ? "bg-gradient-bio text-white shadow-bio"
-                      : "hover:bg-bio-green/10 hover:text-bio-green"
-                  }`}
-                >
-                  {item.name}
-                </Button>
+              <Link
+                key={item.path}
+                to={item.path}
+                aria-current={isActive(item.path) ? "page" : undefined}
+                className={`border-b-2 pb-0.5 text-xs tracking-wide transition-colors ${
+                  isActive(item.path)
+                    ? "border-gold text-heading"
+                    : "border-transparent text-muted-foreground hover:text-heading"
+                }`}
+              >
+                {item.name}
               </Link>
             ))}
+            <ThemeToggle />
+            <Link
+              to="/signup"
+              aria-current={isActive("/signup") ? "page" : undefined}
+              className="rounded bg-primary px-3.5 py-2 text-xs font-bold text-primary-foreground transition-colors hover:bg-primary/90 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:translate-y-px"
+            >
+              sign up
+            </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(!isOpen)}
-              className="hover:bg-bio-green/10"
-            >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setIsOpen((open) => !open)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
+            className="flex h-11 w-11 items-center justify-center rounded text-heading hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden border-t border-border">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setIsOpen(false)}
-                >
-                  <Button
-                    variant={isActive(item.path) ? "default" : "ghost"}
-                    className={`w-full justify-start transition-all duration-300 ${
-                      isActive(item.path)
-                        ? "bg-gradient-bio text-white shadow-bio"
-                        : "hover:bg-bio-green/10 hover:text-bio-green"
-                    }`}
-                  >
-                    {item.name}
-                  </Button>
-                </Link>
-              ))}
+          <div id="mobile-navigation" className="border-t border-border py-2 lg:hidden">
+            {[...navItems, { name: "sign up", path: "/signup" }].map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                aria-current={isActive(item.path) ? "page" : undefined}
+                className={`flex min-h-11 items-center border-l-2 px-3 text-sm ${
+                  isActive(item.path)
+                    ? "border-gold bg-muted text-heading"
+                    : "border-transparent text-muted-foreground hover:bg-muted hover:text-heading"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="px-1 pb-1 pt-2">
+              <ThemeToggle mobile />
             </div>
           </div>
         )}

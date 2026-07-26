@@ -1,7 +1,9 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
-import { FaGlobe, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaGithub, FaGlobe, FaLinkedin, FaOrcid } from "react-icons/fa";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 import { Info } from "lucide-react";
 import { Officer } from "@/types/officers";
 import { ReactNode } from "react";
@@ -15,134 +17,115 @@ interface SocialLink {
   value: string;
   icon: ReactNode;
   title: string;
-  formatUrl: (v: string) => string;
+  formatUrl: (value: string) => string;
 }
 
 export const OfficerCard = ({ officer }: OfficerCardProps) => {
-  // Use the current JSON structure fields
-  const name = officer.name || '';
-  const role = officer.role || '';
-  const image = officer.image || '';
-  const personalWebsite = officer["personal website"] || '';
-  const linkedin = officer.linkedin || '';
-  const github = officer.github || '';
-  const orcid = officer.orcid || '';
-  const bio = officer.bio || '';
+  const name = officer.name || "";
+  const role = officer.role || "";
+  const image = officer.image || "";
+  const personalWebsite = officer["personal website"] || "";
+  const linkedin = officer.linkedin || "";
+  const github = officer.github || "";
+  const orcid = officer.orcid || "";
+  const bio = officer.bio || "";
+  const defaultImage = "/placeholder.svg";
 
-  // Default placeholder image path
-  const defaultImage = '/placeholder.svg';
-
-  // Social links configuration
   const socialLinks: SocialLink[] = [
     {
-      id: 'personalWebsite',
+      id: "personalWebsite",
       value: personalWebsite,
-      icon: <FaGlobe className="w-4 h-4" />,
-      title: 'Personal Website',
-      formatUrl: (v) => v.startsWith('http') ? v : `https://${v}`,
+      icon: <FaGlobe className="h-4 w-4" />,
+      title: "Personal website",
+      formatUrl: (value) => (value.startsWith("http") ? value : `https://${value}`),
     },
     {
-      id: 'linkedin',
+      id: "linkedin",
       value: linkedin,
-      icon: <FaLinkedin className="w-4 h-4" />,
-      title: 'LinkedIn',
-      formatUrl: (v) => v.startsWith('http') ? v : `https://linkedin.com/in/${v}`,
+      icon: <FaLinkedin className="h-4 w-4" />,
+      title: "LinkedIn",
+      formatUrl: (value) =>
+        value.startsWith("http") ? value : `https://linkedin.com/in/${value}`,
     },
     {
-      id: 'github',
+      id: "github",
       value: github,
-      icon: <FaGithub className="w-4 h-4" />,
-      title: 'GitHub',
-      formatUrl: (v) => v.startsWith('http') ? v : `https://github.com/${v}`,
+      icon: <FaGithub className="h-4 w-4" />,
+      title: "GitHub",
+      formatUrl: (value) =>
+        value.startsWith("http") ? value : `https://github.com/${value}`,
+    },
+    {
+      id: "orcid",
+      value: orcid,
+      icon: <FaOrcid className="h-4 w-4" />,
+      title: "ORCID",
+      formatUrl: (value) =>
+        value.startsWith("http") ? value : `https://orcid.org/${value}`,
     },
   ];
 
-  const renderSocialLink = (link: SocialLink) => {
-    if (!link.value || link.value.trim() === '') return null;
-
-    return (
-      <a
-        key={link.id}
-        href={link.formatUrl(link.value)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-bio-green hover:text-bio-green/80 transition-colors"
-        title={link.title}
-      >
-        {link.icon}
-      </a>
-    );
-  };
-
   return (
-    <Card className="border-bio-green/20 hover:shadow-bio transition-all duration-300 h-full">
-      <CardContent className="p-4">
-        <div className="flex flex-col items-center text-center space-y-3">
-          {/* Profile Image */}
-          <div className="w-20 h-20 rounded-full overflow-hidden bg-gradient-bio flex items-center justify-center">
-            {image ? (
-              <img
-                src={image}
-                alt={name}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = defaultImage;
-                }}
-              />
-            ) : (
-              <img
-                src={defaultImage}
-                alt={name}
-                className="w-full h-full object-cover opacity-70"
-              />
-            )}
-          </div>
+    <article className="flex h-full flex-col overflow-hidden rounded border border-border bg-card transition-colors hover:border-border-strong">
+      <div className="aspect-[4/3] w-full overflow-hidden border-b border-border bg-muted">
+        <img
+          src={image || defaultImage}
+          alt={name ? `Portrait of ${name}` : "Officer portrait"}
+          loading="lazy"
+          className={`h-full w-full object-cover ${image ? "" : "opacity-40"}`}
+          onError={(event) => {
+            const target = event.currentTarget;
+            target.onerror = null;
+            target.src = defaultImage;
+            target.classList.add("opacity-40");
+          }}
+        />
+      </div>
 
-          {/* Name and Role */}
-          <div className="space-y-1.5">
-            <h3 className="text-lg font-bold text-bio-green">{name}</h3>
-            {role && (
-              <Badge variant="secondary" className="bg-bio-green/10 text-bio-green text-xs">
-                {role}
-              </Badge>
-            )}
-          </div>
+      <div className="flex flex-1 flex-col gap-1.5 p-4">
+        <h3 className="text-[15px] font-bold leading-snug text-heading">{name}</h3>
+        {role && (
+          <p className="text-[11px] uppercase tracking-[0.1em] text-label">{role}</p>
+        )}
 
-          {/* Contact Links */}
-          <div className="flex space-x-3 pt-1">
-            {bio && bio.trim() !== '' && (
-              <HoverCard>
-                <HoverCardTrigger asChild>
-                  <button className="text-bio-green hover:text-bio-green/80 transition-colors">
-                    <Info className="w-4 h-4" />
-                  </button>
-                </HoverCardTrigger>
-                <HoverCardContent className="w-80">
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-sm">About {name}</h4>
-                    <p className="text-sm text-muted-foreground">{bio}</p>
-                  </div>
-                </HoverCardContent>
-              </HoverCard>
-            )}
-            {socialLinks.map(renderSocialLink)}
-            {orcid && orcid.trim() !== '' && (
+        <div className="mt-auto flex items-center gap-0.5 pt-3">
+          {bio && bio.trim() !== "" && (
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <button
+                  type="button"
+                  aria-label={`About ${name}`}
+                  className="flex h-9 w-9 items-center justify-center rounded text-muted-foreground hover:bg-muted hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <Info className="h-4 w-4" />
+                </button>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80 border-border bg-popover">
+                <p className="text-[11px] uppercase tracking-[0.1em] text-muted-foreground">
+                  About {name}
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-foreground">{bio}</p>
+              </HoverCardContent>
+            </HoverCard>
+          )}
+          {socialLinks.map((link) => {
+            if (!link.value || link.value.trim() === "") return null;
+            return (
               <a
-                href={orcid.startsWith('http') ? orcid : `https://orcid.org/${orcid}`}
+                key={link.id}
+                href={link.formatUrl(link.value)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-bio-green hover:text-bio-green/80 transition-colors"
-                title="ORCID"
+                title={link.title}
+                aria-label={`${name} - ${link.title}`}
+                className="flex h-9 w-9 items-center justify-center rounded text-muted-foreground hover:bg-muted hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947-.525 0-.946-.422-.946-.947 0-.525.421-.947.946-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.781-1.4 3.781-3.722 0-2.016-1.178-3.722-3.781-3.722h-2.297z"/>
-                </svg>
+                {link.icon}
               </a>
-            )}
-          </div>
+            );
+          })}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </article>
   );
 };

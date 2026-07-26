@@ -1,62 +1,68 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded font-sans text-sm font-bold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        primary: "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground",
+        gold: "bg-gold text-gold-foreground hover:bg-gold/85 hover:text-gold-foreground",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        // Enhanced variants for the website
-        hero: "bg-gradient-bio text-white border-0 shadow-bio hover:shadow-glow hover:scale-105 transition-all duration-300",
-        "bio-outline": "border-2 border-bio-green text-bio-green bg-transparent hover:bg-bio-green hover:text-bio-green-foreground transition-all duration-300",
-        "compute-outline": "border-2 border-compute-blue text-compute-blue bg-transparent hover:bg-compute-blue hover:text-compute-blue-foreground transition-all duration-300",
-        "bio-solid": "bg-bio-green text-bio-green-foreground hover:bg-bio-green/90 shadow-bio",
-        "compute-solid": "bg-compute-blue text-compute-blue-foreground hover:bg-compute-blue/90 shadow-compute",
+          "border border-border bg-button-surface text-heading hover:bg-muted hover:text-heading",
+        quiet: "text-link hover:bg-muted hover:text-link",
+        link: "text-link underline underline-offset-4 hover:text-link-hover",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:text-destructive-foreground",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground",
+        hero: "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground",
+        "bio-solid":
+          "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground",
+        "bio-outline":
+          "border border-border bg-button-surface text-heading hover:bg-muted hover:text-heading",
+        "compute-solid":
+          "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground",
+        "compute-outline":
+          "border border-border bg-button-surface text-heading hover:bg-muted hover:text-heading",
+        secondary: "bg-muted text-heading hover:bg-border/60 hover:text-heading",
+        ghost: "text-heading hover:bg-muted hover:text-heading",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        xl: "h-14 rounded-lg px-10 text-base",
+        default: "h-10 px-5",
+        sm: "h-9 px-3 text-[13px]",
+        lg: "h-11 px-6",
+        xl: "h-12 px-7 text-[15px]",
         icon: "h-10 w-10",
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "primary",
       size: "default",
     },
-  }
-)
+  },
+);
 
-export interface ButtonProps
+interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+  asChild?: boolean;
 }
 
 const EnhancedButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
+    const Comp = asChild ? Slot : "button";
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       />
-    )
-  }
-)
-EnhancedButton.displayName = "EnhancedButton"
+    );
+  },
+);
 
-export { EnhancedButton, buttonVariants }
+EnhancedButton.displayName = "EnhancedButton";
+
+export { EnhancedButton };
