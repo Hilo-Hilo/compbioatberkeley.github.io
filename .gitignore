@@ -42,3 +42,7 @@ dev/
 ## It doesn't contain sensitive data but it's fetched at build time, and
 ## it may be quite heavy so there is no point in keeping it committed to the repository.
 public/fetched
+
+# Local deployment and TypeScript build state
+.vercel
+*.tsbuildinfo
