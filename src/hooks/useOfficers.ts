@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Officer } from '@/types/officers';
+import { publicAssetPath } from '@/lib/publicAsset';
 
 // Helper function to get current semester based on date
 function getCurrentSemester(): string {
@@ -27,7 +28,9 @@ export const useOfficers = () => {
         
         // Get current semester and fetch from the semester-specific directory
         const semester = getCurrentSemester();
-        const response = await fetch(`/fetched/officers/${semester}/officers-${semester}.json`);
+        const response = await fetch(
+          publicAssetPath(`fetched/officers/${semester}/officers-${semester}.json`),
+        );
         
         if (!response.ok) {
           throw new Error(`Failed to fetch officers data: ${response.status}`);

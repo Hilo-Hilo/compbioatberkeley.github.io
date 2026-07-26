@@ -7,6 +7,7 @@ import {
 import { Info } from "lucide-react";
 import { Officer } from "@/types/officers";
 import { ReactNode } from "react";
+import { publicAssetPath } from "@/lib/publicAsset";
 
 interface OfficerCardProps {
   officer: Officer;
@@ -23,13 +24,13 @@ interface SocialLink {
 export const OfficerCard = ({ officer }: OfficerCardProps) => {
   const name = officer.name || "";
   const role = officer.role || "";
-  const image = officer.image || "";
+  const image = officer.image ? publicAssetPath(officer.image) : "";
   const personalWebsite = officer["personal website"] || "";
   const linkedin = officer.linkedin || "";
   const github = officer.github || "";
   const orcid = officer.orcid || "";
   const bio = officer.bio || "";
-  const defaultImage = "/placeholder.svg";
+  const defaultImage = publicAssetPath("placeholder.svg");
 
   const socialLinks: SocialLink[] = [
     {

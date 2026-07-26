@@ -30,6 +30,7 @@ const BioNetwork = lazy(
 );
 
 const queryClient = new QueryClient();
+const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -129,6 +130,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter
+          basename={routerBasename}
           future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
         >
           <ScrollToTop />

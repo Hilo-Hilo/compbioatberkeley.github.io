@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 import { EnhancedButton } from "@/components/ui/enhanced-button";
 import { SectionHeading } from "@/components/PageHeader";
+import { publicAssetPath } from "@/lib/publicAsset";
 
-const LOGO_SRC = "/comp-bio-logo-berkeley.svg";
+const LOGO_SRC = publicAssetPath("comp-bio-logo-berkeley.svg");
 
 const objectives = [
   {

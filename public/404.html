@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Computational Biology at Berkeley</title>
-  <script>
-    // GitHub Pages SPA redirect hack
-    // Store the current path and redirect to index with the path in sessionStorage
-    sessionStorage.redirect = location.href;
-  </script>
-  <meta http-equiv="refresh" content="0;URL='/'">
-</head>
-<body>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Computational Biology at Berkeley</title>
+    <script>
+      (function () {
+        var projectName = "compbioatberkeley.github.io";
+        var pathSegments = window.location.pathname.split("/").filter(Boolean);
+        var isProjectPage =
+          window.location.hostname.endsWith(".github.io") &&
+          pathSegments[0] === projectName;
+        var basePath = isProjectPage ? "/" + projectName + "/" : "/";
+
+        sessionStorage.redirect = window.location.href;
+        window.location.replace(basePath);
+      })();
+    </script>
+  </head>
+  <body></body>
 </html>

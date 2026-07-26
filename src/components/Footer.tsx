@@ -1,6 +1,7 @@
 import { Link as RouterLink } from "react-router-dom";
+import { publicAssetPath } from "@/lib/publicAsset";
 
-const LOGO_SRC = "/comp-bio-logo-berkeley.svg";
+const LOGO_SRC = publicAssetPath("comp-bio-logo-berkeley.svg");
 
 const quickLinks = [
   { name: "home", path: "/" },

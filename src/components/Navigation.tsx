@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
+import { publicAssetPath } from "@/lib/publicAsset";
 
-const LOGO_SRC = "/comp-bio-logo-berkeley.svg";
+const LOGO_SRC = publicAssetPath("comp-bio-logo-berkeley.svg");
 
 const navItems = [
   { name: "home", path: "/" },

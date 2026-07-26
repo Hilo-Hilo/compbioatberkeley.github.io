@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Officer } from '@/types/officers';
+import { publicAssetPath } from '@/lib/publicAsset';
 
 export const useOfficersFa25 = () => {
   const [officers, setOfficers] = useState<Officer[]>([]);
@@ -13,7 +14,9 @@ export const useOfficersFa25 = () => {
         setError(null);
         
         // Fetch from the pre-built JSON file for FA25
-        const response = await fetch('/fetched/officers/fa25/officers-fa25.json');
+        const response = await fetch(
+          publicAssetPath('fetched/officers/fa25/officers-fa25.json'),
+        );
         
         if (!response.ok) {
           throw new Error(`Failed to fetch FA25 officers data: ${response.status}`);
