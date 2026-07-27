@@ -41,7 +41,7 @@ export const partners: Partner[] = [
     logoPath: "partners/raster/novaflow.png",
     logoClassName: "max-h-24 w-full",
     collageClassName:
-      "col-span-2 md:left-[15%] md:top-[29%] md:w-[32%]",
+      "col-span-2 md:left-[10%] md:top-[29%] md:w-[32%]",
     brandSourceUrl: "https://www.novaflowapp.com/",
   },
   {
@@ -61,7 +61,7 @@ export const partners: Partner[] = [
     darkLogoPath: "partners/raster/google-deepmind-dark.png",
     logoClassName: "max-h-20 w-full",
     collageClassName:
-      "col-span-2 md:left-[43%] md:top-[39%] md:w-[31%]",
+      "col-span-2 md:left-[45%] md:top-[39%] md:w-[31%]",
     brandSourceUrl:
       "https://storage.googleapis.com/gdm-deepmind-com-prod-public/media/images/0xBk-c8kzB5UTrWs/nav__gdm-lockup__light.height-25.svg",
   },
@@ -72,7 +72,7 @@ export const partners: Partner[] = [
     darkLogoPath: "partners/raster/ucsf-dark.png",
     logoClassName: "max-h-32 w-full",
     collageClassName:
-      "col-span-1 md:left-[70%] md:top-[43%] md:w-[21%]",
+      "col-span-1 md:left-[60%] md:top-[54%] md:w-[18%]",
     brandSourceUrl: "https://identity.ucsf.edu/brand-guide/logos",
   },
   {
