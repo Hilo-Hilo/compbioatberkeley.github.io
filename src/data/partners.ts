@@ -55,15 +55,14 @@ export const partners: Partner[] = [
       "Transparent reconstruction from the supplied reference because the legacy official domain no longer resolves.",
   },
   {
-    name: "Google DeepMind",
-    website: "https://deepmind.google/",
-    logoPath: "partners/raster/google-deepmind.png",
-    darkLogoPath: "partners/raster/google-deepmind-dark.png",
+    name: "Google DeepVariant",
+    website: "https://github.com/google/deepvariant",
+    logoPath: "partners/raster/google-wordmark.png",
     logoClassName: "max-h-20 w-full",
     collageClassName:
       "col-span-2 md:left-[45%] md:top-[39%] md:w-[31%]",
     brandSourceUrl:
-      "https://storage.googleapis.com/gdm-deepmind-com-prod-public/media/images/0xBk-c8kzB5UTrWs/nav__gdm-lockup__light.height-25.svg",
+      "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
   },
   {
     name: "UCSF",

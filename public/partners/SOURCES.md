@@ -4,8 +4,9 @@ This folder is the local, production-safe asset set used by
 `src/data/partners.ts`. Both the Home and Collaborations pages render the same
 `PartnerLogoWall`, so partner updates stay synchronized.
 
-- Google DeepMind: official Google DeepMind navigation SVG, rasterized from
-  the vector master for the collage.
+- Google DeepVariant: represented by Google's standard multicolor Google
+  wordmark, sourced from Google's official branding image; the partner link
+  opens the official `google/deepvariant` repository.
 - UCSF: rendered from the official navy RGB EPS in the UCSF master logo
   download package.
 - NeuroAge Therapeutics: official website logo (`logo.webp`).

@@ -163,10 +163,9 @@ const buildDarkVariant = async (inputName, outputName, transform) => {
 
 await Promise.all([
   writeTransparentPng({
-    input: source("google-deepmind.svg"),
-    name: "google-deepmind.png",
-    width: 1728,
-    allowEnlargement: true,
+    input: source("google-wordmark.png"),
+    name: "google-wordmark.png",
+    width: 544,
   }),
   writeTransparentPng({
     input: source("neuroage.webp"),
@@ -194,9 +193,6 @@ await Promise.all([
 ]);
 
 await Promise.all([
-  buildDarkVariant("google-deepmind.png", "google-deepmind-dark.png", () => [
-    246, 244, 239,
-  ]),
   buildDarkVariant("ucsf.png", "ucsf-dark.png", () => [246, 244, 239]),
   buildDarkVariant("neuroage.png", "neuroage-dark.png", () => [
     151, 211, 158,
