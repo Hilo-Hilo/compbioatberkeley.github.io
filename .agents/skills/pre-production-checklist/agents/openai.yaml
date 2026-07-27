@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pre-Production Checklist"
+  short_description: "Run visual and release gates before production"
+  default_prompt: "Use $pre-production-checklist to review the staging site before promoting dev to production."

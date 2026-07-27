@@ -8,6 +8,7 @@ import { Info } from "lucide-react";
 import { Officer } from "@/types/officers";
 import { ReactNode } from "react";
 import { publicAssetPath } from "@/lib/publicAsset";
+import { getOfficerPortraitFraming } from "@/data/officerPortraits";
 
 interface OfficerCardProps {
   officer: Officer;
@@ -25,6 +26,7 @@ export const OfficerCard = ({ officer }: OfficerCardProps) => {
   const name = officer.name || "";
   const role = officer.role || "";
   const image = officer.image ? publicAssetPath(officer.image) : "";
+  const portraitFraming = getOfficerPortraitFraming(officer);
   const personalWebsite = officer["personal website"] || "";
   const linkedin = officer.linkedin || "";
   const github = officer.github || "";
@@ -74,6 +76,7 @@ export const OfficerCard = ({ officer }: OfficerCardProps) => {
           alt={name ? `Portrait of ${name}` : "Officer portrait"}
           loading="lazy"
           className={`h-full w-full object-cover ${image ? "" : "opacity-40"}`}
+          style={{ objectPosition: portraitFraming.objectPosition }}
           onError={(event) => {
             const target = event.currentTarget;
             target.onerror = null;

@@ -1,7 +1,5 @@
 import { Link as RouterLink } from "react-router-dom";
-import { publicAssetPath } from "@/lib/publicAsset";
-
-const LOGO_SRC = publicAssetPath("comp-bio-logo-berkeley.svg");
+import { SiteLogo } from "@/components/SiteLogo";
 
 const quickLinks = [
   { name: "home", path: "/" },
@@ -30,7 +28,11 @@ const Footer = () => (
           aria-label="Computational Biology at Berkeley home"
         >
           <span className="logo-plate flex h-8 w-8 items-center justify-center overflow-hidden rounded">
-            <img src={LOGO_SRC} alt="" className="h-8 w-8 object-contain" loading="lazy" />
+            <SiteLogo
+              className="h-8 w-8"
+              imageClassName="h-8 w-8 object-contain"
+              loading="lazy"
+            />
           </span>
           <span className="text-[13px] font-bold tracking-[-0.01em]">
             compbio<span className="text-gold">@</span>berkeley

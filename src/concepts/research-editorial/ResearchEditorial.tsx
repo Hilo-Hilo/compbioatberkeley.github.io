@@ -1,5 +1,5 @@
-import compBioLogo from "@/assets/comp-bio-logo.png";
 import heroBg from "@/assets/hero-bg.jpg";
+import { SiteLogo } from "@/components/SiteLogo";
 import "./research-editorial.css";
 
 const officerFaces = [
@@ -56,7 +56,11 @@ export default function ResearchEditorial() {
         <nav className="re-nav re-container" aria-label="Primary navigation">
           <a className="re-brand" href="/">
             <span className="re-brand-mark">
-              <img src={compBioLogo} alt="" width="1024" height="1024" />
+              <SiteLogo
+                className="h-full w-full"
+                imageClassName="h-full w-full object-contain"
+                themeMode="system"
+              />
             </span>
             <span className="re-brand-name">
               Computational Biology

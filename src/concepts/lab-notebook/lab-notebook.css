@@ -882,7 +882,7 @@
 
   .ln-brand__label,
   .ln-community-mark {
-    background: #f4f7ef;
+    background: var(--ln-surface);
   }
 
   .ln-officer figcaption {

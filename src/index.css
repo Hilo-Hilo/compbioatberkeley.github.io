@@ -191,18 +191,12 @@
     background: transparent;
   }
 
-  .dark .logo-plate {
-    background: hsl(0 0% 100%);
-    padding: 2px;
-  }
-
   .hero-logo-plate {
     background: transparent;
   }
 
-  .dark .hero-logo-plate {
-    background: hsl(0 0% 100%);
-    padding: 1.25rem;
+  .site-logo-system-dark {
+    display: none !important;
   }
 
   .skip-link {
@@ -247,6 +241,16 @@
   .partner-logo-link:hover .partner-logo-image,
   .partner-logo-link:focus-visible .partner-logo-image {
     filter: drop-shadow(0 10px 13px hsl(var(--foreground) / 0.16));
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .site-logo-system-light {
+    display: none !important;
+  }
+
+  .site-logo-system-dark {
+    display: block !important;
   }
 }
 

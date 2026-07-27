@@ -104,7 +104,7 @@
   overflow: hidden;
   border: 1px solid rgb(16 33 22 / 20%);
   border-radius: var(--bn-radius);
-  background: #f2f1e9;
+  background: var(--bn-surface);
 }
 
 .bn-logo-frame img {
@@ -900,6 +900,10 @@ a:hover .bn-arrow {
 
   .bn-event {
     box-shadow: 0 26px 70px rgb(24 60 39 / 13%);
+  }
+
+  .bn-logo-frame {
+    background: #f2f1e9;
   }
 }
 

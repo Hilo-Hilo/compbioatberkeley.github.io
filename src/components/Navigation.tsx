@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
-import { publicAssetPath } from "@/lib/publicAsset";
-
-const LOGO_SRC = publicAssetPath("comp-bio-logo-berkeley.svg");
+import { SiteLogo } from "@/components/SiteLogo";
+import { SITE_LOGO_DARK_SRC, SITE_LOGO_LIGHT_SRC } from "@/lib/siteLogo";
 
 const navItems = [
   { name: "home", path: "/" },
@@ -29,6 +28,9 @@ const ThemeToggle = ({ mobile = false }: { mobile?: boolean }) => {
     document
       .querySelector('meta[name="theme-color"]')
       ?.setAttribute("content", themeColor);
+    document
+      .querySelector('link[data-theme-favicon]')
+      ?.setAttribute("href", isDark ? SITE_LOGO_DARK_SRC : SITE_LOGO_LIGHT_SRC);
   }, [isDark, mounted]);
 
   return (
@@ -65,7 +67,7 @@ const Navigation = () => {
             aria-label="Computational Biology at Berkeley home"
           >
             <span className="logo-plate flex h-8 w-8 items-center justify-center overflow-hidden rounded">
-              <img src={LOGO_SRC} alt="" className="h-8 w-8 object-contain" />
+              <SiteLogo className="h-8 w-8" imageClassName="h-8 w-8 object-contain" />
             </span>
             <span className="text-[13px] font-bold tracking-[-0.01em]">
               compbio<span className="text-gold">@</span>berkeley

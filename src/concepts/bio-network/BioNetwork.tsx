@@ -1,5 +1,5 @@
 import heroBg from "@/assets/hero-bg.jpg";
-import compBioLogo from "@/assets/comp-bio-logo.png";
+import { SiteLogo } from "@/components/SiteLogo";
 import "./bio-network.css";
 
 const joinUrl = "/signup";
@@ -93,7 +93,11 @@ export default function BioNetwork() {
         <nav className="bn-nav" aria-label="Primary navigation">
           <a className="bn-brand" href="/" aria-label="Comp Bio at Berkeley home">
             <span className="bn-logo-frame">
-              <img src={compBioLogo} alt="" />
+              <SiteLogo
+                className="h-full w-full"
+                imageClassName="h-full w-full object-contain"
+                themeMode="system"
+              />
             </span>
             <span>Comp Bio at Berkeley</span>
           </a>
@@ -382,7 +386,11 @@ export default function BioNetwork() {
       <footer className="bn-footer">
         <div className="bn-footer-brand">
           <span className="bn-logo-frame">
-            <img src={compBioLogo} alt="" />
+            <SiteLogo
+              className="h-full w-full"
+              imageClassName="h-full w-full object-contain"
+              themeMode="system"
+            />
           </span>
           <span>Computational Biology at Berkeley</span>
         </div>

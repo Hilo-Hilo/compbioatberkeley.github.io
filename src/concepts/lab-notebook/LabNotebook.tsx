@@ -1,5 +1,5 @@
-import compBioLogo from "@/assets/comp-bio-logo.png";
 import heroBg from "@/assets/hero-bg.jpg";
+import { SiteLogo } from "@/components/SiteLogo";
 import "./lab-notebook.css";
 
 const officers = [
@@ -65,7 +65,11 @@ function BrandMark() {
   return (
     <span className="ln-brand">
       <span className="ln-brand__label" aria-hidden="true">
-        <img src={compBioLogo} alt="" />
+        <SiteLogo
+          className="h-full w-full"
+          imageClassName="h-full w-full object-contain"
+          themeMode="system"
+        />
       </span>
       <span className="ln-brand__name">
         Comp Bio
@@ -201,7 +205,12 @@ export default function LabNotebook() {
                 </p>
               </div>
               <span className="ln-community-mark" aria-hidden="true">
-                <img src={compBioLogo} alt="" loading="lazy" />
+                <SiteLogo
+                  className="h-full w-full"
+                  imageClassName="h-full w-full object-contain"
+                  loading="lazy"
+                  themeMode="system"
+                />
               </span>
             </article>
           </div>

@@ -3,9 +3,7 @@ import { ExternalLink } from "lucide-react";
 import { EnhancedButton } from "@/components/ui/enhanced-button";
 import { PartnerLogoWall } from "@/components/PartnerLogoWall";
 import { SectionHeading } from "@/components/PageHeader";
-import { publicAssetPath } from "@/lib/publicAsset";
-
-const LOGO_SRC = publicAssetPath("comp-bio-logo-berkeley.svg");
+import { SiteLogo } from "@/components/SiteLogo";
 
 const objectives = [
   {
@@ -58,10 +56,10 @@ const Home = () => (
 
         <div className="flex justify-center md:justify-end">
           <div className="hero-logo-plate w-full max-w-[320px] rounded-lg">
-            <img
-              src={LOGO_SRC}
+            <SiteLogo
               alt="Computational Biology at Berkeley logo"
-              className="h-auto w-full"
+              className="w-full"
+              imageClassName="h-auto w-full"
             />
           </div>
         </div>

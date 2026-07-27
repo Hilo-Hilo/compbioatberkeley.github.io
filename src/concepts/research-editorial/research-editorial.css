@@ -727,6 +727,7 @@
 
   .re-brand-mark {
     border-color: #53685a;
+    background: var(--re-surface);
   }
 }
 
