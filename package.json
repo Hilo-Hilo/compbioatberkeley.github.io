@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "assets:partners": "node scripts/build-partner-logos.mjs",
     "dev": "vite",
     "prebuild": "npm run fetch-data",
     "build": "vite build",
