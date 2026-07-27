@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Partner Logo Hover"
+  short_description: "Construct collision-safe animated logo collages"
+  default_prompt: "Use $build-partner-logo-hover to add or refine the interactive partner logo collage."

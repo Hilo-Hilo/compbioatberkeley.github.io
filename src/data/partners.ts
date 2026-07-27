@@ -72,7 +72,7 @@ export const partners: Partner[] = [
     darkLogoPath: "partners/raster/ucsf-dark.png",
     logoClassName: "max-h-32 w-full",
     collageClassName:
-      "col-span-1 md:left-[60%] md:top-[54%] md:w-[18%]",
+      "col-span-1 md:left-[58%] md:top-[57%] md:w-[16%]",
     brandSourceUrl: "https://identity.ucsf.edu/brand-guide/logos",
   },
   {
@@ -82,7 +82,7 @@ export const partners: Partner[] = [
     darkLogoPath: "partners/raster/coagulant-dark.png",
     logoClassName: "max-h-24 w-full",
     collageClassName:
-      "col-span-2 md:left-[31%] md:top-[73%] md:w-[42%]",
+      "col-span-2 md:left-[31%] md:top-[76%] md:w-[42%]",
     brandSourceUrl:
       "https://images.squarespace-cdn.com/content/v1/6154cdcf4a92db78fc554755/75dd0feb-5f86-47fc-9f1a-72edeebe2f1a/Coagulant+Therapeutics+Logo_RGB.png?format=1500w",
   },
