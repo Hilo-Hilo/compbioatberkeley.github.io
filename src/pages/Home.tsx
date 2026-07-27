@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 import { EnhancedButton } from "@/components/ui/enhanced-button";
+import { PartnerLogoWall } from "@/components/PartnerLogoWall";
 import { SectionHeading } from "@/components/PageHeader";
 import { publicAssetPath } from "@/lib/publicAsset";
 
@@ -85,6 +86,15 @@ const Home = () => (
       <EnhancedButton asChild variant="outline" className="mt-8">
         <Link to="/about">read our mission</Link>
       </EnhancedButton>
+    </section>
+
+    <section className="border-t border-border bg-muted">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+        <PartnerLogoWall
+          title="Collaborators in our orbit"
+          lede="From research institutions to biotech teams, these organizations have shared expertise, projects, and opportunities with our community."
+        />
+      </div>
     </section>
 
     <section className="border-t border-border bg-muted">

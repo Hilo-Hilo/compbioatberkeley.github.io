@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import { PartnerLogoWall } from "@/components/PartnerLogoWall";
 import { EnhancedButton } from "@/components/ui/enhanced-button";
 import { PageHeader, SectionHeading } from "@/components/PageHeader";
 
@@ -13,6 +14,15 @@ const Collaborations = () => (
       title="Work with us"
       lede="We welcome collaboration with students, alumni, faculty, and industry partners to advance computational biology education and research."
     />
+
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+      <PartnerLogoWall
+        title="Organizations we work with"
+        lede="A shared network spanning research, therapeutics, genomics, and computational tooling."
+      />
+    </section>
+
+    <div className="border-t border-border" />
 
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
       <SectionHeading title="Ways to work together" meta="03 tracks" />
