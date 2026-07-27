@@ -12,6 +12,9 @@ const framingByImage = {
   "/fetched/officers/sp26/priyam_e438dedd.jpg": {
     objectPosition: "50% 0%",
   },
+  "/fetched/officers/sp26/mahesh_51e576e4.jpeg": {
+    objectPosition: "50% 58%",
+  },
   "/fetched/officers/sp26/john_ff0151b7.jpg": {
     objectPosition: "50% 24%",
   },
