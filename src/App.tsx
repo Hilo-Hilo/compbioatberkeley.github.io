@@ -31,6 +31,7 @@ const BioNetwork = lazy(
 
 const queryClient = new QueryClient();
 const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
+const defaultTheme = document.documentElement.dataset.defaultTheme ?? "system";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -120,7 +121,7 @@ const AppRoutes = () => {
 const App = () => (
   <ThemeProvider
     attribute="class"
-    defaultTheme="system"
+    defaultTheme={defaultTheme}
     enableSystem
     disableTransitionOnChange
     storageKey="compbio-theme"

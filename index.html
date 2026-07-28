@@ -23,13 +23,36 @@
     <script>
       (function () {
         try {
-          var savedTheme = localStorage.getItem("compbio-theme");
-          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var savedTheme;
+          try {
+            savedTheme = localStorage.getItem("compbio-theme");
+          } catch (storageError) {
+            savedTheme = null;
+          }
+
+          var supportsColorPreference = typeof window.matchMedia === "function";
+          var prefersDark = supportsColorPreference
+            && window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var prefersLight = supportsColorPreference
+            && window.matchMedia("(prefers-color-scheme: light)").matches;
+          var hasColorPreference = prefersDark || prefersLight;
+          var localHour = new Date().getHours();
+          var timeTheme = localHour >= 7 && localHour < 19 ? "light" : "dark";
+          var automaticTheme = hasColorPreference
+            ? (prefersDark ? "dark" : "light")
+            : timeTheme;
           var theme = savedTheme === "light" || savedTheme === "dark"
             ? savedTheme
-            : (prefersDark ? "dark" : "light");
+            : automaticTheme;
+
+          document.documentElement.dataset.defaultTheme = hasColorPreference
+            ? "system"
+            : timeTheme;
           document.documentElement.classList.toggle("dark", theme === "dark");
           document.documentElement.style.colorScheme = theme;
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", theme === "dark" ? "#0A1220" : "#FFFFFF");
           var favicon = document.querySelector("link[data-theme-favicon]");
           if (favicon) {
             favicon.href = theme === "dark"
