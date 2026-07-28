@@ -24,6 +24,21 @@ const framingByImage = {
   "/fetched/officers/sp26/allison_7c598c4c.webp": {
     objectPosition: "50% 14%",
   },
+  "/officers/fa26/priyam-baruah.jpg": {
+    objectPosition: "50% 0%",
+  },
+  "/officers/fa26/mahesh-arunachalam.jpeg": {
+    objectPosition: "50% 58%",
+  },
+  "/officers/fa26/john-andrianopoulos.jpg": {
+    objectPosition: "50% 24%",
+  },
+  "/officers/fa26/sreyas-yallapragada.webp": {
+    objectPosition: "50% 6%",
+  },
+  "/officers/fa26/allison-cheng.webp": {
+    objectPosition: "50% 14%",
+  },
 } satisfies Record<string, OfficerPortraitFraming>;
 
 export const getOfficerPortraitFraming = (

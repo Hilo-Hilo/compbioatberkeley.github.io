@@ -1,6 +1,7 @@
 import { AlertCircle } from "lucide-react";
 import { useOfficers } from "@/hooks/useOfficers";
 import { useOfficersFa25 } from "@/hooks/useOfficersFa25";
+import { useOfficersSp26 } from "@/hooks/useOfficersSp26";
 import { OfficerCard } from "@/components/OfficerCard";
 import { PageHeader } from "@/components/PageHeader";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -56,6 +57,8 @@ const LoadError = ({ label }: { label: string }) => (
 
 const Officers = () => {
   const { officers, loading, error } = useOfficers();
+  const { officers: officersSp26, loading: loadingSp26, error: errorSp26 } =
+    useOfficersSp26();
   const { officers: officersFa25, loading: loadingFa25, error: errorFa25 } =
     useOfficersFa25();
 
@@ -74,7 +77,7 @@ const Officers = () => {
               value="current"
               className="rounded px-4 py-2 text-xs data-[state=active]:bg-button-surface data-[state=active]:shadow-none"
             >
-              spring 2026
+              fall 2026
             </TabsTrigger>
             <TabsTrigger
               value="previous"
@@ -95,7 +98,21 @@ const Officers = () => {
           </TabsContent>
 
           <TabsContent value="previous" className="mt-0">
-            <Accordion type="single" collapsible defaultValue="fa25" className="w-full">
+            <Accordion type="single" collapsible defaultValue="sp26" className="w-full">
+              <AccordionItem value="sp26" className="border-border">
+                <AccordionTrigger className="text-base hover:text-link hover:no-underline">
+                  spring 2026
+                </AccordionTrigger>
+                <AccordionContent className="pt-4">
+                  {loadingSp26 ? (
+                    <Loading />
+                  ) : errorSp26 ? (
+                    <LoadError label="Spring 2026 officers data" />
+                  ) : (
+                    <Grid officers={officersSp26} />
+                  )}
+                </AccordionContent>
+              </AccordionItem>
               <AccordionItem value="fa25" className="border-border">
                 <AccordionTrigger className="text-base hover:text-link hover:no-underline">
                   fall 2025

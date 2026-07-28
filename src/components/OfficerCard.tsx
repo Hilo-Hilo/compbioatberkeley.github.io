@@ -33,6 +33,14 @@ export const OfficerCard = ({ officer }: OfficerCardProps) => {
   const orcid = officer.orcid || "";
   const bio = officer.bio || "";
   const defaultImage = publicAssetPath("placeholder.svg");
+  const initials = name
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((part) => part[0])
+    .filter(Boolean)
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
 
   const socialLinks: SocialLink[] = [
     {
@@ -71,19 +79,29 @@ export const OfficerCard = ({ officer }: OfficerCardProps) => {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded border border-border bg-card transition-colors hover:border-border-strong">
       <div className="aspect-[4/3] w-full overflow-hidden border-b border-border bg-muted">
-        <img
-          src={image || defaultImage}
-          alt={name ? `Portrait of ${name}` : "Officer portrait"}
-          loading="lazy"
-          className={`h-full w-full object-cover ${image ? "" : "opacity-40"}`}
-          style={{ objectPosition: portraitFraming.objectPosition }}
-          onError={(event) => {
-            const target = event.currentTarget;
-            target.onerror = null;
-            target.src = defaultImage;
-            target.classList.add("opacity-40");
-          }}
-        />
+        {image ? (
+          <img
+            src={image}
+            alt={name ? `Portrait of ${name}` : "Officer portrait"}
+            loading="lazy"
+            className="h-full w-full object-cover"
+            style={{ objectPosition: portraitFraming.objectPosition }}
+            onError={(event) => {
+              const target = event.currentTarget;
+              target.onerror = null;
+              target.src = defaultImage;
+              target.classList.add("opacity-40");
+            }}
+          />
+        ) : (
+          <div
+            className="flex h-full w-full items-center justify-center bg-accent text-4xl font-bold tracking-[0.08em] text-accent-foreground"
+            role="img"
+            aria-label={`Portrait needed for ${name}`}
+          >
+            {initials}
+          </div>
+        )}
       </div>
 
       <div className="flex flex-1 flex-col gap-1.5 p-4">
