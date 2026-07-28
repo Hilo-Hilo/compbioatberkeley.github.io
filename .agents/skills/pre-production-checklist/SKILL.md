@@ -31,7 +31,7 @@ Run this gate whenever public routes, the canonical domain, page purpose, contac
 4. Keep the file concise and public-safe. Do not include secrets, private contact information, unpublished data, or temporary staging URLs.
 5. Preserve the `llms.txt` structure: one H1 title, a short blockquote summary, optional explanatory text, and H2 sections containing annotated Markdown links.
 6. After building, confirm `dist/llms.txt` exists and matches `public/llms.txt`.
-7. After pushing `dev`, request the staging `llms.txt` URL directly and confirm it returns the expected plain-text content. Before production promotion, repeat the check at `https://compbioatberkeley.com/llms.txt`.
+7. After pushing `dev`, request the staging `llms.txt` URL directly and confirm it returns the expected plain-text content. After production deployment, repeat the check at `https://compbioatberkeley.github.io/llms.txt`.
 
 This gate passes only when the file accurately describes the current public site, all listed destinations are intentional, and the deployed copy is reachable without authentication.
 
