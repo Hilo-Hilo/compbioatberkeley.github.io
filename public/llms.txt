@@ -6,12 +6,12 @@ The organization welcomes students at all experience levels. Use the pages below
 
 ## Main pages
 
-- [Home](https://compbioatberkeley.com/): Overview of the organization, its objectives, and current calls to action.
-- [About](https://compbioatberkeley.com/about): Mission and work across education, research, professional networking, and community impact.
-- [Calendar](https://compbioatberkeley.com/calendar): Current workshops, meetings, and special events in Pacific time.
-- [Collaborations](https://compbioatberkeley.com/collaborations): Partnership opportunities for students, faculty, alumni, research groups, and industry.
-- [Officers](https://compbioatberkeley.com/officers): Current and previous student leadership rosters.
-- [Join](https://compbioatberkeley.com/signup): Interest form, newsletter signup, and community channels.
+- [Home](https://compbioatberkeley.github.io/): Overview of the organization, its objectives, and current calls to action.
+- [About](https://compbioatberkeley.github.io/about): Mission and work across education, research, professional networking, and community impact.
+- [Calendar](https://compbioatberkeley.github.io/calendar): Current workshops, meetings, and special events in Pacific time.
+- [Collaborations](https://compbioatberkeley.github.io/collaborations): Partnership opportunities for students, faculty, alumni, research groups, and industry.
+- [Officers](https://compbioatberkeley.github.io/officers): Current and previous student leadership rosters.
+- [Join](https://compbioatberkeley.github.io/signup): Interest form, newsletter signup, and community channels.
 
 ## Contact and community
 
