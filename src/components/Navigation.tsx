@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { SiteLogo } from "@/components/SiteLogo";
-import { SITE_LOGO_DARK_SRC, SITE_LOGO_LIGHT_SRC } from "@/lib/siteLogo";
+import { SITE_FAVICON_DARK_SRC, SITE_FAVICON_LIGHT_SRC } from "@/lib/siteLogo";
 
 const navItems = [
   { name: "home", path: "/" },
@@ -30,7 +30,7 @@ const ThemeToggle = ({ mobile = false }: { mobile?: boolean }) => {
       ?.setAttribute("content", themeColor);
     document
       .querySelector('link[data-theme-favicon]')
-      ?.setAttribute("href", isDark ? SITE_LOGO_DARK_SRC : SITE_LOGO_LIGHT_SRC);
+      ?.setAttribute("href", isDark ? SITE_FAVICON_DARK_SRC : SITE_FAVICON_LIGHT_SRC);
   }, [isDark, mounted]);
 
   return (
