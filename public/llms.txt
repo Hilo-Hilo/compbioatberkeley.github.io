@@ -1,0 +1,25 @@
+# Computational Biology at Berkeley
+
+> Computational Biology at Berkeley is a UC Berkeley student organization connecting biology, computer science, and healthcare through education, research, projects, and community.
+
+The organization welcomes students at all experience levels. Use the pages below for current public information about its mission, events, leadership, collaborations, and ways to participate. Event details, officer rosters, and application forms may change between academic terms.
+
+## Main pages
+
+- [Home](https://compbioatberkeley.com/): Overview of the organization, its objectives, and current calls to action.
+- [About](https://compbioatberkeley.com/about): Mission and work across education, research, professional networking, and community impact.
+- [Calendar](https://compbioatberkeley.com/calendar): Current workshops, meetings, and special events in Pacific time.
+- [Collaborations](https://compbioatberkeley.com/collaborations): Partnership opportunities for students, faculty, alumni, research groups, and industry.
+- [Officers](https://compbioatberkeley.com/officers): Current and previous student leadership rosters.
+- [Join](https://compbioatberkeley.com/signup): Interest form, newsletter signup, and community channels.
+
+## Contact and community
+
+- [LinkedIn](https://www.linkedin.com/company/computational-biology-at-berkeley/): Organization updates and professional contact.
+- [Linktree](https://linktr.ee/compbioatberkeley): Current collection of public links and contact destinations.
+- [GitHub](https://github.com/CompbioAtBerkeley): Public organization repositories.
+
+## Optional
+
+- [Instagram](https://www.instagram.com/ucb_compbio/): Event announcements, community updates, and recaps.
+- [Projects on GitHub](https://github.com/Compbio-at-berkeley-projects): Public repositories for student project work.
