@@ -325,8 +325,13 @@
   .hero-science-field {
     position: absolute;
     top: 50%;
-    right: clamp(0.75rem, 1.5vw, 1.5rem);
-    width: min(60vw, 64rem);
+    /*
+     * Keep the copy and artwork on one centered 100rem stage. The artwork
+     * grows through normal desktop widths, then tapers toward 54rem so
+     * browser zoom-out cannot pull a giant illustration toward the far edge.
+     */
+    right: max(1.5rem, calc(50vw - 50rem));
+    width: min(60vw, clamp(54rem, calc(72rem - 10vw), 64rem));
     margin: 0;
     opacity: 0.9;
     transform: translateY(-50%);
