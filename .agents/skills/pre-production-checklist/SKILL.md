@@ -35,6 +35,20 @@ Run this gate whenever public routes, the canonical domain, page purpose, contac
 
 This gate passes only when the file accurately describes the current public site, all listed destinations are intentional, and the deployed copy is reachable without authentication.
 
+## Gate 3 — Officer profile publication
+
+Run this gate whenever the officer roster, a form-response snapshot, profile links, bios, or officer-data build logic changes.
+
+1. Run `npm test` and `npm run validate:officers`.
+2. Confirm `src/data/officersFa26Roster.json` is the only authority for cohort membership, roles, order, stable IDs, and fallback portraits.
+3. Confirm `src/data/officerProfilesFa26.json` contains the real Notion response page ID for provenance and only public profile fields copied from reviewed form responses. Never add email addresses, phone numbers, birthdays, or other private form answers.
+4. Review every unmatched submission, invalid profile link, and officer without a current response reported by the validator. An officer without a response may retain only the roster fallback; do not invent a bio or personal link.
+5. On the rendered page, open at least one complete profile and confirm its full bio and Website, LinkedIn, GitHub, and ORCID destinations are labeled, keyboard accessible, and correct.
+6. Confirm every added or replaced headshot path resolves in a clean build, and complete Gate 1 for its framing.
+7. Confirm the Fall 2025 and Spring 2026 archive tabs load from the tracked files under `public/officers/archive/`; a build must not require Notion, Google Sheets, or a prior production deployment.
+
+This gate passes only when the published roster matches the approved cohort, current public submissions enrich the correct people, invalid or private form values cannot leak through, and all officer tabs work from a clean checkout.
+
 ## Release discipline
 
 - Run checks against the public staging URL after pushing `dev`.

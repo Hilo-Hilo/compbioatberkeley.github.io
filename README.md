@@ -1,53 +1,39 @@
 # Computational Biology at Berkeley
 
-## How to edit the code
+The public website for Computational Biology at Berkeley, built with Vite, React, TypeScript, shadcn/ui, and Tailwind CSS.
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Local development
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm ci
+npm test
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Run `npm run build` for the same credential-free production build used by GitHub Pages. The build validates officer data before compiling the site.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Officer data
 
-**Use GitHub Codespaces**
+Fall 2026 deliberately separates approved roster decisions from submitted public profile content:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- `src/data/officersFa26Roster.json` owns cohort membership, roles, order, stable IDs, and fallback portraits.
+- `src/data/officerProfilesFa26.json` is a reviewed, public-only snapshot of the latest officer form responses.
+- `src/data/compileOfficerDirectory.js` matches responses to the roster, keeps the newest nonblank public fields, normalizes links, and ignores unmatched people.
+- `public/officers/fa26/` stores stable headshot assets.
+- `public/officers/archive/` stores immutable Fall 2025 and Spring 2026 snapshots so historical tabs work in a clean checkout.
 
-## What technologies are used for this project?
+Never copy private form fields such as email, phone number, or birthday into the repository. Run:
 
-This project is built with:
+```sh
+npm test
+npm run validate:officers
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+The validator reports unmatched responses, invalid public links, missing assets, and officers still waiting for a current profile response. See `scripts/README.md` for the update workflow and `.agents/skills/pre-production-checklist/SKILL.md` before a production promotion.
 
-## How can I deploy this project?
+## Deployment
 
-Everything is automatically deployed once pushed so make sure to test the project before pushing.
+- Pushes to `dev` deploy the staging GitHub Pages site from the `Hilo-Hilo` staging repository.
+- Pushes to `main` deploy production from `CompbioAtBerkeley/compbioatberkeley.github.io`.
+
+Neither build reads Notion or Google Sheets credentials. Form intake is reviewed and versioned before publication, so the same commit produces the same site in local, staging, and production environments.

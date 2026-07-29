@@ -1,9 +1,12 @@
 import { FaGithub, FaGlobe, FaLinkedin, FaOrcid } from "react-icons/fa";
 import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Info } from "lucide-react";
 import { Officer } from "@/types/officers";
 import { ReactNode } from "react";
@@ -75,9 +78,16 @@ export const OfficerCard = ({ officer }: OfficerCardProps) => {
         value.startsWith("http") ? value : `https://orcid.org/${value}`,
     },
   ];
+  const availableLinks = socialLinks
+    .map((link) => ({
+      ...link,
+      href: link.value.trim() ? link.formatUrl(link.value.trim()) : "",
+    }))
+    .filter((link) => link.href);
+  const hasProfile = Boolean(bio.trim()) || availableLinks.length > 0;
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded border border-border bg-card transition-colors hover:border-border-strong">
+    <article className="flex h-full flex-col overflow-hidden rounded border border-border bg-card transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-border-strong hover:shadow-md motion-reduce:transform-none motion-reduce:transition-none">
       <div className="aspect-[4/3] w-full overflow-hidden border-b border-border bg-muted">
         {image ? (
           <img
@@ -110,43 +120,68 @@ export const OfficerCard = ({ officer }: OfficerCardProps) => {
           <p className="text-[11px] uppercase tracking-[0.1em] text-label">{role}</p>
         )}
 
-        <div className="mt-auto flex items-center gap-0.5 pt-3">
-          {bio && bio.trim() !== "" && (
-            <HoverCard>
-              <HoverCardTrigger asChild>
+        {bio.trim() && (
+          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+            {bio}
+          </p>
+        )}
+
+        {hasProfile && (
+          <div className="mt-auto pt-4">
+            <Dialog>
+              <DialogTrigger asChild>
                 <button
                   type="button"
-                  aria-label={`About ${name}`}
-                  className="flex h-9 w-9 items-center justify-center rounded text-muted-foreground hover:bg-muted hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="inline-flex min-h-9 items-center gap-2 rounded border border-border bg-button-surface px-3 py-2 text-xs font-semibold text-heading transition-colors hover:border-border-strong hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <Info className="h-4 w-4" />
+                  View profile
                 </button>
-              </HoverCardTrigger>
-              <HoverCardContent className="w-80 border-border bg-popover">
-                <p className="text-[11px] uppercase tracking-[0.1em] text-muted-foreground">
-                  About {name}
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-foreground">{bio}</p>
-              </HoverCardContent>
-            </HoverCard>
-          )}
-          {socialLinks.map((link) => {
-            if (!link.value || link.value.trim() === "") return null;
-            return (
-              <a
-                key={link.id}
-                href={link.formatUrl(link.value)}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={link.title}
-                aria-label={`${name} - ${link.title}`}
-                className="flex h-9 w-9 items-center justify-center rounded text-muted-foreground hover:bg-muted hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                {link.icon}
-              </a>
-            );
-          })}
-        </div>
+              </DialogTrigger>
+              <DialogContent className="max-h-[85dvh] w-[calc(100%-2rem)] overflow-y-auto rounded border-border bg-popover sm:max-w-lg">
+                <DialogHeader className="pr-8">
+                  <DialogTitle className="text-xl text-heading">{name}</DialogTitle>
+                  <DialogDescription className="text-xs uppercase tracking-[0.1em] text-label">
+                    {role}
+                  </DialogDescription>
+                </DialogHeader>
+
+                {bio.trim() && (
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-label">
+                      About
+                    </p>
+                    <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-foreground">
+                      {bio}
+                    </p>
+                  </div>
+                )}
+
+                {availableLinks.length > 0 && (
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-label">
+                      Links
+                    </p>
+                    <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                      {availableLinks.map((link) => (
+                        <a
+                          key={link.id}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-11 items-center gap-3 rounded border border-border px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-border-strong hover:text-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        >
+                          <span className="text-muted-foreground">{link.icon}</span>
+                          {link.title}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </DialogContent>
+            </Dialog>
+          </div>
+        )}
       </div>
     </article>
   );

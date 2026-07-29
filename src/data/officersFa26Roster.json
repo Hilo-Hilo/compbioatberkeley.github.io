@@ -1,0 +1,167 @@
+[
+  {
+    "id": "priyam-baruah",
+    "name": "Priyam Baruah",
+    "role": "Co-President",
+    "image": "/officers/fa26/priyam-baruah.jpg"
+  },
+  {
+    "id": "soumyadeep-talukdar",
+    "name": "Soumyadeep Talukdar",
+    "role": "Co-President",
+    "image": "/officers/fa26/soumyadeep-talukdar.webp"
+  },
+  {
+    "id": "vincy-huang",
+    "name": "Vincy Huang",
+    "role": "Internal Vice President",
+    "image": "/officers/fa26/vincy-huang.jpg"
+  },
+  {
+    "id": "aahan-sharma",
+    "name": "Aahan Sharma",
+    "role": "Internal Vice President",
+    "image": "/officers/fa26/aahan-sharma.jpg"
+  },
+  {
+    "id": "kenneth-sarip",
+    "name": "Kenneth Sarip",
+    "role": "External Vice President",
+    "image": "/officers/fa26/kenneth-sarip.jpg"
+  },
+  {
+    "id": "sreyas-yallapragada",
+    "name": "Sreyas Yallapragada",
+    "role": "External Vice President",
+    "image": "/officers/fa26/sreyas-yallapragada.webp"
+  },
+  {
+    "id": "tvisha-goel",
+    "name": "Tvisha Goel",
+    "role": "Professional Development Chair",
+    "image": ""
+  },
+  {
+    "id": "ashley-jaquelyn-leon-martinez",
+    "name": "Ashley Jaquelyn Leon Martinez",
+    "role": "Professional Development Chair",
+    "image": ""
+  },
+  {
+    "id": "bhavna-malladi",
+    "name": "Bhavna Malladi",
+    "role": "Project Chair",
+    "image": "/officers/fa26/bhavna-malladi.webp"
+  },
+  {
+    "id": "sanjana-avinash-taware",
+    "name": "Sanjana Avinash Taware",
+    "role": "Project Chair",
+    "image": "/officers/fa26/sanjana-taware.jpeg"
+  },
+  {
+    "id": "mahesh-arunachalam",
+    "name": "Mahesh Arunachalam",
+    "role": "Contract Chair",
+    "image": "/officers/fa26/mahesh-arunachalam.jpeg"
+  },
+  {
+    "id": "sreshta-yelisetti",
+    "name": "Sreshta Yelisetti",
+    "role": "Contract Chair",
+    "image": ""
+  },
+  {
+    "id": "rithvik-kotla",
+    "name": "Rithvik Kotla",
+    "role": "Curriculum Lead",
+    "image": "/officers/fa26/rithvik-kotla.jpg"
+  },
+  {
+    "id": "agastya-sarmah",
+    "name": "Agastya Sarmah",
+    "role": "Curriculum Lead",
+    "image": ""
+  },
+  {
+    "id": "qile-yang",
+    "name": "Qile Yang",
+    "role": "Web Development and Operations Lead",
+    "image": "/officers/fa26/qile-yang.jpg"
+  },
+  {
+    "id": "hanson-wen",
+    "name": "Hanson Wen",
+    "role": "Web Development and Operations Lead",
+    "image": "/officers/fa26/hanson-wen.jpg"
+  },
+  {
+    "id": "vanya-dubey",
+    "name": "Vanya Dubey",
+    "role": "Social Chair",
+    "image": ""
+  },
+  {
+    "id": "john-andrianopoulos",
+    "name": "John Andrianopoulos",
+    "role": "Treasurer",
+    "image": "/officers/fa26/john-andrianopoulos.jpg"
+  },
+  {
+    "id": "indu-rao-devakonda",
+    "name": "Indu Rao Devakonda",
+    "role": "Publicity Chair",
+    "image": "/officers/fa26/indu-rao-devakonda.jpg"
+  },
+  {
+    "id": "yuna-lee",
+    "name": "Yuna Lee",
+    "role": "Publicity Chair",
+    "image": "/officers/fa26/yuna-lee.jpg"
+  },
+  {
+    "id": "ben-tong",
+    "name": "Ben Tong",
+    "role": "Secretary",
+    "image": "/officers/fa26/ben-tong.jpg",
+    "aliases": ["Benjamin Tong"]
+  },
+  {
+    "id": "william-to",
+    "name": "William To",
+    "role": "Historian",
+    "image": "/officers/fa26/william-to.jpg"
+  },
+  {
+    "id": "anisha-s-pallikonda",
+    "name": "Anisha S. Pallikonda",
+    "role": "Senior Advisor",
+    "image": "/officers/fa26/anisha-pallikonda.webp",
+    "aliases": ["Anisha S Pallikonda", "Anisha Pallikonda"]
+  },
+  {
+    "id": "arjun-gurjar",
+    "name": "Arjun Gurjar",
+    "role": "Senior Advisor",
+    "image": "/officers/fa26/arjun-gurjar.jpeg"
+  },
+  {
+    "id": "marsiah-leblanc",
+    "name": "Marsiah LeBlanc",
+    "role": "Senior Advisor",
+    "image": "/officers/fa26/marsiah-leblanc.jpg",
+    "aliases": ["Marsiah L"]
+  },
+  {
+    "id": "asmar-khasmammadli",
+    "name": "Asmar Khasmammadli",
+    "role": "Senior Advisor",
+    "image": "/officers/fa26/asmar-khasmammadli.webp"
+  },
+  {
+    "id": "allison-cheng",
+    "name": "Allison Cheng",
+    "role": "Senior Advisor",
+    "image": "/officers/fa26/allison-cheng.webp"
+  }
+]

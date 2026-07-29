@@ -34,8 +34,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Mirror public officer data
-        run: node scripts/sync-preview-data.js
+      - name: Test
+        run: npm test
 
       - name: Build staging site
         run: npm run build:preview

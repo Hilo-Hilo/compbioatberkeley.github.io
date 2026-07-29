@@ -14,7 +14,7 @@ export const useOfficersSp26 = () => {
         setError(null);
 
         const response = await fetch(
-          publicAssetPath("fetched/officers/sp26/officers-sp26.json"),
+          publicAssetPath("officers/archive/sp26/officers-sp26.json"),
         );
 
         if (!response.ok) {

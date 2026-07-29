@@ -1,47 +1,48 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import { SiteLogo } from "@/components/SiteLogo";
+import { publicAssetPath } from "@/lib/publicAsset";
 import "./research-editorial.css";
 
 const officerFaces = [
   {
     name: "Anthea",
     role: "Co-President",
-    src: "https://compbioatberkeley.github.io/fetched/officers/sp26/anthea_dd7a1514.jpg",
+    src: publicAssetPath("officers/archive/sp26/anthea_dd7a1514.jpg"),
   },
   {
     name: "Saket",
     role: "Co-President",
-    src: "https://compbioatberkeley.github.io/fetched/officers/sp26/saket_390d95bb.jpg",
+    src: publicAssetPath("officers/archive/sp26/saket_390d95bb.jpg"),
   },
   {
     name: "Qile",
     role: "Operations and Tech Lead",
-    src: "https://compbioatberkeley.github.io/fetched/officers/sp26/qile_e4b66a5d.jpg",
+    src: publicAssetPath("officers/archive/sp26/qile_e4b66a5d.jpg"),
   },
   {
     name: "Priyam",
     role: "Projects Co-Chair",
-    src: "https://compbioatberkeley.github.io/fetched/officers/sp26/priyam_e438dedd.jpg",
+    src: publicAssetPath("officers/archive/sp26/priyam_e438dedd.jpg"),
   },
   {
     name: "Allison",
     role: "Publicity Chair",
-    src: "https://compbioatberkeley.github.io/fetched/officers/sp26/allison_7c598c4c.webp",
+    src: publicAssetPath("officers/archive/sp26/allison_7c598c4c.webp"),
   },
   {
     name: "Nica",
     role: "Professional Development Co-Chair",
-    src: "https://compbioatberkeley.github.io/fetched/officers/sp26/nica_ed392acc.jpg",
+    src: publicAssetPath("officers/archive/sp26/nica_ed392acc.jpg"),
   },
   {
     name: "Anisha",
     role: "Internal Vice President",
-    src: "https://compbioatberkeley.github.io/fetched/officers/sp26/anisha_9d3444ed.webp",
+    src: publicAssetPath("officers/archive/sp26/anisha_9d3444ed.webp"),
   },
   {
     name: "Hanson",
     role: "Historian",
-    src: "https://compbioatberkeley.github.io/fetched/officers/sp26/hanson_2e993cf0.jpg",
+    src: publicAssetPath("officers/archive/sp26/hanson_2e993cf0.jpg"),
   },
 ];
 

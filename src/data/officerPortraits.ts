@@ -9,19 +9,19 @@ const defaultFraming: OfficerPortraitFraming = {
 };
 
 const framingByImage = {
-  "/fetched/officers/sp26/priyam_e438dedd.jpg": {
+  "/officers/archive/sp26/priyam_e438dedd.jpg": {
     objectPosition: "50% 0%",
   },
-  "/fetched/officers/sp26/mahesh_51e576e4.jpeg": {
+  "/officers/archive/sp26/mahesh_51e576e4.jpeg": {
     objectPosition: "50% 58%",
   },
-  "/fetched/officers/sp26/john_ff0151b7.jpg": {
+  "/officers/archive/sp26/john_ff0151b7.jpg": {
     objectPosition: "50% 24%",
   },
-  "/fetched/officers/sp26/sreyas_efd7b19f.webp": {
+  "/officers/archive/sp26/sreyas_efd7b19f.webp": {
     objectPosition: "50% 6%",
   },
-  "/fetched/officers/sp26/allison_7c598c4c.webp": {
+  "/officers/archive/sp26/allison_7c598c4c.webp": {
     objectPosition: "50% 14%",
   },
   "/officers/fa26/priyam-baruah.jpg": {
@@ -38,6 +38,15 @@ const framingByImage = {
   },
   "/officers/fa26/allison-cheng.webp": {
     objectPosition: "50% 14%",
+  },
+  "/officers/fa26/kenneth-sarip.jpg": {
+    objectPosition: "50% 25%",
+  },
+  "/officers/fa26/hanson-wen.jpg": {
+    objectPosition: "50% 40%",
+  },
+  "/officers/fa26/asmar-khasmammadli.webp": {
+    objectPosition: "50% 40%",
   },
 } satisfies Record<string, OfficerPortraitFraming>;
 

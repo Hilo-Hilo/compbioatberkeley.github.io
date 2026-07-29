@@ -1,118 +1,32 @@
-# Officer Data Fetch Scripts
+# Officer data workflow
 
-This directory contains scripts to fetch officer data at build time.
+Officer data is reviewed before publication. A normal build never queries Notion or Google Sheets.
 
-## Scripts
+## Updating Fall 2026
 
-### `fetch-officers-fa25.js`
-Fetches Fall 2025 officer data from a Google Sheets CSV export.
+1. Confirm the person and approved role in `src/data/officersFa26Roster.json`. The roster, not the form, controls membership and role.
+2. Copy only the latest public form fields into `src/data/officerProfilesFa26.json`: the real Notion response page ID as `sourceId`, submission time, full and preferred names, headshot path, bio, personal website, LinkedIn, GitHub, and ORCID.
+3. Save the reviewed headshot under `public/officers/fa26/` and reference that stable path from the profile snapshot.
+4. Do not copy email, phone, birthday, scheduling, or any other private response field.
+5. Run `npm test` and `npm run validate:officers`.
+6. Run the project pre-production checklist, including rendered portrait inspection at desktop and mobile widths.
 
-**Output:** `/public/fetched/officers/fa25/officers-fa25.json`
+Duplicate form responses are supported. `compileOfficerDirectory.js` takes the newest nonblank value per public field, so an optional blank in a newer response does not erase a valid earlier response. Names must match a canonical roster name or a deliberately reviewed alias.
 
-**Usage:**
-```bash
-npm run fetch-fa25
-# or with force rebuild
-node scripts/fetch-officers-fa25.js --force
-```
+## Historical data
 
-### `fetch-officers-notion.js`
-Fetches current semester officer data from a Notion database.
+The immutable Fall 2025 and Spring 2026 JSON and portrait assets live in:
 
-**Output:** `/public/fetched/officers/{semester}/officers-{semester}.json`
-
-The semester is automatically determined from:
-1. The "Semester" column in the Notion database (if present)
-2. Current date if no semester is specified:
-   - **Spring (sp)**: January - July
-   - **Fall (fa)**: August - December
-   - Format: `sp26`, `fa25`, etc.
-
-**Environment Variables Required:**
-- `NOTION_API_KEY` - Your Notion integration API key
-- `NOTION_OFFICERS_DB_ID` - The database ID of your officers database
-
-**Usage:**
-```bash
-npm run fetch-notion
-# or with force rebuild
-node scripts/fetch-officers-notion.js --force
-```
-
-## Directory Structure
-
-Each script manages its own semester-specific subdirectory:
-```
-public/fetched/officers/
+```text
+public/officers/archive/
 ├── fa25/
-│   ├── officers-fa25.json
-│   ├── .sheet-hash
-│   └── [officer images]
-├── sp26/
-│   ├── officers-sp26.json
-│   ├── .notion-hash
-│   └── [officer images]
-└── ...
+└── sp26/
 ```
 
-This ensures that:
-- Multiple semesters can coexist
-- Each script only modifies its own semester directory
-- No data is accidentally overwritten
+These files are tracked so local, staging, and production builds contain the same historical tabs. Do not replace an archive with whichever records happen to be present in a live form database.
 
-## Setup
+## Legacy import utilities
 
-1. Copy `.env.example` to `.env`:
-   ```bash
-   cp .env.example .env
-   ```
+`fetch-officers-fa25.js` and `fetch-officers-notion.js` are retained only as migration helpers for creating an ignored local staging copy under `public/fetched/`. They are not package scripts, are not invoked by GitHub Actions, and their output is not publishable until it has been reviewed and moved into the versioned sources above.
 
-2. Fill in your Notion credentials in `.env`:
-   - Create a Notion integration at https://www.notion.so/my-integrations
-   - Copy the Internal Integration Token to `NOTION_API_KEY`
-   - Share your officers database with the integration
-   - Copy the database ID from the database URL to `NOTION_OFFICERS_DB_ID`
-
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-## Notion Database Schema
-
-The Notion database should have the following properties:
-
-- **Name** (Title) - Full name of the officer
-- **Preferred Name** (Text) - Name to display (optional, falls back to Full Name)
-- **Role** (Text) - Officer position/role
-- **headshot** (Files) - Profile photo
-- **linkedin** (URL) - LinkedIn profile URL
-- **personal website** (URL) - Personal website URL
-- **interests / Bio** (Text) - Biography or interests (currently not displayed)
-
-## Build Process
-
-Both scripts run automatically during the build process via the `prebuild` script:
-
-```bash
-npm run build
-```
-
-This runs `fetch-data` which executes both fetch scripts in sequence.
-
-## Image Processing
-
-Both scripts automatically:
-- Download images from their sources
-- Compress images larger than 50KB
-- Convert PNGs to WebP for better compression
-- Resize images to a maximum width of 600px
-- Save images alongside the JSON data
-
-## Hash Tracking
-
-Each script tracks a hash of the source data to avoid unnecessary rebuilds:
-- FA25: `.sheet-hash` in the FA25 directory
-- Notion: `.notion-hash` in the officers directory
-
-Use the `--force` or `-f` flag to force a rebuild regardless of hash changes.
+The historical Notion importer uses `NOTION_API_KEY` and `NOTION_OFFICERS_DB_ID` when run manually. Those credentials must remain outside the repository. The website build and deploy workflows do not require them.

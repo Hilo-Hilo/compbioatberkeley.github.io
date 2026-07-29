@@ -1,55 +1,48 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import { SiteLogo } from "@/components/SiteLogo";
+import { publicAssetPath } from "@/lib/publicAsset";
 import "./lab-notebook.css";
 
 const officers = [
   {
     name: "Anthea",
     role: "Co-President",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/anthea_dd7a1514.jpg",
+    image: publicAssetPath("officers/archive/sp26/anthea_dd7a1514.jpg"),
   },
   {
     name: "Saket",
     role: "Co-President",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/saket_390d95bb.jpg",
+    image: publicAssetPath("officers/archive/sp26/saket_390d95bb.jpg"),
   },
   {
     name: "Qile",
     role: "Operations and Tech Lead",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/qile_e4b66a5d.jpg",
+    image: publicAssetPath("officers/archive/sp26/qile_e4b66a5d.jpg"),
   },
   {
     name: "Priyam",
     role: "Projects Co-Chair",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/priyam_e438dedd.jpg",
+    image: publicAssetPath("officers/archive/sp26/priyam_e438dedd.jpg"),
   },
   {
     name: "Allison",
     role: "Publicity Chair",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/allison_7c598c4c.webp",
+    image: publicAssetPath("officers/archive/sp26/allison_7c598c4c.webp"),
   },
   {
     name: "Nica",
     role: "Professional Development Co-Chair",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/nica_ed392acc.jpg",
+    image: publicAssetPath("officers/archive/sp26/nica_ed392acc.jpg"),
   },
   {
     name: "Marsiah",
     role: "External Vice President",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/marsiah_16a0617d.jpg",
+    image: publicAssetPath("officers/archive/sp26/marsiah_16a0617d.jpg"),
   },
   {
     name: "Hanson",
     role: "Historian",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/hanson_2e993cf0.jpg",
+    image: publicAssetPath("officers/archive/sp26/hanson_2e993cf0.jpg"),
   },
 ];
 

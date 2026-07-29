@@ -1,5 +1,6 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import { SiteLogo } from "@/components/SiteLogo";
+import { publicAssetPath } from "@/lib/publicAsset";
 import "./bio-network.css";
 
 const joinUrl = "/signup";
@@ -8,50 +9,42 @@ const officers = [
   {
     name: "Anthea",
     role: "Co-President",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/anthea_dd7a1514.jpg",
+    image: publicAssetPath("officers/archive/sp26/anthea_dd7a1514.jpg"),
   },
   {
     name: "Saket",
     role: "Co-President",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/saket_390d95bb.jpg",
+    image: publicAssetPath("officers/archive/sp26/saket_390d95bb.jpg"),
   },
   {
     name: "Anisha",
     role: "Internal Vice President",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/anisha_9d3444ed.webp",
+    image: publicAssetPath("officers/archive/sp26/anisha_9d3444ed.webp"),
   },
   {
     name: "Qile",
     role: "Operations and Tech Lead",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/qile_e4b66a5d.jpg",
+    image: publicAssetPath("officers/archive/sp26/qile_e4b66a5d.jpg"),
   },
   {
     name: "Marsiah",
     role: "External Vice President",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/marsiah_16a0617d.jpg",
+    image: publicAssetPath("officers/archive/sp26/marsiah_16a0617d.jpg"),
   },
   {
     name: "Priyam",
     role: "Projects Co-Chair",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/priyam_e438dedd.jpg",
+    image: publicAssetPath("officers/archive/sp26/priyam_e438dedd.jpg"),
   },
   {
     name: "Allison",
     role: "Publicity Chair",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/allison_7c598c4c.webp",
+    image: publicAssetPath("officers/archive/sp26/allison_7c598c4c.webp"),
   },
   {
     name: "Hanson",
     role: "Historian",
-    image:
-      "https://compbioatberkeley.github.io/fetched/officers/sp26/hanson_2e993cf0.jpg",
+    image: publicAssetPath("officers/archive/sp26/hanson_2e993cf0.jpg"),
   },
 ];
 

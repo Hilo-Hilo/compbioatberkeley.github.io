@@ -15,7 +15,7 @@ export const useOfficersFa25 = () => {
         
         // Fetch from the pre-built JSON file for FA25
         const response = await fetch(
-          publicAssetPath('fetched/officers/fa25/officers-fa25.json'),
+          publicAssetPath('officers/archive/fa25/officers-fa25.json'),
         );
         
         if (!response.ok) {
