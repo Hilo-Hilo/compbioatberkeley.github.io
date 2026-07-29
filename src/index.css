@@ -212,6 +212,7 @@
     margin-left: auto;
     pointer-events: none;
     opacity: 0.78;
+    transform: translateX(-4vw);
   }
 
   .dark .hero-science-field {
@@ -324,7 +325,7 @@
   .hero-science-field {
     position: absolute;
     top: 50%;
-    right: clamp(-4rem, -3vw, -2rem);
+    right: clamp(0.75rem, 1.5vw, 1.5rem);
     width: min(60vw, 64rem);
     margin: 0;
     opacity: 0.9;
