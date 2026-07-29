@@ -25,10 +25,14 @@ const objectives = [
 
 const Home = () => (
   <div>
-    <section className="relative overflow-hidden border-b border-border bg-background">
-      <div className="absolute inset-0 bg-lab-grid" aria-hidden="true" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-16 md:py-20 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12 lg:px-8 lg:py-24">
-        <div>
+    <section className="hero-shell relative isolate overflow-hidden border-b border-border bg-background">
+      <div className="absolute inset-0 z-0 bg-lab-grid" aria-hidden="true" />
+      <div className="hero-science-field" aria-hidden="true">
+        <HeroScienceGraphic className="w-full" />
+      </div>
+
+      <div className="hero-content relative z-10 mx-auto flex max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="hero-copy max-w-[36rem]">
           <p className="eyebrow">Student org / UC Berkeley</p>
           <h1 className="mt-5 max-w-[15ch] text-4xl font-bold leading-[1.08] text-heading sm:text-5xl md:text-6xl">
             Computational Biology at <span className="gold-mark">Berkeley</span>
@@ -52,10 +56,6 @@ const Home = () => (
               <Link to="/about">about us</Link>
             </EnhancedButton>
           </div>
-        </div>
-
-        <div className="mx-auto w-full max-w-[520px] lg:mx-0 lg:max-w-[640px] lg:justify-self-end">
-          <HeroScienceGraphic className="w-full" />
         </div>
       </div>
     </section>

@@ -12,7 +12,7 @@ const heroImageProps = {
   decoding: "async" as const,
   draggable: false,
   loading: "eager" as const,
-  sizes: "(min-width: 1280px) 640px, (min-width: 1024px) 52vw, 92vw",
+  sizes: "(min-width: 1024px) 72vw, (min-width: 640px) 110vw, 135vw",
 };
 
 interface HeroScienceGraphicProps {
