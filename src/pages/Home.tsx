@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 import { EnhancedButton } from "@/components/ui/enhanced-button";
+import { HeroScienceGraphic } from "@/components/HeroScienceGraphic";
 import { PartnerLogoWall } from "@/components/PartnerLogoWall";
 import { SectionHeading } from "@/components/PageHeader";
-import { SiteLogo } from "@/components/SiteLogo";
 
 const objectives = [
   {
@@ -27,7 +27,7 @@ const Home = () => (
   <div>
     <section className="relative overflow-hidden border-b border-border bg-background">
       <div className="absolute inset-0 bg-lab-grid" aria-hidden="true" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 md:grid-cols-[1.15fr_0.85fr] md:py-20 lg:gap-14 lg:px-8 lg:py-24">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-16 md:py-20 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12 lg:px-8 lg:py-24">
         <div>
           <p className="eyebrow">Student org / UC Berkeley</p>
           <h1 className="mt-5 max-w-[15ch] text-4xl font-bold leading-[1.08] text-heading sm:text-5xl md:text-6xl">
@@ -54,14 +54,8 @@ const Home = () => (
           </div>
         </div>
 
-        <div className="flex justify-center md:justify-end">
-          <div className="hero-logo-plate w-full max-w-[320px] rounded-lg">
-            <SiteLogo
-              alt="Computational Biology at Berkeley logo"
-              className="w-full"
-              imageClassName="h-auto w-full"
-            />
-          </div>
+        <div className="mx-auto w-full max-w-[520px] lg:mx-0 lg:max-w-[640px] lg:justify-self-end">
+          <HeroScienceGraphic className="w-full" />
         </div>
       </div>
     </section>

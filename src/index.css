@@ -191,8 +191,15 @@
     background: transparent;
   }
 
-  .hero-logo-plate {
-    background: transparent;
+  .hero-science-art {
+    transform-origin: center;
+    filter: drop-shadow(0 18px 26px hsl(var(--primary) / 0.1));
+    animation: hero-science-drift 10s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .dark .hero-science-art {
+    filter: drop-shadow(0 20px 30px hsl(var(--primary) / 0.12));
   }
 
   .site-logo-system-dark {
@@ -262,6 +269,17 @@
 
   50% {
     transform: translate3d(0, -7px, 0);
+  }
+}
+
+@keyframes hero-science-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -5px, 0);
   }
 }
 
