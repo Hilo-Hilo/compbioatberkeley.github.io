@@ -17,12 +17,24 @@ Run `npm run build` for the same credential-free production build used by GitHub
 Fall 2026 deliberately separates approved roster decisions from submitted public profile content:
 
 - `src/data/officersFa26Roster.json` owns cohort membership, roles, order, stable IDs, and fallback portraits.
-- `src/data/officerProfilesFa26.json` is a reviewed, public-only snapshot of the latest officer form responses.
+- `src/data/officerProfilesFa26.json` is a reviewed, public-only snapshot of in-window officer form responses.
+- `scripts/lib/officer-profile-cohorts.js` owns operational file paths and the explicit intake window; upstream database identifiers stay in protected environment secrets and out of the client bundle.
 - `src/data/compileOfficerDirectory.js` matches responses to the roster, keeps the newest nonblank public fields, normalizes links, and ignores unmatched people.
 - `public/officers/fa26/` stores stable headshot assets.
 - `public/officers/archive/` stores immutable Fall 2025 and Spring 2026 snapshots so historical tabs work in a clean checkout.
 
-Never copy private form fields such as email, phone number, or birthday into the repository. Run:
+Notion is private intake, not a publishing system. Maintainers use the controlled
+`officers:notion:dry-run`, `officers:notion:check`, and
+`officers:notion:write` commands described in `scripts/README.md` to prepare a
+sanitized working-tree change. The `write` command does not commit, push,
+deploy, or write anything back to Notion. A human must review the Git diff and
+the staging site before promotion.
+
+Each profile record in the public snapshot is limited to provenance ID,
+submission time, full and preferred names, headshot path, bio, personal
+website, LinkedIn, GitHub, and ORCID. Never copy email, phone number, birthday,
+scheduling data, another private form field, or an upstream database identifier
+into the snapshot. Run:
 
 ```sh
 npm test
@@ -36,4 +48,8 @@ The validator reports unmatched responses, invalid public links, missing assets,
 - Pushes to `dev` deploy the staging GitHub Pages site from the `Hilo-Hilo` staging repository.
 - Pushes to `main` deploy production from `CompbioAtBerkeley/compbioatberkeley.github.io`.
 
-Neither build reads Notion or Google Sheets credentials. Form intake is reviewed and versioned before publication, so the same commit produces the same site in local, staging, and production environments.
+Neither build reads Notion or Google Sheets credentials. Form intake is
+reviewed and versioned before publication, so the same commit produces the same
+site in local, staging, and production environments. The separate weekly/manual
+drift workflow may read Notion with a read-only integration, but it cannot
+modify repository contents or publish candidate data.

@@ -3,34 +3,29 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import sharp from "sharp";
 
 import {
   compileOfficerDirectory,
   normalizePublicUrl,
 } from "../src/data/compileOfficerDirectory.js";
+import {
+  OFFICER_PROFILE_FIELDS,
+  validateOfficerProfileSnapshot,
+} from "../src/data/officerProfileContract.js";
+import { getOfficerProfileCohort } from "./lib/officer-profile-cohorts.js";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const readJson = (relativePath) =>
   JSON.parse(fs.readFileSync(path.join(repoRoot, relativePath), "utf8"));
 
-const rosterPath = "src/data/officersFa26Roster.json";
-const profilesPath = "src/data/officerProfilesFa26.json";
-const roster = readJson(rosterPath);
-const profiles = readJson(profilesPath);
+const profileCohort = getOfficerProfileCohort("fa26");
+const roster = readJson(profileCohort.roster);
+const profileSnapshot = readJson(profileCohort.profiles);
+const profiles = profileSnapshot.profiles ?? [];
 
 const allowedRosterFields = new Set(["id", "name", "role", "image", "aliases"]);
-const allowedProfileFields = new Set([
-  "sourceId",
-  "submittedAt",
-  "fullName",
-  "preferredName",
-  "image",
-  "bio",
-  "personal website",
-  "linkedin",
-  "github",
-  "orcid",
-]);
+const allowedProfileFields = new Set(OFFICER_PROFILE_FIELDS);
 
 const errors = [];
 const warnings = [];
@@ -45,25 +40,65 @@ const validateAllowedFields = (records, allowedFields, label) => {
   });
 };
 
+const publicRoot = path.join(repoRoot, "public");
 const publicFileFor = (urlPath) => {
   if (!urlPath.startsWith("/") || urlPath.includes("..")) return null;
-  return path.join(repoRoot, "public", urlPath.slice(1));
+  const resolved = path.resolve(publicRoot, urlPath.slice(1));
+  if (
+    resolved !== publicRoot &&
+    !resolved.startsWith(`${publicRoot}${path.sep}`)
+  ) {
+    return null;
+  }
+  return resolved;
 };
 
-const validateImages = (records, label) => {
-  records.forEach((record, index) => {
-    if (!record.image) return;
+const checkedImagePaths = new Set();
+const validateImages = async (records, label) => {
+  for (const [index, record] of records.entries()) {
+    if (!record.image) continue;
     const imagePath = publicFileFor(record.image);
     if (!imagePath || !fs.existsSync(imagePath)) {
       errors.push(`${label}[${index}] references missing image ${record.image}`);
+      continue;
     }
-  });
+    if (checkedImagePaths.has(imagePath)) continue;
+    checkedImagePaths.add(imagePath);
+
+    const fileSize = fs.statSync(imagePath).size;
+    if (fileSize > 15 * 1024 * 1024) {
+      errors.push(`${label}[${index}] image exceeds the 15 MB limit`);
+    }
+
+    try {
+      const metadata = await sharp(imagePath, {
+        limitInputPixels: 40_000_000,
+      }).metadata();
+      if (!["jpeg", "png", "webp"].includes(metadata.format ?? "")) {
+        errors.push(
+          `${label}[${index}] image is not a supported JPEG, PNG, or WebP raster`,
+        );
+      }
+      if (!metadata.width || !metadata.height) {
+        errors.push(`${label}[${index}] image has invalid dimensions`);
+      }
+    } catch {
+      errors.push(`${label}[${index}] image could not be decoded safely`);
+    }
+  }
 };
 
+errors.push(
+  ...validateOfficerProfileSnapshot(profileSnapshot, {
+    expectedCohort: "fa26",
+    intakeStart: profileCohort.intakeStart,
+    intakeEnd: profileCohort.intakeEnd,
+  }),
+);
 validateAllowedFields(roster, allowedRosterFields, "roster");
 validateAllowedFields(profiles, allowedProfileFields, "profiles");
-validateImages(roster, "roster");
-validateImages(profiles, "profiles");
+await validateImages(roster, "roster");
+await validateImages(profiles, "profiles");
 
 const sourceIds = new Set();
 profiles.forEach((profile, index) => {
@@ -85,6 +120,22 @@ profiles.forEach((profile, index) => {
     Number.isNaN(Date.parse(profile.submittedAt))
   ) {
     errors.push(`profiles[${index}] has an invalid submittedAt timestamp`);
+  }
+
+  for (const field of [
+    "personal website",
+    "linkedin",
+    "github",
+    "orcid",
+  ]) {
+    const value = String(profile[field] ?? "").trim();
+    if (!value) continue;
+    const normalized = normalizePublicUrl(value, field);
+    if (!normalized) {
+      errors.push(`profiles[${index}] has an invalid ${field}`);
+    } else if (normalized !== value) {
+      errors.push(`profiles[${index}] ${field} is not normalized`);
+    }
   }
 });
 
@@ -122,7 +173,7 @@ if (compiled) {
 for (const semester of ["fa25", "sp26"]) {
   const relativeJson = `public/officers/archive/${semester}/officers-${semester}.json`;
   const officers = readJson(relativeJson);
-  validateImages(officers, `${semester} archive`);
+  await validateImages(officers, `${semester} archive`);
   officers.forEach((officer, index) => {
     for (const field of [
       "personal website",

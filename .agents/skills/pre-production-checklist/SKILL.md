@@ -41,13 +41,18 @@ Run this gate whenever the officer roster, a form-response snapshot, profile lin
 
 1. Run `npm test` and `npm run validate:officers`.
 2. Confirm `src/data/officersFa26Roster.json` is the only authority for cohort membership, roles, order, stable IDs, and fallback portraits.
-3. Confirm `src/data/officerProfilesFa26.json` contains the real Notion response page ID for provenance and only public profile fields copied from reviewed form responses. Never add email addresses, phone numbers, birthdays, or other private form answers.
-4. Review every unmatched submission, invalid profile link, and officer without a current response reported by the validator. An officer without a response may retain only the roster fallback; do not invent a bio or personal link.
-5. On the rendered page, open at least one complete profile and confirm its full bio and Website, LinkedIn, GitHub, and ORCID destinations are labeled, keyboard accessible, and correct.
-6. Confirm every added or replaced headshot path resolves in a clean build, and complete Gate 1 for its framing.
-7. Confirm the Fall 2025 and Spring 2026 archive tabs load from the tracked files under `public/officers/archive/`; a build must not require Notion, Google Sheets, or a prior production deployment.
+3. Treat Notion as private intake. Use `officers:notion:dry-run` or `officers:notion:check` before `officers:notion:write`, then inspect the resulting Git diff. Confirm the sync did not commit, push, deploy, or write back to Notion.
+4. Confirm `src/data/officerProfilesFa26.json` contains the real Notion response page ID for provenance and only the allowlisted public fields: source ID, submission time, full and preferred names, headshot path, bio, personal website, LinkedIn, GitHub, and ORCID. Confirm upstream database/data-source IDs and the intake window are absent from this browser-facing snapshot.
+5. Search the diff for email addresses, phone numbers, birthdays, scheduling information, internal notes, and unknown form properties. None may enter Git, logs, or workflow artifacts.
+6. Review every unmatched submission, invalid profile link, and officer without a current response reported by the validator. An officer without a response may retain only the roster fallback; do not invent a bio or personal link.
+7. Confirm write preparation was atomic and idempotent: dirty managed files were not overwritten, managed files were rechecked after network work, validation completed before replacement, and repeating the sync against unchanged source data creates no diff.
+8. Confirm every replaced portrait uses its stable versioned path, matches the recorded response provenance, contains no private metadata, and resolves in a clean build. Confirm changing an attachment on the same response is detected. Complete Gate 1 for its rendered framing.
+9. Confirm `public/fetched` remains untracked, no page imports from `/fetched/`, and a clean release artifact does not contain local legacy cache files.
+10. Confirm the Fall 2025 and Spring 2026 archive tabs load from the intentional tracked snapshots under `public/officers/archive/`; do not confuse immutable archives with duplicate current data.
+11. On the rendered page, open at least one complete profile and confirm its full bio and Website, LinkedIn, GitHub, and ORCID destinations are labeled, keyboard accessible, and correct.
+12. Confirm local, staging, and production builds remain credential-free. If the optional drift workflow changed, verify it has read-only repository permissions, passes secrets only to the check command, fails on a missing or retyped Notion property, publishes no candidate artifact, and cannot commit or deploy.
 
-This gate passes only when the published roster matches the approved cohort, current public submissions enrich the correct people, invalid or private form values cannot leak through, and all officer tabs work from a clean checkout.
+This gate passes only when the published roster matches the approved cohort, current public submissions enrich the correct people through a reviewed Git snapshot, invalid or private form values cannot leak through, cache and archive boundaries remain clear, and all officer tabs work from a clean credential-free checkout.
 
 ## Release discipline
 

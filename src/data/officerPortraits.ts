@@ -48,6 +48,9 @@ const framingByImage = {
   "/officers/fa26/asmar-khasmammadli.webp": {
     objectPosition: "50% 40%",
   },
+  "/officers/fa26/anisha-s-pallikonda-2026-07-29-3ac3e3c8.webp": {
+    objectPosition: "50% 35%",
+  },
 } satisfies Record<string, OfficerPortraitFraming>;
 
 export const getOfficerPortraitFraming = (

@@ -136,6 +136,51 @@ test("uses the newest nonblank value from duplicate submissions", () => {
   assert.equal(officers[0].image, "/officers/newer.jpg");
 });
 
+test("lets Anisha replace her portrait without blanking an older public profile", () => {
+  const roster = [
+    {
+      id: "anisha-s-pallikonda",
+      name: "Anisha S. Pallikonda",
+      aliases: ["Anisha Pallikonda"],
+      role: "Senior Advisor",
+      image: "/officers/fa26/anisha-fallback.webp",
+    },
+  ];
+  const submissions = [
+    {
+      sourceId: "older-anisha-response",
+      fullName: "Anisha Pallikonda",
+      submittedAt: "2026-07-10T00:00:00Z",
+      image: "",
+      bio: "An older reviewed public biography.",
+      linkedin: "https://www.linkedin.com/in/anisha/",
+    },
+    {
+      sourceId: "3ac3e3c8-c9b6-8155-96d5-c35c4b8164fb",
+      fullName: "Anisha Pallikonda",
+      submittedAt: "2026-07-29T02:02:08Z",
+      image:
+        "/officers/fa26/anisha-s-pallikonda-2026-07-29-3ac3e3c8.webp",
+      bio: "",
+      linkedin: "",
+    },
+  ];
+
+  const { officers } = compileOfficerDirectory(roster, submissions);
+
+  assert.equal(
+    officers[0].image,
+    "/officers/fa26/anisha-s-pallikonda-2026-07-29-3ac3e3c8.webp",
+  );
+  assert.equal(officers[0].bio, "An older reviewed public biography.");
+  assert.equal(
+    officers[0].linkedin,
+    "https://www.linkedin.com/in/anisha/",
+  );
+  assert.equal(officers[0].name, "Anisha S. Pallikonda");
+  assert.equal(officers[0].role, "Senior Advisor");
+});
+
 test("uses aliases deliberately and rejects ambiguous matching rules", () => {
   const roster = [
     {
@@ -218,24 +263,35 @@ test("drops malformed platform links and falls back to the newest valid value", 
   assert.equal(audit.invalidLinks.length, 3);
 });
 
-test("compiles the tracked Fall 2026 roster with Hanson's submitted public profile", () => {
+test("compiles the tracked Fall 2026 public snapshot without changing roster authority", () => {
   const roster = JSON.parse(
     fs.readFileSync(
       new URL("../../src/data/officersFa26Roster.json", import.meta.url),
       "utf8",
     ),
   );
-  const profiles = JSON.parse(
+  const profileSnapshot = JSON.parse(
     fs.readFileSync(
       new URL("../../src/data/officerProfilesFa26.json", import.meta.url),
       "utf8",
     ),
   );
 
-  const { officers, audit } = compileOfficerDirectory(roster, profiles);
+  const { officers, audit } = compileOfficerDirectory(
+    roster,
+    profileSnapshot.profiles,
+  );
   const hanson = officers.find((officer) => officer.name === "Hanson Wen");
+  const anisha = officers.find(
+    (officer) => officer.name === "Anisha S. Pallikonda",
+  );
 
   assert.equal(officers.length, 27);
+  assert.deepEqual(Object.keys(profileSnapshot).sort(), [
+    "cohort",
+    "profiles",
+    "schemaVersion",
+  ]);
   assert.equal(new Set(officers.map((officer) => officer.name)).size, 27);
   assert.equal(audit.unmatchedSubmissions.length, 0);
   assert.equal(
@@ -246,6 +302,16 @@ test("compiles the tracked Fall 2026 roster with Hanson's submitted public profi
   assert.equal(hanson.linkedin, "https://www.linkedin.com/in/hanson-wen/");
   assert.equal(hanson.github, "https://github.com/Hilo-Hilo");
   assert.equal(hanson.orcid, "https://orcid.org/0009-0005-4776-087X");
+  assert.equal(anisha.role, "Senior Advisor");
+  assert.equal(
+    anisha.image,
+    "/officers/fa26/anisha-s-pallikonda-2026-07-29-3ac3e3c8.webp",
+  );
+  assert.equal(anisha.bio, "");
+  assert.equal(
+    audit.officersWithoutSubmission.includes("Anisha S. Pallikonda"),
+    false,
+  );
   assert.deepEqual(Object.keys(hanson).sort(), [
     "bio",
     "github",

@@ -1,4 +1,7 @@
-[
+{
+  "schemaVersion": 1,
+  "cohort": "fa26",
+  "profiles": [
   {
     "sourceId": "3923e3c8-c9b6-808f-95db-f0b7e67ab0f9",
     "submittedAt": "2026-07-03T22:46:24Z",
@@ -67,7 +70,7 @@
     "image": "/officers/fa26/john-andrianopoulos.jpg",
     "bio": "Second-year studying Bioe+EECS. Love taking pictures of cats, playing soccer, camping, eating good food, and exploring new places!",
     "personal website": "",
-    "linkedin": "www.linkedin.com/in/johnandrian",
+    "linkedin": "https://www.linkedin.com/in/johnandrian",
     "github": "",
     "orcid": ""
   },
@@ -91,7 +94,7 @@
     "image": "/officers/fa26/asmar-khasmammadli.webp",
     "bio": "Hi, I'm Asmar, and I'm studying BioE and EECS! I love Spanish lattes, traveling, the beach, chess.com, skiing, and long walks. Happy to chat about anything!",
     "personal website": "",
-    "linkedin": "https://www.linkedin.com/mynetwork/grow/",
+    "linkedin": "",
     "github": "",
     "orcid": ""
   },
@@ -118,5 +121,18 @@
     "linkedin": "https://www.linkedin.com/in/hanson-wen/",
     "github": "https://github.com/Hilo-Hilo",
     "orcid": "https://orcid.org/0009-0005-4776-087X"
+  },
+  {
+    "sourceId": "3ac3e3c8-c9b6-8155-96d5-c35c4b8164fb",
+    "submittedAt": "2026-07-29T02:02:08Z",
+    "fullName": "Anisha Pallikonda",
+    "preferredName": "Anisha",
+    "image": "/officers/fa26/anisha-s-pallikonda-2026-07-29-3ac3e3c8.webp",
+    "bio": "",
+    "personal website": "",
+    "linkedin": "",
+    "github": "",
+    "orcid": ""
   }
-]
+  ]
+}

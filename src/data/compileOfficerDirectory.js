@@ -1,11 +1,6 @@
-const PROFILE_FIELDS = [
-  "image",
-  "bio",
-  "personal website",
-  "linkedin",
-  "github",
-  "orcid",
-];
+import { OFFICER_PUBLISHABLE_CONTENT_FIELDS } from "./officerProfileContract.js";
+
+const PROFILE_FIELDS = OFFICER_PUBLISHABLE_CONTENT_FIELDS;
 
 const URL_FIELDS = new Set([
   "personal website",

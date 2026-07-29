@@ -1,0 +1,48 @@
+name: Check officer profile drift
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 16 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: officer-profile-drift
+  cancel-in-progress: true
+
+jobs:
+  check:
+    environment:
+      name: github-pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check reviewed officer snapshot against Notion
+        shell: bash
+        run: |
+          set +e
+          npm run officers:notion:check
+          status=$?
+          set -e
+          if [[ "$status" -eq 2 ]]; then
+            echo "::warning::Reviewed officer profile drift is waiting for maintainer review."
+            exit 0
+          fi
+          exit "$status"
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_OFFICERS_DB_ID: ${{ secrets.NOTION_OFFICERS_DB_ID }}
