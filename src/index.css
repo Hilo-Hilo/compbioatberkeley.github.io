@@ -192,10 +192,9 @@
   }
 
   .hero-content {
-    min-height: 44rem;
     align-items: flex-start;
     padding-top: 3.5rem;
-    padding-bottom: 20rem;
+    padding-bottom: 0;
   }
 
   .hero-copy {
@@ -204,26 +203,15 @@
   }
 
   .hero-science-field {
-    position: absolute;
-    bottom: -2rem;
-    left: 50%;
+    position: relative;
     z-index: 1;
-    width: min(135vw, 44rem);
+    width: min(118vw, 34rem);
+    margin-top: 1rem;
+    margin-right: -8vw;
+    margin-bottom: -2.5rem;
+    margin-left: auto;
     pointer-events: none;
     opacity: 0.78;
-    transform: translateX(-50%);
-    -webkit-mask-image: radial-gradient(
-      ellipse 78% 76% at 60% 48%,
-      #000 0 54%,
-      rgb(0 0 0 / 92%) 72%,
-      transparent 100%
-    );
-    mask-image: radial-gradient(
-      ellipse 78% 76% at 60% 48%,
-      #000 0 54%,
-      rgb(0 0 0 / 92%) 72%,
-      transparent 100%
-    );
   }
 
   .dark .hero-science-field {
@@ -305,34 +293,54 @@
   }
 }
 
+@media (min-width: 480px) {
+  .hero-science-field {
+    width: min(108vw, 40rem);
+    margin-top: 1.5rem;
+    margin-right: -7vw;
+  }
+}
+
 @media (min-width: 640px) {
   .hero-content {
-    min-height: 54rem;
     padding-top: 4rem;
-    padding-bottom: 27rem;
   }
 
   .hero-science-field {
-    bottom: -3rem;
-    width: min(110vw, 52rem);
+    width: min(100vw, 46rem);
+    margin-top: 2rem;
+    margin-right: -6vw;
   }
 }
 
 @media (min-width: 1024px) {
   .hero-content {
-    min-height: 40rem;
+    min-height: 42rem;
     align-items: center;
     padding-top: 6rem;
     padding-bottom: 6rem;
   }
 
   .hero-science-field {
+    position: absolute;
     top: 50%;
-    bottom: auto;
-    left: calc(50% - 5rem);
-    width: min(72vw, 76rem);
+    right: clamp(-4rem, -3vw, -2rem);
+    width: min(60vw, 64rem);
+    margin: 0;
     opacity: 0.9;
     transform: translateY(-50%);
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 10%,
+      #000 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 10%,
+      #000 100%
+    );
   }
 
   .dark .hero-science-field {
