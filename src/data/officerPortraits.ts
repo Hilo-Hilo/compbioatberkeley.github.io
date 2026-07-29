@@ -27,8 +27,11 @@ const framingByImage = {
   "/officers/fa26/priyam-baruah.jpg": {
     objectPosition: "50% 0%",
   },
+  "/officers/fa26/aahan-sharma.jpg": {
+    objectPosition: "50% 40%",
+  },
   "/officers/fa26/mahesh-arunachalam.jpeg": {
-    objectPosition: "50% 58%",
+    objectPosition: "90% 25%",
   },
   "/officers/fa26/john-andrianopoulos.jpg": {
     objectPosition: "50% 24%",
@@ -40,10 +43,7 @@ const framingByImage = {
     objectPosition: "50% 14%",
   },
   "/officers/fa26/kenneth-sarip.jpg": {
-    objectPosition: "50% 25%",
-  },
-  "/officers/fa26/hanson-wen.jpg": {
-    objectPosition: "50% 40%",
+    objectPosition: "50% 35%",
   },
   "/officers/fa26/asmar-khasmammadli.webp": {
     objectPosition: "50% 40%",
