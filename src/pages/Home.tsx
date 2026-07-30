@@ -31,7 +31,7 @@ const Home = () => (
       <div className="hero-content relative z-10 mx-auto flex max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="hero-copy max-w-[36rem]">
           <p className="eyebrow">Student org / UC Berkeley</p>
-          <h1 className="mt-5 max-w-[15ch] text-4xl font-bold leading-[1.08] text-heading sm:text-5xl md:text-6xl">
+          <h1 className="hero-title mt-5 max-w-[15ch] text-4xl font-bold leading-[1.08] text-heading sm:text-5xl md:text-6xl">
             Computational Biology at <span className="gold-mark">Berkeley</span>
           </h1>
           <p className="mt-6 max-w-[48ch] text-base leading-relaxed text-muted-foreground md:text-lg">

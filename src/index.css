@@ -66,6 +66,9 @@
     --shadow-bio: 0 1px 2px hsl(209.4 100% 19.2% / 0.06);
     --shadow-glow: 0 1px 2px hsl(209.4 100% 19.2% / 0.06);
     --shadow-compute: 0 1px 2px hsl(209.4 100% 19.2% / 0.06);
+    --hero-title-shadow:
+      0 1px 0 hsl(var(--background) / 0.94),
+      0 4px 12px hsl(var(--primary) / 0.2);
 
     --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-glow: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -125,6 +128,10 @@
     --compute-blue: 210.9 69.5% 70.4%;
     --compute-blue-light: 210.8 75.5% 80.8%;
     --compute-blue-foreground: 211.3 59% 7.6%;
+
+    --hero-title-shadow:
+      0 2px 2px hsl(var(--background) / 0.96),
+      0 6px 16px hsl(var(--background) / 0.84);
   }
 }
 
@@ -185,6 +192,11 @@
     background: hsl(var(--gold));
     color: hsl(var(--gold-foreground));
     padding: 0 0.15em;
+    text-shadow: none;
+  }
+
+  .hero-title {
+    text-shadow: var(--hero-title-shadow);
   }
 
   .logo-plate {
