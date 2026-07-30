@@ -325,6 +325,8 @@
   .hero-science-field {
     position: absolute;
     top: 50%;
+    --hero-fade-start: 0%;
+    --hero-fade-end: 10%;
     /*
      * Keep the copy and artwork on one centered 100rem stage. The artwork
      * grows through normal desktop widths, then tapers toward 54rem so
@@ -338,19 +340,47 @@
     -webkit-mask-image: linear-gradient(
       90deg,
       transparent 0,
-      #000 10%,
+      transparent var(--hero-fade-start),
+      #000 var(--hero-fade-end),
       #000 100%
     );
     mask-image: linear-gradient(
       90deg,
       transparent 0,
-      #000 10%,
+      transparent var(--hero-fade-start),
+      #000 var(--hero-fade-end),
       #000 100%
     );
   }
 
   .dark .hero-science-field {
     opacity: 0.84;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-science-field {
+    /*
+     * Let the protein ribbon enter the copy column while keeping the denser
+     * heatmap and genome track aligned with the centered content stage.
+     */
+    right: max(3rem, calc(50vw - 35.25rem));
+    --hero-fade-start: 8%;
+    --hero-fade-end: 22%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero-science-field {
+    --hero-fade-start: 16%;
+    --hero-fade-end: 30%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .hero-science-field {
+    --hero-fade-start: 22%;
+    --hero-fade-end: 34%;
   }
 }
 
