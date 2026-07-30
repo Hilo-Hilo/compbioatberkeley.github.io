@@ -204,31 +204,57 @@
   }
 
   .hero-content {
-    align-items: flex-start;
+    min-height: clamp(36rem, 135vw, 42rem);
+    align-items: center;
     padding-top: 3.5rem;
-    padding-bottom: 0;
+    padding-bottom: 3.5rem;
   }
 
   .hero-copy {
     position: relative;
     z-index: 2;
+    width: min(100%, 36rem);
+    min-width: 0;
   }
 
   .hero-science-field {
-    position: relative;
+    /*
+     * Keep the visual and copy in one layered composition at every width.
+     * The generated 1600px asset has 126px of transparent padding on its
+     * right edge, so clip that measured 7.875% tail and compensate for it.
+     */
+    --hero-source-right-trim: 7.875%;
+    --hero-copy-gap: max(0px, calc(100vw - 38rem));
+    --hero-overlap-end: calc(92.125% - var(--hero-copy-gap));
+    --hero-fade-start: max(0px, calc(var(--hero-overlap-end) - 12rem));
+    position: absolute;
+    top: 50%;
+    right: 1rem;
     z-index: 1;
-    width: min(118vw, 34rem);
-    margin-top: 1rem;
-    margin-right: -8vw;
-    margin-bottom: -2.5rem;
-    margin-left: auto;
+    width: clamp(34rem, 150vw, 46rem);
+    margin: 0;
+    clip-path: inset(0 var(--hero-source-right-trim) 0 0);
     pointer-events: none;
-    opacity: 0.78;
-    transform: translateX(-4vw);
+    opacity: 0.88;
+    transform: translate(var(--hero-source-right-trim), -50%);
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      rgb(0 0 0 / 0.28) 0,
+      rgb(0 0 0 / 0.28) var(--hero-fade-start),
+      #000 var(--hero-overlap-end),
+      #000 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      rgb(0 0 0 / 0.28) 0,
+      rgb(0 0 0 / 0.28) var(--hero-fade-start),
+      #000 var(--hero-overlap-end),
+      #000 100%
+    );
   }
 
   .dark .hero-science-field {
-    opacity: 0.72;
+    opacity: 0.82;
   }
 
   .hero-science-art {
@@ -308,21 +334,21 @@
 
 @media (min-width: 480px) {
   .hero-science-field {
-    width: min(108vw, 40rem);
-    margin-top: 1.5rem;
-    margin-right: -7vw;
+    width: clamp(40rem, 150vw, 46rem);
   }
 }
 
 @media (min-width: 640px) {
   .hero-content {
+    min-height: 42rem;
     padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   .hero-science-field {
-    width: min(100vw, 46rem);
-    margin-top: 2rem;
-    margin-right: -6vw;
+    --hero-copy-gap: max(0px, calc(100vw - 39rem));
+    right: 1.5rem;
+    width: clamp(46rem, 110vw, 56rem);
   }
 }
 
@@ -335,56 +361,19 @@
   }
 
   .hero-science-field {
-    position: absolute;
-    top: 50%;
-    /*
-     * The generated 1600px asset has 126px of transparent padding on its
-     * right edge. Clip that measured 7.875% tail and compensate by the same
-     * amount so the visible genome track aligns with the page content edge.
-     */
-    --hero-source-right-trim: 7.875%;
     /*
      * Anchor the visible artwork to the shared 72rem content stage. It grows
-     * through normal desktop widths, then tapers toward 54rem so browser
-     * zoom-out cannot pull a giant illustration toward the far edge. The
-     * transparent artwork deliberately sits beneath the foreground copy.
+     * from 56rem to 64rem instead of shrinking with 60vw, preserving the
+     * protein-and-type overlap through narrow desktop aspect ratios.
      */
+    --hero-copy-gap: min(32rem, calc(100vw - 40rem));
     right: max(2rem, calc(50vw - 34rem));
-    width: min(60vw, clamp(54rem, calc(72rem - 10vw), 64rem));
-    margin: 0;
-    clip-path: inset(0 var(--hero-source-right-trim) 0 0);
+    width: clamp(56rem, 70vw, 64rem);
     opacity: 0.9;
-    transform: translate(var(--hero-source-right-trim), -50%);
   }
 
   .dark .hero-science-field {
     opacity: 0.84;
-  }
-}
-
-@media (min-width: 1280px) {
-  .hero-science-field {
-    /*
-     * The fade ends at the copy's right edge. Its position is derived from
-     * the shared 72rem container, 2rem gutters, and the measured source trim,
-     * so it follows the overlap instead of relying on viewport-specific stops.
-     */
-    --hero-overlap-end: calc(92.125% - 39.5rem);
-    --hero-fade-start: max(0px, calc(var(--hero-overlap-end) - 10rem));
-    -webkit-mask-image: linear-gradient(
-      90deg,
-      rgb(0 0 0 / 0.12) 0,
-      rgb(0 0 0 / 0.12) var(--hero-fade-start),
-      #000 var(--hero-overlap-end),
-      #000 100%
-    );
-    mask-image: linear-gradient(
-      90deg,
-      rgb(0 0 0 / 0.12) 0,
-      rgb(0 0 0 / 0.12) var(--hero-fade-start),
-      #000 var(--hero-overlap-end),
-      #000 100%
-    );
   }
 }
 
