@@ -338,16 +338,23 @@
     position: absolute;
     top: 50%;
     /*
-     * Keep the copy and artwork on one centered 100rem stage. The artwork
-     * grows through normal desktop widths, then tapers toward 54rem so
-     * browser zoom-out cannot pull a giant illustration toward the far edge.
-     * The transparent artwork deliberately sits beneath the foreground copy.
+     * The generated 1600px asset has 126px of transparent padding on its
+     * right edge. Clip that measured 7.875% tail and compensate by the same
+     * amount so the visible genome track aligns with the page content edge.
      */
-    right: max(1.5rem, calc(50vw - 50rem));
+    --hero-source-right-trim: 7.875%;
+    /*
+     * Anchor the visible artwork to the shared 72rem content stage. It grows
+     * through normal desktop widths, then tapers toward 54rem so browser
+     * zoom-out cannot pull a giant illustration toward the far edge. The
+     * transparent artwork deliberately sits beneath the foreground copy.
+     */
+    right: max(2rem, calc(50vw - 34rem));
     width: min(60vw, clamp(54rem, calc(72rem - 10vw), 64rem));
     margin: 0;
+    clip-path: inset(0 var(--hero-source-right-trim) 0 0);
     opacity: 0.9;
-    transform: translateY(-50%);
+    transform: translate(var(--hero-source-right-trim), -50%);
   }
 
   .dark .hero-science-field {
@@ -358,10 +365,26 @@
 @media (min-width: 1280px) {
   .hero-science-field {
     /*
-     * Let the protein ribbon enter the copy column while keeping the denser
-     * heatmap and genome track aligned with the centered content stage.
+     * The fade ends at the copy's right edge. Its position is derived from
+     * the shared 72rem container, 2rem gutters, and the measured source trim,
+     * so it follows the overlap instead of relying on viewport-specific stops.
      */
-    right: max(3rem, calc(50vw - 35.25rem));
+    --hero-overlap-end: calc(92.125% - 39.5rem);
+    --hero-fade-start: max(0px, calc(var(--hero-overlap-end) - 10rem));
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      rgb(0 0 0 / 0.12) 0,
+      rgb(0 0 0 / 0.12) var(--hero-fade-start),
+      #000 var(--hero-overlap-end),
+      #000 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      rgb(0 0 0 / 0.12) 0,
+      rgb(0 0 0 / 0.12) var(--hero-fade-start),
+      #000 var(--hero-overlap-end),
+      #000 100%
+    );
   }
 }
 
