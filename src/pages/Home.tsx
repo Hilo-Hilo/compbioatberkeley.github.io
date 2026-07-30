@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 import { EnhancedButton } from "@/components/ui/enhanced-button";
+import { HeroGenomePathfinder } from "@/components/HeroGenomePathfinder";
 import { HeroScienceGraphic } from "@/components/HeroScienceGraphic";
 import { PartnerLogoWall } from "@/components/PartnerLogoWall";
 import { SectionHeading } from "@/components/PageHeader";
@@ -27,6 +28,7 @@ const Home = () => (
   <div>
     <section className="hero-shell relative isolate overflow-hidden border-b border-border bg-background">
       <div className="absolute inset-0 z-0 bg-lab-grid" aria-hidden="true" />
+      <HeroGenomePathfinder />
 
       <div className="hero-content relative z-10 mx-auto flex max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="hero-copy max-w-[36rem]">
