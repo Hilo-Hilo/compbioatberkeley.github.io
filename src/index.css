@@ -176,6 +176,62 @@
   }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 2;
+  }
+}
+
+.theme-bio-bloom {
+  --theme-bloom-fill: hsl(0 0% 100%);
+  --theme-bloom-membrane: hsl(41.4 98.3% 53.7% / 0.72);
+  --theme-bloom-nucleus: hsl(209.4 100% 19.2% / 0.72);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  display: block;
+  width: 5rem;
+  height: 5rem;
+  contain: paint;
+  pointer-events: none;
+  border: 1px solid var(--theme-bloom-membrane);
+  border-radius: 999px;
+  background:
+    radial-gradient(
+      circle at 38% 38%,
+      var(--theme-bloom-nucleus) 0 6%,
+      transparent 7%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      transparent 0 63%,
+      var(--theme-bloom-membrane) 64% 67%,
+      transparent 68%
+    ),
+    var(--theme-bloom-fill);
+  box-shadow:
+    inset 0 0 0 1px var(--theme-bloom-membrane),
+    0 0 20px var(--theme-bloom-membrane);
+  will-change: transform, opacity;
+}
+
+.theme-bio-bloom--dark {
+  --theme-bloom-fill: hsl(218.2 52.4% 8.2%);
+  --theme-bloom-membrane: hsl(210.9 69.5% 70.4% / 0.62);
+  --theme-bloom-nucleus: hsl(41.4 98.3% 53.7% / 0.8);
+}
+
 @layer components {
   .bg-lab-grid {
     background-image:

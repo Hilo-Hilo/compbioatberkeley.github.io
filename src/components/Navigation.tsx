@@ -4,6 +4,7 @@ import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { SiteLogo } from "@/components/SiteLogo";
 import { SITE_FAVICON_DARK_SRC, SITE_FAVICON_LIGHT_SRC } from "@/lib/siteLogo";
+import { runBioThemeTransition } from "@/lib/themeTransition";
 
 const navItems = [
   { name: "home", path: "/" },
@@ -36,7 +37,13 @@ const ThemeToggle = ({ mobile = false }: { mobile?: boolean }) => {
   return (
     <button
       type="button"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      onClick={(event) =>
+        runBioThemeTransition({
+          nextTheme: isDark ? "light" : "dark",
+          setTheme,
+          trigger: event.currentTarget,
+        })
+      }
       aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
       className={`inline-flex min-h-9 items-center justify-center gap-1.5 rounded border border-border bg-button-surface font-sans text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-heading focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:translate-y-px ${
         mobile ? "w-full px-3" : "px-2.5"
