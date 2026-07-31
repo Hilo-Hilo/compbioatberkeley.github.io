@@ -45,14 +45,14 @@ export const partners: Partner[] = [
     brandSourceUrl: "https://www.novaflowapp.com/",
   },
   {
-    name: "GeneGen",
-    website: "https://www.biomart.cn/46339/index.htm",
+    name: "GeneXGen",
+    website: "https://www.genexgen.com/",
     logoPath: "partners/raster/genegen.png",
     logoClassName: "max-h-24 w-full",
     collageClassName:
       "col-span-2 md:left-[1%] md:top-[49%] md:w-[34%]",
     sourceNote:
-      "Transparent reconstruction from the supplied reference because the legacy official domain no longer resolves.",
+      "Transparent reconstruction from the supplied reference; the current official website is genexgen.com.",
   },
   {
     name: "Google DeepVariant",

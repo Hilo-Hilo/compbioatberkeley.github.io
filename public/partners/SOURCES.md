@@ -11,8 +11,8 @@ This folder is the local, production-safe asset set used by
   download package.
 - NeuroAge Therapeutics: official website logo (`logo.webp`).
 - Coagulant Therapeutics: official website RGB logo, requested at 1500 px.
-- GeneGen: crop from the supplied @2x reference with its white matte removed.
-  The legacy official domain (`genegen.cn`) no longer resolves.
+- GeneXGen: crop from the supplied @2x reference with its white matte removed.
+  Current official website: <https://www.genexgen.com/>.
 - NovaFlow: official inline SVG extracted from the NovaFlow website and
   rasterized in the purple treatment shown in the supplied reference.
 - Streamind Health: official Wix-hosted original, rendered as a 1875 px
