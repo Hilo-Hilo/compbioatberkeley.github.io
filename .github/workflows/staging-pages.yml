@@ -41,6 +41,8 @@ jobs:
         run: npm run build:preview
         env:
           VITE_BASE_PATH: /compbioatberkeley.github.io/
+          VITE_SITE_ORIGIN: https://hilo-hilo.github.io/compbioatberkeley.github.io
+          VITE_NOINDEX: "true"
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

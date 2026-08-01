@@ -1,0 +1,11 @@
+{
+  "name": "Computational Biology at Berkeley",
+  "alternateName": "CompBio at Berkeley",
+  "productionOrigin": "https://compbioatberkeley.github.io",
+  "logoPath": "/comp-bio-logo-berkeley.svg",
+  "sameAs": [
+    "https://github.com/CompbioAtBerkeley",
+    "https://www.instagram.com/ucb_compbio/",
+    "https://www.linkedin.com/company/computational-biology-at-berkeley/"
+  ]
+}

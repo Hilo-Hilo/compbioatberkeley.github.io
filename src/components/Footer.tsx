@@ -3,11 +3,11 @@ import { SiteLogo } from "@/components/SiteLogo";
 
 const quickLinks = [
   { name: "home", path: "/" },
-  { name: "about", path: "/about" },
-  { name: "calendar", path: "/calendar" },
-  { name: "collaborations", path: "/collaborations" },
-  { name: "officers", path: "/officers" },
-  { name: "sign up", path: "/signup" },
+  { name: "about", path: "/about/" },
+  { name: "calendar", path: "/calendar/" },
+  { name: "collaborations", path: "/collaborations/" },
+  { name: "officers", path: "/officers/" },
+  { name: "sign up", path: "/signup/" },
 ];
 
 const socialLinks = [

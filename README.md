@@ -43,6 +43,14 @@ npm run validate:officers
 
 The validator reports unmatched responses, invalid public links, missing assets, and officers still waiting for a current profile response. See `scripts/README.md` for the update workflow and `.agents/skills/pre-production-checklist/SKILL.md` before a production promotion.
 
+## Search and static routes
+
+- `src/data/siteIdentity.json` and `src/data/sitePages.json` are the shared registries for the public identity, indexable routes, page titles, and descriptions.
+- `npm run build` creates rendered HTML at each route directory, then generates and validates `dist/sitemap.xml` and `dist/robots.txt`.
+- `src/components/RouteMetadata.tsx` keeps metadata synchronized during client-side navigation.
+- Production builds are indexable by default. Staging sets `VITE_NOINDEX=true` and a staging `VITE_SITE_ORIGIN`, which marks every page `noindex, nofollow` and suppresses the sitemap. Its robots file allows fetching so crawlers can observe the page-level directive.
+- `public/404.html` is always `noindex`; internal `/concepts` review routes are intentionally absent from the sitemap and static route output.
+
 ## Deployment
 
 - Pushes to `dev` deploy the staging GitHub Pages site from the `Hilo-Hilo` staging repository.

@@ -7,6 +7,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navigation from "./components/Navigation";
+import RouteMetadata from "./components/RouteMetadata";
 import {
   ConceptFrame,
   ConceptReviewHome,
@@ -31,7 +32,10 @@ const BioNetwork = lazy(
 
 const queryClient = new QueryClient();
 const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
-const defaultTheme = document.documentElement.dataset.defaultTheme ?? "system";
+const defaultTheme =
+  typeof document === "undefined"
+    ? "system"
+    : document.documentElement.dataset.defaultTheme ?? "system";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -118,7 +122,7 @@ const AppRoutes = () => {
   );
 };
 
-const App = () => (
+export const AppContent = () => (
   <ThemeProvider
     attribute="class"
     defaultTheme={defaultTheme}
@@ -130,16 +134,21 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter
-          basename={routerBasename}
-          future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-        >
-          <ScrollToTop />
-          <AppRoutes />
-        </BrowserRouter>
+        <ScrollToTop />
+        <RouteMetadata />
+        <AppRoutes />
       </TooltipProvider>
     </QueryClientProvider>
   </ThemeProvider>
+);
+
+const App = () => (
+  <BrowserRouter
+    basename={routerBasename}
+    future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+  >
+    <AppContent />
+  </BrowserRouter>
 );
 
 export default App;

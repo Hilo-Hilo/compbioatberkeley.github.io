@@ -52,7 +52,7 @@ const Home = () => (
               </a>
             </EnhancedButton>
             <EnhancedButton asChild variant="outline" size="lg">
-              <Link to="/about">about us</Link>
+              <Link to="/about/">about us</Link>
             </EnhancedButton>
           </div>
         </div>
@@ -79,7 +79,7 @@ const Home = () => (
       </div>
 
       <EnhancedButton asChild variant="outline" className="mt-8">
-        <Link to="/about">read our mission</Link>
+        <Link to="/about/">read our mission</Link>
       </EnhancedButton>
     </section>
 
@@ -102,7 +102,7 @@ const Home = () => (
           </p>
         </div>
         <EnhancedButton asChild variant="gold" size="lg" className="shrink-0">
-          <Link to="/signup">join the list</Link>
+          <Link to="/signup/">join the list</Link>
         </EnhancedButton>
       </div>
     </section>

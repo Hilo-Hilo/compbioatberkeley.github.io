@@ -35,7 +35,21 @@ Run this gate whenever public routes, the canonical domain, page purpose, contac
 
 This gate passes only when the file accurately describes the current public site, all listed destinations are intentional, and the deployed copy is reachable without authentication.
 
-## Gate 3 — Officer profile publication
+## Gate 3 — Search discovery and route metadata
+
+Run this gate whenever public routes, metadata, canonical-domain behavior, or the Pages build changes.
+
+1. Treat `src/data/siteIdentity.json` and `src/data/sitePages.json` as the shared registries for public identity, canonical origin, indexable routes, and route-specific titles and descriptions. Compare them with the public routes in `src/App.tsx` and the main-page links in `public/llms.txt`.
+2. Run `npm test` and `npm run build`. Confirm every registered route produces `dist/<route>/index.html` with rendered page content rather than an empty React root.
+3. Serve `dist` with a plain static server and request every canonical route directly. Each registered route must return `200`; unknown and `/concepts` routes must remain non-indexable.
+4. Inspect each generated page's initial HTML. Confirm it has one unique title, description, self-referencing canonical URL, Open Graph URL, `index, follow` directive, and valid Organization/WebPage JSON-LD.
+5. Confirm `dist/sitemap.xml` lists every registered production canonical exactly once and no staging, concept-review, or unknown URL. Confirm `dist/robots.txt` allows crawling and references the production sitemap.
+6. Run a staging build with `VITE_NOINDEX=true` and the staging `VITE_SITE_ORIGIN`. Confirm every generated page says `noindex, nofollow`, `dist/robots.txt` allows crawlers to fetch and observe that directive without advertising a sitemap, and no sitemap is published. On GitHub project Pages, remember that a robots file below the host root is not a host-wide crawl policy.
+7. After deployment, request the production routes, `/robots.txt`, and `/sitemap.xml` directly. In Google Search Console, submit the sitemap and use URL Inspection on the homepage and at least one inner page.
+
+This gate passes only when production routes are directly crawlable with consistent canonical metadata, preview routes cannot become duplicate search results, and the deployed sitemap matches the public route registry.
+
+## Gate 4 — Officer profile publication
 
 Run this gate whenever the officer roster, a form-response snapshot, profile links, bios, or officer-data build logic changes.
 

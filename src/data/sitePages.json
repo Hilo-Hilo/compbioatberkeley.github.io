@@ -1,0 +1,32 @@
+[
+  {
+    "path": "/",
+    "title": "Computational Biology at Berkeley",
+    "description": "A UC Berkeley student organization connecting biology, computer science, and healthcare through education, research, projects, and community."
+  },
+  {
+    "path": "/about/",
+    "title": "About | Computational Biology at Berkeley",
+    "description": "Learn how Computational Biology at Berkeley connects education, interdisciplinary research, professional development, and community impact."
+  },
+  {
+    "path": "/calendar/",
+    "title": "Events Calendar | Computational Biology at Berkeley",
+    "description": "View upcoming Computational Biology at Berkeley workshops, meetings, and special events in Pacific time."
+  },
+  {
+    "path": "/collaborations/",
+    "title": "Collaborations | Computational Biology at Berkeley",
+    "description": "Explore collaborators and partnership opportunities with Computational Biology at Berkeley students, researchers, and industry partners."
+  },
+  {
+    "path": "/officers/",
+    "title": "Officers | Computational Biology at Berkeley",
+    "description": "Meet the Fall 2026 officers and senior advisors leading Computational Biology at Berkeley."
+  },
+  {
+    "path": "/signup/",
+    "title": "Join | Computational Biology at Berkeley",
+    "description": "Join the Computational Biology at Berkeley community, receive updates, and connect through our public channels."
+  }
+]

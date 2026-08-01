@@ -8,10 +8,10 @@ import { runBioThemeTransition } from "@/lib/themeTransition";
 
 const navItems = [
   { name: "home", path: "/" },
-  { name: "about", path: "/about" },
-  { name: "calendar", path: "/calendar" },
-  { name: "collabs", path: "/collaborations" },
-  { name: "officers", path: "/officers" },
+  { name: "about", path: "/about/" },
+  { name: "calendar", path: "/calendar/" },
+  { name: "collabs", path: "/collaborations/" },
+  { name: "officers", path: "/officers/" },
 ];
 
 const ThemeToggle = ({ mobile = false }: { mobile?: boolean }) => {
@@ -58,7 +58,8 @@ const ThemeToggle = ({ mobile = false }: { mobile?: boolean }) => {
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const isActive = (path: string) => location.pathname === path;
+  const normalizePath = (path: string) => path === "/" ? path : path.replace(/\/$/, "");
+  const isActive = (path: string) => normalizePath(location.pathname) === normalizePath(path);
 
   useEffect(() => {
     setIsOpen(false);
@@ -98,8 +99,8 @@ const Navigation = () => {
             ))}
             <ThemeToggle />
             <Link
-              to="/signup"
-              aria-current={isActive("/signup") ? "page" : undefined}
+              to="/signup/"
+              aria-current={isActive("/signup/") ? "page" : undefined}
               className="rounded bg-primary px-3.5 py-2 text-xs font-bold text-primary-foreground transition-colors hover:bg-primary/90 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:translate-y-px"
             >
               sign up
@@ -120,7 +121,7 @@ const Navigation = () => {
 
         {isOpen && (
           <div id="mobile-navigation" className="border-t border-border py-2 lg:hidden">
-            {[...navItems, { name: "sign up", path: "/signup" }].map((item) => (
+            {[...navItems, { name: "sign up", path: "/signup/" }].map((item) => (
               <Link
                 key={item.path}
                 to={item.path}

@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { publicAssetPath } from "@/lib/publicAsset";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const heroAssetPath = (theme: "light" | "dark", width: 800 | 1600) =>
   publicAssetPath(`/hero/compbio-research-atlas-${theme}-${width}.webp`);
@@ -21,11 +22,17 @@ interface HeroScienceGraphicProps {
 
 export const HeroScienceGraphic = ({ className }: HeroScienceGraphicProps) => {
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const documentTheme =
-    typeof document !== "undefined" && document.documentElement.classList.contains("dark")
+    mounted && document.documentElement.classList.contains("dark")
       ? "dark"
       : "light";
-  const theme = resolvedTheme === "dark" || (!resolvedTheme && documentTheme === "dark")
+  const theme = mounted && (resolvedTheme === "dark" || (!resolvedTheme && documentTheme === "dark"))
     ? "dark"
     : "light";
 
@@ -38,7 +45,10 @@ export const HeroScienceGraphic = ({ className }: HeroScienceGraphicProps) => {
         {...heroImageProps}
         src={heroAssetPath(theme, 1600)}
         srcSet={`${heroAssetPath(theme, 800)} 800w, ${heroAssetPath(theme, 1600)} 1600w`}
-        className="h-auto w-full select-none object-contain"
+        className={cn(
+          "h-auto w-full select-none object-contain transition-opacity duration-200",
+          mounted ? "opacity-100" : "opacity-0",
+        )}
       />
     </span>
   );
