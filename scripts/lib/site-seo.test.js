@@ -11,6 +11,7 @@ const pages = [
 const siteIdentity = {
   name: "Example Organization",
   alternateName: "Example Org",
+  googleSiteVerification: "verification-token",
   logoPath: "/logo.svg",
   sameAs: ["https://social.example.com/example"],
 };
@@ -70,6 +71,10 @@ test("embeds rendered content and unique route metadata in the initial HTML", ()
   assert.match(html, /<main><h1>About us<\/h1><\/main>/);
   assert.match(html, /"@type":"WebPage"/);
   assert.match(html, /"@type":"EducationalOrganization"/);
+  assert.match(
+    html,
+    /<meta name="google-site-verification" content="verification-token" \/>/,
+  );
   assert.doesNotMatch(html, /name="robots" content="noindex/);
 });
 

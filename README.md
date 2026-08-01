@@ -46,6 +46,7 @@ The validator reports unmatched responses, invalid public links, missing assets,
 ## Search and static routes
 
 - `src/data/siteIdentity.json` and `src/data/sitePages.json` are the shared registries for the public identity, indexable routes, page titles, and descriptions.
+- `src/data/siteIdentity.json` also stores the public Google Search Console verification token that the build emits as a metadata tag.
 - `npm run build` creates rendered HTML at each route directory, then generates and validates `dist/sitemap.xml` and `dist/robots.txt`.
 - `src/components/RouteMetadata.tsx` keeps metadata synchronized during client-side navigation.
 - Production builds are indexable by default. Staging sets `VITE_NOINDEX=true` and a staging `VITE_SITE_ORIGIN`, which marks every page `noindex, nofollow` and suppresses the sitemap. Its robots file allows fetching so crawlers can observe the page-level directive.

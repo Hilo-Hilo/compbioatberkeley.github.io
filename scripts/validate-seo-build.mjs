@@ -38,6 +38,14 @@ for (const page of pages) {
   );
   assert.match(html, /"@type":"EducationalOrganization"/);
   assert.match(html, /"@type":"WebPage"/);
+  assert.equal(
+    occurrences(
+      html,
+      `<meta name="google-site-verification" content="${siteIdentity.googleSiteVerification}" />`,
+    ),
+    1,
+    `${page.path} must contain the Google Search Console verification token exactly once`,
+  );
   assert.match(
     html,
     noindex
