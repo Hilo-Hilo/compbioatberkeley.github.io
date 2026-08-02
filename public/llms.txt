@@ -6,7 +6,7 @@ The organization welcomes students at all experience levels. Use the pages below
 
 ## Main pages
 
-- [Home](https://compbioatberkeley.github.io/): Overview of the organization, its objectives, and current calls to action.
+- [Home](https://compbioatberkeley.github.io/): Overview of the organization, its objectives, Fall 2026 recruitment notice, and current calls to action.
 - [About](https://compbioatberkeley.github.io/about/): Mission and work across education, research, professional networking, and community impact.
 - [Calendar](https://compbioatberkeley.github.io/calendar/): Current workshops, meetings, and special events in Pacific time.
 - [Collaborations](https://compbioatberkeley.github.io/collaborations/): Partnership opportunities for students, faculty, alumni, research groups, and industry.

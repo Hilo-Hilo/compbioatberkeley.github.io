@@ -5,6 +5,7 @@ import { HeroGenomePathfinder } from "@/components/HeroGenomePathfinder";
 import { HeroScienceGraphic } from "@/components/HeroScienceGraphic";
 import { PartnerLogoWall } from "@/components/PartnerLogoWall";
 import { SectionHeading } from "@/components/PageHeader";
+import RecruitmentBanner from "@/components/RecruitmentBanner";
 
 const objectives = [
   {
@@ -26,6 +27,8 @@ const objectives = [
 
 const Home = () => (
   <div>
+    <RecruitmentBanner />
+
     <section className="hero-shell relative isolate overflow-hidden border-b border-border bg-background">
       <div className="absolute inset-0 z-0 bg-lab-grid" aria-hidden="true" />
       <HeroGenomePathfinder />
