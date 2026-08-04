@@ -133,6 +133,54 @@
     "linkedin": "",
     "github": "",
     "orcid": ""
+  },
+  {
+    "sourceId": "3ac3e3c8-c9b6-81d4-a2f2-eab693538561",
+    "submittedAt": "2026-07-29T23:13:38Z",
+    "fullName": "Vincy Huang",
+    "preferredName": "Vincy",
+    "image": "",
+    "bio": "Hii, my name is Vincy! I am studying cogsci and data science. I am especially interested in healthcare AI and technology! I have previously worked with UCSF on developing machine learning approaches for medical imaging analysis, and I am passionate about exploring how AI can improve healthcare.\n\nOutside of academics, I love dancing, playing sports (especially tennis and badminton), and exploring new food spots around the area!! I’m always excited to meet new people, so feel free to reach out, chat, or connect about anything :)",
+    "personal website": "",
+    "linkedin": "https://www.linkedin.com/in/vincyhuang7/",
+    "github": "",
+    "orcid": ""
+  },
+  {
+    "sourceId": "3ad3e3c8-c9b6-819e-8be2-cc39de08bcde",
+    "submittedAt": "2026-07-30T03:19:10Z",
+    "fullName": "Benjamin Tong",
+    "preferredName": "Ben Tong",
+    "image": "",
+    "bio": "loves matcha, sidequesting, clash royale, hiking, pickleball\ninterested in genomics and comp bio research\nhit me up if you want to hang out (insta: @yoben.t)",
+    "personal website": "",
+    "linkedin": "https://www.linkedin.com/in/benjamin-n-tong/",
+    "github": "",
+    "orcid": ""
+  },
+  {
+    "sourceId": "3ae3e3c8-c9b6-811f-8c73-e20f0841cb4d",
+    "submittedAt": "2026-07-31T01:28:43Z",
+    "fullName": "Aahan Sharma",
+    "preferredName": "Aahan",
+    "image": "",
+    "bio": "Hi everyone! I’m Aahan and I’m a sophomore double majoring in data science and MCB. In my free time I like doing all things creative, such as drawing, ceramics, 3D modeling, and fashion design. I also enjoy reading and am especially interested in Greek Mythology and older classics.",
+    "personal website": "",
+    "linkedin": "",
+    "github": "",
+    "orcid": ""
+  },
+  {
+    "sourceId": "3ae3e3c8-c9b6-8188-a0ee-d1e9b7e9e682",
+    "submittedAt": "2026-07-31T05:05:52Z",
+    "fullName": "Tvisha Goel",
+    "preferredName": "Tvisha Goel",
+    "image": "/officers/fa26/tvisha-goel-2026-07-31-3ae3e3c8.webp",
+    "bio": "Hi, I'm Tvisha and I am one of the professional development directors this semester. Academically, I love learning about genetics, intersection of biology and tech, and career empowerment. Outside of school and club events, I love going on hikes, watching movies/tv-shows, listening to music, and exploring new places!",
+    "personal website": "",
+    "linkedin": "https://www.linkedin.com/in/tvishagoel0801",
+    "github": "https://github.com/tvishagoel",
+    "orcid": ""
   }
   ]
 }
