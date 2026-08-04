@@ -39,6 +39,22 @@ const About = () => (
         </p>
       </div>
 
+      <figure className="mt-12">
+        <img
+          src="/community/sp26/attending-members-club-photoshoot.webp"
+          alt="Computational Biology at Berkeley members posing together outside a campus building."
+          width={2400}
+          height={1600}
+          loading="lazy"
+          decoding="async"
+          className="aspect-[3/2] w-full rounded border border-border object-cover"
+        />
+        <figcaption className="mt-3 max-w-[65ch] text-sm leading-relaxed text-muted-foreground">
+          Attending members of Computational Biology at Berkeley at our Spring 2026 club
+          photoshoot.
+        </figcaption>
+      </figure>
+
       <div className="mt-16">
         <SectionHeading title="What we do" meta="04 areas" />
         <div className="grid gap-4 md:grid-cols-2">
