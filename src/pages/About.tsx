@@ -1,4 +1,5 @@
 import { PageHeader, SectionHeading } from "@/components/PageHeader";
+import { publicAssetPath } from "@/lib/publicAsset";
 
 const work = [
   {
@@ -41,7 +42,7 @@ const About = () => (
 
       <figure className="mt-12">
         <img
-          src="/community/sp26/attending-members-club-photoshoot.webp"
+          src={publicAssetPath("community/sp26/attending-members-club-photoshoot.webp")}
           alt="Computational Biology at Berkeley members posing together outside a campus building."
           width={2400}
           height={1600}
