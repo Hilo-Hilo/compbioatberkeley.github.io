@@ -18,6 +18,8 @@ This folder is the local, production-safe asset set used by
 - Streamind Health: official Wix-hosted original, rendered as a 1875 px
   transparent PNG crop.
 - Progenic Genomics: official website logo.
+- DrugRepAI: official transparent PNG supplied directly by the partner on
+  August 14, 2026; the partner website is <https://www.drugrepai.com/>.
 
 The `raster/` directory contains the transparent production PNGs and
 contrast-adjusted dark-theme variants. `npm run assets:partners` reproduces

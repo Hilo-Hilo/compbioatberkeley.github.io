@@ -2,7 +2,7 @@ import { ExternalLink } from "lucide-react";
 import { EnhancedButton } from "@/components/ui/enhanced-button";
 import { PageHeader } from "@/components/PageHeader";
 
-const INTEREST_FORM = "https://forms.gle/rD4XLxwZkxusCx5w5";
+const INTEREST_FORM = "https://forms.gle/EQmWP1JWzDzrFji79";
 const NEWSLETTER_FORM = "https://forms.gle/qCxn93mfunF3Dtep7";
 
 const forms = [

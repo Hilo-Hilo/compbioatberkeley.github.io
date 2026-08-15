@@ -187,6 +187,11 @@ await Promise.all([
     name: "progenic.png",
     width: 200,
   }),
+  writeTransparentPng({
+    input: source("drugrepai.png"),
+    name: "drugrepai.png",
+    width: 1600,
+  }),
   buildTransparentGeneGen(),
   buildUcsfFromMaster(),
   buildNovaFlow(),
@@ -222,6 +227,12 @@ await Promise.all([
     }
     if (blue > red * 1.2 && blue > green * 1.15 && maximum < 205) {
       return [167, 151, 246];
+    }
+    return [red, green, blue];
+  }),
+  buildDarkVariant("drugrepai.png", "drugrepai-dark.png", (red, green, blue) => {
+    if (green > red * 1.25 && green > blue * 1.08 && green < 175) {
+      return [108, 182, 148];
     }
     return [red, green, blue];
   }),

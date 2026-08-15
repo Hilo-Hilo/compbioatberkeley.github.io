@@ -60,7 +60,7 @@ export const partners: Partner[] = [
     logoPath: "partners/raster/google-wordmark.png",
     logoClassName: "max-h-20 w-full",
     collageClassName:
-      "col-span-2 md:left-[45%] md:top-[39%] md:w-[31%]",
+      "col-span-2 md:left-[46%] md:top-[39%] md:w-[31%]",
     brandSourceUrl:
       "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
   },
@@ -71,7 +71,7 @@ export const partners: Partner[] = [
     darkLogoPath: "partners/raster/ucsf-dark.png",
     logoClassName: "max-h-32 w-full",
     collageClassName:
-      "col-span-1 md:left-[58%] md:top-[57%] md:w-[16%]",
+      "col-span-1 md:left-[58%] md:top-[57.5%] md:w-[16%]",
     brandSourceUrl: "https://identity.ucsf.edu/brand-guide/logos",
   },
   {
@@ -81,9 +81,19 @@ export const partners: Partner[] = [
     darkLogoPath: "partners/raster/coagulant-dark.png",
     logoClassName: "max-h-24 w-full",
     collageClassName:
-      "col-span-2 md:left-[31%] md:top-[76%] md:w-[42%]",
+      "col-span-2 md:left-[31%] md:top-[76.5%] md:w-[42%]",
     brandSourceUrl:
       "https://images.squarespace-cdn.com/content/v1/6154cdcf4a92db78fc554755/75dd0feb-5f86-47fc-9f1a-72edeebe2f1a/Coagulant+Therapeutics+Logo_RGB.png?format=1500w",
+  },
+  {
+    name: "DrugRepAI",
+    website: "https://www.drugrepai.com/",
+    logoPath: "partners/raster/drugrepai.png",
+    darkLogoPath: "partners/raster/drugrepai-dark.png",
+    logoClassName: "max-h-24 w-full",
+    collageClassName:
+      "col-span-2 md:left-[1%] md:top-[76%] md:w-[26%]",
+    sourceNote: "Official logo supplied by the partner on August 14, 2026.",
   },
   {
     name: "Progenic Genomics",

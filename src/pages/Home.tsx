@@ -46,7 +46,7 @@ const Home = () => (
           <div className="mt-8 flex flex-wrap gap-3">
             <EnhancedButton asChild variant="primary" size="lg">
               <a
-                href="https://forms.gle/rD4XLxwZkxusCx5w5"
+                href="https://forms.gle/EQmWP1JWzDzrFji79"
                 target="_blank"
                 rel="noopener noreferrer"
               >
