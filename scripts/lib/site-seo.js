@@ -128,15 +128,19 @@ export const buildPageHtml = ({
 
   html = html.replace(/\s*<meta\s+name="robots"[^>]*>/i, "");
   html = html.replace(/\s*<meta\s+name="google-site-verification"[^>]*>/i, "");
+  html = html.replace(/\s*<link\s+[^>]*data-route-markdown[^>]*>/i, "");
   const robotsMeta = noindex
     ? '<meta name="robots" content="noindex, nofollow" />'
     : '<meta name="robots" content="index, follow" />';
   const verificationMeta = siteIdentity.googleSiteVerification
     ? `<meta name="google-site-verification" content="${escapeHtml(siteIdentity.googleSiteVerification)}" />`
     : "";
+  const markdownAlternate = page.markdownPath
+    ? `<link rel="alternate" href="${escapeHtml(canonicalUrl(siteOrigin, page.markdownPath))}" type="text/markdown" data-route-markdown />`
+    : "";
   html = html.replace(
     "</head>",
-    `    ${robotsMeta}\n    ${verificationMeta}\n    <script id="site-structured-data" type="application/ld+json">${jsonForHtml(structuredData)}</script>\n  </head>`,
+    `    ${robotsMeta}\n    ${verificationMeta}\n    ${markdownAlternate}\n    <script id="site-structured-data" type="application/ld+json">${jsonForHtml(structuredData)}</script>\n  </head>`,
   );
   html = replaceRequired(
     html,

@@ -16,6 +16,7 @@ import About from "./pages/About";
 import Calendar from "./pages/Calendar";
 import Collaborations from "./pages/Collaborations";
 import Contact from "./pages/Contact";
+import Developers from "./pages/Developers";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Officers from "./pages/Officers";
@@ -65,6 +66,7 @@ const StandardSite = () => (
         <Route path="/signup" element={<SignUp />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route path="/developers" element={<Developers />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </main>

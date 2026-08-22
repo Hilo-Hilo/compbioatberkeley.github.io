@@ -1,5 +1,6 @@
 export const buildStructuredData = ({ page, siteIdentity, canonicalUrl }) => {
   const organizationId = canonicalUrl("/#organization");
+  const websiteId = canonicalUrl("/#website");
 
   return [
     {
@@ -24,16 +25,23 @@ export const buildStructuredData = ({ page, siteIdentity, canonicalUrl }) => {
     },
     {
       "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": websiteId,
+      name: siteIdentity.name,
+      alternateName: siteIdentity.websiteAlternateNames ?? siteIdentity.alternateName,
+      description: siteIdentity.description,
+      url: canonicalUrl("/"),
+      inLanguage: "en-US",
+      publisher: { "@id": organizationId },
+    },
+    {
+      "@context": "https://schema.org",
       "@type": "WebPage",
       name: page.title,
       description: page.description,
       url: canonicalUrl(page.path),
       about: { "@id": organizationId },
-      isPartOf: {
-        "@type": "WebSite",
-        name: siteIdentity.name,
-        url: canonicalUrl("/"),
-      },
+      isPartOf: { "@id": websiteId },
       publisher: { "@id": organizationId },
     },
   ];

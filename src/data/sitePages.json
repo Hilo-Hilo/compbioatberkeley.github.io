@@ -38,5 +38,11 @@
     "path": "/privacy/",
     "title": "Privacy | Computational Biology at Berkeley",
     "description": "Learn how the Computational Biology at Berkeley website uses analytics, embedded services, forms, and external community platforms."
+  },
+  {
+    "path": "/developers/",
+    "title": "Developer Resources | Computational Biology at Berkeley",
+    "description": "Find Computational Biology at Berkeley machine-readable resources and current API, OpenAPI, authentication, webhook, Markdown, and MCP capability status.",
+    "markdownPath": "/developers.md"
   }
 ]

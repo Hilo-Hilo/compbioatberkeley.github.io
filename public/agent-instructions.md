@@ -24,7 +24,8 @@ Computational Biology at Berkeley is a UC Berkeley student organization. Use thi
 - The complete index of public HTML pages is at [/sitemap.xml](https://compbioatberkeley.github.io/sitemap.xml).
 - Crawler policy is at [/robots.txt](https://compbioatberkeley.github.io/robots.txt).
 - The concise agent entry point is at [/llms.txt](https://compbioatberkeley.github.io/llms.txt).
-- The site publishes structured Schema.org `Organization`, `EducationalOrganization`, and `WebPage` data in its rendered HTML.
+- Developer resources and explicit API, authentication, webhook, Markdown, and MCP status are at [/developers.md](https://compbioatberkeley.github.io/developers.md).
+- The site publishes structured Schema.org `Organization`, `EducationalOrganization`, `WebSite`, and `WebPage` data in its rendered HTML.
 
 ## Technical capabilities
 

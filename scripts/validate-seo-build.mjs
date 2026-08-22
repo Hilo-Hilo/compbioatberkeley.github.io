@@ -18,6 +18,14 @@ const pages = JSON.parse(
   await fs.readFile(path.join(projectRoot, "src/data/sitePages.json"), "utf8"),
 );
 const llmsText = await fs.readFile(path.join(projectRoot, "public/llms.txt"), "utf8");
+const notFoundMarkdownSource = await fs.readFile(
+  path.join(projectRoot, "public/404.md"),
+  "utf8",
+);
+const developerMarkdownSource = await fs.readFile(
+  path.join(projectRoot, "public/developers.md"),
+  "utf8",
+);
 
 const canonicalUrl = (pathname) =>
   new URL(pathname.replace(/^\//, ""), `${siteOrigin}/`).href;
@@ -60,6 +68,13 @@ for (const page of pages) {
     `${page.path} must have one self-canonical URL`,
   );
   assert.match(html, /"@type":\["Organization","EducationalOrganization"\]/);
+  assert.match(html, /"@type":"WebSite"/);
+  assert.match(html, /"@id":"[^"]*\/#website"/);
+  assert.match(
+    html,
+    /"alternateName":\["CompBio at Berkeley","compbioatberkeley\.github\.io"\]/,
+  );
+  assert.doesNotMatch(html, /"foundingDate":/);
   assert.match(html, /"@type":"PostalAddress"/);
   assert.match(html, /"@type":"ContactPoint"/);
   assert.match(
@@ -70,6 +85,32 @@ for (const page of pages) {
     `${page.path} must advertise the agent guide`,
   );
   assert.match(html, /"@type":"WebPage"/);
+  assert.match(html, /"isPartOf":\{"@id":"[^"]*\/#website"\}/);
+  assert.match(
+    html,
+    /<meta name="application-name" content="Computational Biology at Berkeley" \/>/,
+  );
+  assert.match(
+    html,
+    /<meta property="og:site_name" content="Computational Biology at Berkeley" \/>/,
+  );
+  assert.match(
+    html,
+    new RegExp(
+      `<link rel="help" href="${basePath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}developers\\.md" type="text/markdown" \\/>`,
+    ),
+  );
+  if (page.markdownPath) {
+    assert.match(
+      html,
+      new RegExp(
+        `<link rel="alternate" href="${canonicalUrl(page.markdownPath).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}" type="text/markdown" data-route-markdown \\/>`,
+      ),
+      `${page.path} must advertise its Markdown representation`,
+    );
+  } else {
+    assert.doesNotMatch(html, /data-route-markdown/);
+  }
   assert.equal(
     occurrences(
       html,
@@ -101,11 +142,17 @@ for (const page of pages) {
       `home visible-text efficiency must be at least 5%; received ${(contentEfficiency * 100).toFixed(2)}%`,
     );
   }
-  if (["/contact/", "/privacy/"].includes(page.path)) {
+  if (["/contact/", "/privacy/", "/developers/"].includes(page.path)) {
     assert.ok(
       mainTextLength >= 500,
       `${page.path} trust content must contain at least 500 visible characters; received ${mainTextLength}`,
     );
+  }
+  if (page.path === "/developers/") {
+    assert.match(mainHtml, /API, authentication, webhook, and MCP status/);
+    assert.match(mainHtml, /no public application API or OpenAPI contract/i);
+    assert.match(mainHtml, /There is no live Model Context Protocol endpoint or manifest/i);
+    assert.match(mainHtml, /Same-URL Accept: text\/markdown content negotiation is not provided/i);
   }
 }
 
@@ -114,6 +161,11 @@ const notFound = await fs.readFile(path.join(distDirectory, "404.html"), "utf8")
 assert.match(notFound, /name="robots" content="noindex, nofollow"/);
 assert.match(notFound, /<h1[^>]*>Page not found<\/h1>/);
 assert.ok(notFound.includes(`href="${basePath}llms.txt"`));
+assert.ok(notFound.includes(`href="${basePath}404.md"`));
+assert.ok(notFound.includes(`href="${basePath}developers/"`));
+assert.match(notFound, /rel="alternate" href="[^"]*404\.md" type="text\/markdown"/);
+assert.match(notFound, /<pre class="agent-recovery" aria-label="Markdown recovery">/);
+assert.match(notFound, /- Sitemap: https:\/\/compbioatberkeley\.github\.io\/sitemap\.xml/);
 const expectedSitemapUrl = noindex
   ? `${siteIdentity.productionOrigin}/sitemap.xml`
   : `${basePath}sitemap.xml`;
@@ -124,6 +176,17 @@ const agentInstructions = await fs.readFile(
   "utf8",
 );
 assert.match(agentInstructions, /No public API or MCP server/);
+assert.match(agentInstructions, /\/developers\.md/);
+assert.equal(
+  await fs.readFile(path.join(distDirectory, "404.md"), "utf8"),
+  notFoundMarkdownSource,
+);
+assert.equal(
+  await fs.readFile(path.join(distDirectory, "developers.md"), "utf8"),
+  developerMarkdownSource,
+);
+assert.match(developerMarkdownSource, /does not offer a public API/i);
+assert.match(developerMarkdownSource, /does not operate an MCP server/i);
 await assert.rejects(
   fs.access(path.join(distDirectory, "concepts", "index.html")),
   undefined,

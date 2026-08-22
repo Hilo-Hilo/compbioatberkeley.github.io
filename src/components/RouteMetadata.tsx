@@ -39,6 +39,21 @@ const RouteMetadata = () => {
       content: shouldNoindex ? "noindex, nofollow" : "index, follow",
     });
 
+    const existingMarkdownAlternate = document.head.querySelector<HTMLLinkElement>(
+      "link[data-route-markdown]",
+    );
+    const markdownPath = page && "markdownPath" in page ? page.markdownPath : undefined;
+    if (markdownPath) {
+      const markdownAlternate = existingMarkdownAlternate ?? document.createElement("link");
+      markdownAlternate.rel = "alternate";
+      markdownAlternate.type = "text/markdown";
+      markdownAlternate.href = canonicalUrl(markdownPath);
+      markdownAlternate.dataset.routeMarkdown = "";
+      if (!existingMarkdownAlternate) document.head.appendChild(markdownAlternate);
+    } else {
+      existingMarkdownAlternate?.remove();
+    }
+
     if (!page) return;
 
     const url = canonicalUrl(page.path);

@@ -10,6 +10,7 @@ const quickLinks = [
   { name: "sign up", path: "/signup/" },
   { name: "contact", path: "/contact/" },
   { name: "privacy", path: "/privacy/" },
+  { name: "developers", path: "/developers/" },
 ];
 
 const socialLinks = [

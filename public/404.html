@@ -10,6 +10,7 @@
     />
     <meta name="robots" content="noindex, nofollow" />
     <link rel="describedby" href="/llms.txt" type="text/markdown" />
+    <link rel="alternate" href="/404.md" type="text/markdown" title="Markdown recovery" />
     <script>
       (function () {
         var projectName = "compbioatberkeley.github.io";
@@ -72,6 +73,18 @@
         line-height: 1.65;
       }
 
+      .agent-recovery {
+        margin: 1.5rem 0 0;
+        overflow-x: auto;
+        border: 1px solid rgba(24, 34, 39, 0.18);
+        border-radius: 0.25rem;
+        padding: 1rem;
+        font: inherit;
+        font-size: 0.8rem;
+        line-height: 1.6;
+        white-space: pre-wrap;
+      }
+
       nav {
         display: flex;
         flex-wrap: wrap;
@@ -99,6 +112,10 @@
         a {
           color: #7dd3fc;
         }
+
+        .agent-recovery {
+          border-color: rgba(238, 241, 237, 0.2);
+        }
       }
     </style>
   </head>
@@ -110,11 +127,18 @@
         The requested page does not exist or may have moved. Use the site map for all public pages,
         or use the agent guide for a concise Markdown overview of this site.
       </p>
+      <pre class="agent-recovery" aria-label="Markdown recovery"># Page not found
+
+- Sitemap: https://compbioatberkeley.github.io/sitemap.xml
+- Agent guide: https://compbioatberkeley.github.io/llms.txt
+- Developer resources: https://compbioatberkeley.github.io/developers.md</pre>
       <nav aria-label="Recovery links">
         <a href="/">Home</a>
         <a href="/sitemap.xml">Sitemap</a>
         <a href="/llms.txt">Agent guide (Markdown)</a>
         <a href="/agent-instructions.md">Agent instructions</a>
+        <a href="/404.md">404 recovery (Markdown)</a>
+        <a href="/developers/">Developer resources</a>
         <a href="/contact/">Contact</a>
       </nav>
     </main>
