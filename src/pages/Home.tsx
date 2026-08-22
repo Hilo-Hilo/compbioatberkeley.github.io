@@ -68,6 +68,12 @@ const Home = () => (
 
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
       <SectionHeading title="What we aim to do" meta="03 objectives" />
+      <p className="mb-8 max-w-[68ch] text-sm leading-relaxed text-muted-foreground md:text-base">
+        We make computational biology easier to enter and more useful to practice. Members can learn
+        core methods, meet collaborators across disciplines, and apply those skills in student-led
+        work. Our public calendar, officer directory, collaboration information, and interest forms
+        are the best starting points for students and partners looking for current opportunities.
+      </p>
       <div className="grid gap-4 md:grid-cols-3">
         {objectives.map((item) => (
           <article
@@ -84,6 +90,30 @@ const Home = () => (
       <EnhancedButton asChild variant="outline" className="mt-8">
         <Link to="/about/">read our mission</Link>
       </EnhancedButton>
+
+      <div className="mt-16 border-t border-border pt-12">
+        <SectionHeading title="A practical starting point" meta="all experience levels" />
+        <div className="grid gap-6 text-sm leading-relaxed text-muted-foreground md:grid-cols-3 md:text-base">
+          <p>
+            Computational biology brings software, statistics, and biological knowledge together to
+            study living systems and health. Students arrive from many majors, so participation does
+            not depend on already knowing every part of that toolkit. Workshops and peer learning
+            create a shared foundation before members move into deeper research or project work.
+          </p>
+          <p>
+            New members can begin with a public event, join the update list, and meet students who
+            are learning the same methods. As their interests develop, they can explore technical
+            projects, leadership, professional conversations, and connections with research groups.
+            The organization is a place to ask informed questions and build experience with others.
+          </p>
+          <p>
+            Faculty, researchers, alumni, and industry teams can use the collaboration page to
+            propose a talk, mentorship opportunity, research problem, or partnership. The calendar
+            and officer roster provide current public context, while the contact page identifies the
+            verified channels for reaching the student team without relying on an outdated address.
+          </p>
+        </div>
+      </div>
     </section>
 
     <section className="border-t border-border bg-muted">

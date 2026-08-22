@@ -1,6 +1,7 @@
 {
   "name": "Computational Biology at Berkeley",
   "alternateName": "CompBio at Berkeley",
+  "description": "A UC Berkeley student organization connecting biology, computer science, and healthcare through education, research, projects, and community.",
   "productionOrigin": "https://compbioatberkeley.github.io",
   "googleSiteVerification": "kyYICTSIifC7kF963TJAT-fMn_Z00D9cA9BRpK6SL2k",
   "logoPath": "/comp-bio-logo-berkeley.svg",
@@ -8,5 +9,16 @@
     "https://github.com/CompbioAtBerkeley",
     "https://www.instagram.com/ucb_compbio/",
     "https://www.linkedin.com/company/computational-biology-at-berkeley/"
-  ]
+  ],
+  "address": {
+    "addressLocality": "Berkeley",
+    "addressRegion": "CA",
+    "postalCode": "94720",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "contactType": "general inquiries",
+    "email": "compbioatberkeley@gmail.com",
+    "availableLanguage": "English"
+  }
 }

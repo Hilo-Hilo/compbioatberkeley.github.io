@@ -8,6 +8,7 @@
     <meta name="author" content="Computational Biology at Berkeley" />
     <meta name="theme-color" content="#FFFFFF" />
     <link rel="canonical" href="https://compbioatberkeley.github.io/" />
+    <link rel="describedby" href="/llms.txt" type="text/markdown" />
     <link
       rel="icon"
       type="image/svg+xml"
@@ -65,14 +66,17 @@
       })();
     </script>
 
-    <!-- GitHub Pages SPA redirect handler -->
+    <!-- Restore direct browser navigation for the noindex concept-review routes. -->
     <script>
-      // Check if we were redirected from 404.html
-      (function() {
-        var redirect = sessionStorage.redirect;
-        delete sessionStorage.redirect;
-        if (redirect && redirect !== location.href) {
-          history.replaceState(null, null, redirect);
+      (function () {
+        try {
+          var redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          if (redirect && redirect !== location.href) {
+            history.replaceState(null, null, redirect);
+          }
+        } catch (error) {
+          // Continue at the site root if session storage is unavailable.
         }
       })();
     </script>

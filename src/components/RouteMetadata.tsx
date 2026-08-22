@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import siteIdentity from "@/data/siteIdentity.json";
 import sitePages from "@/data/sitePages.json";
+import { buildStructuredData } from "@/lib/siteStructuredData";
 
 const siteOrigin = (
   import.meta.env.VITE_SITE_ORIGIN || siteIdentity.productionOrigin
@@ -71,29 +72,9 @@ const RouteMetadata = () => {
 
     const structuredData = document.getElementById("site-structured-data");
     if (structuredData) {
-      structuredData.textContent = JSON.stringify([
-        {
-          "@context": "https://schema.org",
-          "@type": "EducationalOrganization",
-          name: siteIdentity.name,
-          alternateName: siteIdentity.alternateName,
-          url: canonicalUrl("/"),
-          logo: canonicalUrl(siteIdentity.logoPath),
-          sameAs: siteIdentity.sameAs,
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: page.title,
-          description: page.description,
-          url,
-          isPartOf: {
-            "@type": "WebSite",
-            name: siteIdentity.name,
-            url: canonicalUrl("/"),
-          },
-        },
-      ]);
+      structuredData.textContent = JSON.stringify(
+        buildStructuredData({ page, siteIdentity, canonicalUrl }),
+      );
     }
   }, [pathname]);
 

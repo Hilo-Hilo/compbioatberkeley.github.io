@@ -3,7 +3,12 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
-import { buildPageHtml, buildRobotsTxt, buildSitemapXml } from "./lib/site-seo.js";
+import {
+  buildNotFoundHtml,
+  buildPageHtml,
+  buildRobotsTxt,
+  buildSitemapXml,
+} from "./lib/site-seo.js";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distDirectory = path.join(projectRoot, "dist");
@@ -15,6 +20,7 @@ const siteOrigin = (
   process.env.VITE_SITE_ORIGIN || siteIdentity.productionOrigin
 ).replace(/\/$/, "");
 const noindex = process.env.VITE_NOINDEX === "true";
+const basePath = process.env.VITE_BASE_PATH || "/";
 
 const pages = JSON.parse(
   await fs.readFile(path.join(projectRoot, "src/data/sitePages.json"), "utf8"),
@@ -44,6 +50,17 @@ for (const page of pages) {
 await fs.writeFile(
   path.join(distDirectory, "robots.txt"),
   buildRobotsTxt({ noindex, siteOrigin }),
+);
+
+const notFoundPath = path.join(distDirectory, "404.html");
+const notFoundTemplate = await fs.readFile(notFoundPath, "utf8");
+await fs.writeFile(
+  notFoundPath,
+  buildNotFoundHtml({
+    template: notFoundTemplate,
+    basePath,
+    sitemapUrl: noindex ? `${siteIdentity.productionOrigin}/sitemap.xml` : undefined,
+  }),
 );
 
 const sitemapPath = path.join(distDirectory, "sitemap.xml");

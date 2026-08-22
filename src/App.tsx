@@ -15,9 +15,11 @@ import {
 import About from "./pages/About";
 import Calendar from "./pages/Calendar";
 import Collaborations from "./pages/Collaborations";
+import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Officers from "./pages/Officers";
+import Privacy from "./pages/Privacy";
 import SignUp from "./pages/SignUp";
 
 const ResearchEditorial = lazy(
@@ -61,6 +63,8 @@ const StandardSite = () => (
         <Route path="/collaborations" element={<Collaborations />} />
         <Route path="/officers" element={<Officers />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Privacy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </main>

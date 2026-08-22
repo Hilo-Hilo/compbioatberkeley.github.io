@@ -28,5 +28,15 @@
     "path": "/signup/",
     "title": "Join | Computational Biology at Berkeley",
     "description": "Join the Computational Biology at Berkeley community, receive updates, and connect through our public channels."
+  },
+  {
+    "path": "/contact/",
+    "title": "Contact | Computational Biology at Berkeley",
+    "description": "Contact Computational Biology at Berkeley for general questions, partnerships, events, projects, and student participation."
+  },
+  {
+    "path": "/privacy/",
+    "title": "Privacy | Computational Biology at Berkeley",
+    "description": "Learn how the Computational Biology at Berkeley website uses analytics, embedded services, forms, and external community platforms."
   }
 ]

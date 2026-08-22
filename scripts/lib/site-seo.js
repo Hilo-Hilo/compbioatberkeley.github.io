@@ -1,3 +1,5 @@
+import { buildStructuredData } from "../../src/lib/siteStructuredData.js";
+
 const escapeXml = (value) =>
   String(value)
     .replaceAll("&", "&amp;")
@@ -50,6 +52,17 @@ export const buildRobotsTxt = ({ noindex, siteOrigin }) => {
   return `User-agent: *\nAllow: /\n\nSitemap: ${sitemapUrl}\n`;
 };
 
+export const buildNotFoundHtml = ({ template, basePath = "/", sitemapUrl }) => {
+  const normalizedBasePath = `/${basePath.replace(/^\/+|\/+$/g, "")}/`;
+  const prefix = normalizedBasePath === "//" ? "/" : normalizedBasePath;
+  const withBasePath = prefix === "/"
+    ? template
+    : template.replaceAll('href="/', `href="${prefix}`);
+
+  if (!sitemapUrl) return withBasePath;
+  return withBasePath.replace(/href="[^"]*\/sitemap\.xml"/, `href="${sitemapUrl}"`);
+};
+
 export const buildPageHtml = ({
   template,
   appHtml,
@@ -61,29 +74,11 @@ export const buildPageHtml = ({
   const url = canonicalUrl(siteOrigin, page.path);
   const title = escapeHtml(page.title);
   const description = escapeHtml(page.description);
-  const structuredData = [
-    {
-      "@context": "https://schema.org",
-      "@type": "EducationalOrganization",
-      name: siteIdentity.name,
-      alternateName: siteIdentity.alternateName,
-      url: canonicalUrl(siteOrigin, "/"),
-      logo: canonicalUrl(siteOrigin, siteIdentity.logoPath),
-      sameAs: siteIdentity.sameAs,
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      name: page.title,
-      description: page.description,
-      url,
-      isPartOf: {
-        "@type": "WebSite",
-        name: siteIdentity.name,
-        url: canonicalUrl(siteOrigin, "/"),
-      },
-    },
-  ];
+  const structuredData = buildStructuredData({
+    page,
+    siteIdentity,
+    canonicalUrl: (pathname) => canonicalUrl(siteOrigin, pathname),
+  });
 
   let html = replaceRequired(
     template,

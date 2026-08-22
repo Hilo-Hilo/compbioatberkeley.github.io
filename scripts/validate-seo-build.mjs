@@ -12,6 +12,8 @@ const siteOrigin = (
   process.env.VITE_SITE_ORIGIN || siteIdentity.productionOrigin
 ).replace(/\/$/, "");
 const noindex = process.env.VITE_NOINDEX === "true";
+const basePath = `/${(process.env.VITE_BASE_PATH || "/").replace(/^\/+|\/+$/g, "")}/`
+  .replace("//", "/");
 const pages = JSON.parse(
   await fs.readFile(path.join(projectRoot, "src/data/sitePages.json"), "utf8"),
 );
@@ -20,6 +22,13 @@ const llmsText = await fs.readFile(path.join(projectRoot, "public/llms.txt"), "u
 const canonicalUrl = (pathname) =>
   new URL(pathname.replace(/^\//, ""), `${siteOrigin}/`).href;
 const occurrences = (text, value) => text.split(value).length - 1;
+const visibleText = (html) => html
+  .replace(/<script\b[\s\S]*?<\/script>/gi, " ")
+  .replace(/<style\b[\s\S]*?<\/style>/gi, " ")
+  .replace(/<[^>]+>/g, " ")
+  .replace(/&(?:[a-z]+|#\d+|#x[\da-f]+);/gi, " ")
+  .replace(/\s+/g, " ")
+  .trim();
 
 for (const page of pages) {
   const routeDirectory = page.path === "/"
@@ -29,14 +38,37 @@ for (const page of pages) {
   const url = canonicalUrl(page.path);
 
   assert.match(html, /<div id="root">[\s\S]+<\/div>/, `${page.path} must contain rendered React HTML`);
-  assert.match(html, /<h1\b/, `${page.path} must contain a rendered h1`);
+  const mainHtml = html.match(/<main id="main-content"[^>]*>([\s\S]*?)<\/main>/)?.[1];
+  assert.ok(mainHtml, `${page.path} must contain the rendered main landmark`);
+  const headings = [...mainHtml.matchAll(/<h([1-6])\b/g)].map((match) => Number(match[1]));
+  assert.equal(headings[0], 1, `${page.path} must begin its content hierarchy with h1`);
+  assert.equal(
+    headings.filter((level) => level === 1).length,
+    1,
+    `${page.path} must contain exactly one rendered h1`,
+  );
+  for (let index = 1; index < headings.length; index += 1) {
+    assert.ok(
+      headings[index] <= headings[index - 1] + 1,
+      `${page.path} heading levels must not skip from h${headings[index - 1]} to h${headings[index]}`,
+    );
+  }
   assert.equal(occurrences(html, `<title>${page.title}</title>`), 1, `${page.path} must have one title`);
   assert.equal(
     occurrences(html, `<link rel="canonical" href="${url}" />`),
     1,
     `${page.path} must have one self-canonical URL`,
   );
-  assert.match(html, /"@type":"EducationalOrganization"/);
+  assert.match(html, /"@type":\["Organization","EducationalOrganization"\]/);
+  assert.match(html, /"@type":"PostalAddress"/);
+  assert.match(html, /"@type":"ContactPoint"/);
+  assert.match(
+    html,
+    new RegExp(
+      `<link rel="describedby" href="${basePath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}llms\\.txt" type="text/markdown" \\/>`,
+    ),
+    `${page.path} must advertise the agent guide`,
+  );
   assert.match(html, /"@type":"WebPage"/);
   assert.equal(
     occurrences(
@@ -59,11 +91,39 @@ for (const page of pages) {
       `${page.path} canonical must also be present in public/llms.txt`,
     );
   }
+
+  const mainTextLength = visibleText(mainHtml).length;
+  if (page.path === "/") {
+    assert.ok(mainTextLength >= 2000, `home SSR text must be substantial; received ${mainTextLength}`);
+    const contentEfficiency = visibleText(html).length / html.length;
+    assert.ok(
+      contentEfficiency >= 0.05,
+      `home visible-text efficiency must be at least 5%; received ${(contentEfficiency * 100).toFixed(2)}%`,
+    );
+  }
+  if (["/contact/", "/privacy/"].includes(page.path)) {
+    assert.ok(
+      mainTextLength >= 500,
+      `${page.path} trust content must contain at least 500 visible characters; received ${mainTextLength}`,
+    );
+  }
 }
 
 const robots = await fs.readFile(path.join(distDirectory, "robots.txt"), "utf8");
 const notFound = await fs.readFile(path.join(distDirectory, "404.html"), "utf8");
 assert.match(notFound, /name="robots" content="noindex, nofollow"/);
+assert.match(notFound, /<h1[^>]*>Page not found<\/h1>/);
+assert.ok(notFound.includes(`href="${basePath}llms.txt"`));
+const expectedSitemapUrl = noindex
+  ? `${siteIdentity.productionOrigin}/sitemap.xml`
+  : `${basePath}sitemap.xml`;
+assert.ok(notFound.includes(`href="${expectedSitemapUrl}"`));
+assert.match(notFound, /routePath === "\/concepts"/);
+const agentInstructions = await fs.readFile(
+  path.join(distDirectory, "agent-instructions.md"),
+  "utf8",
+);
+assert.match(agentInstructions, /No public API or MCP server/);
 await assert.rejects(
   fs.access(path.join(distDirectory, "concepts", "index.html")),
   undefined,

@@ -2,7 +2,16 @@
 
 > Computational Biology at Berkeley is a UC Berkeley student organization connecting biology, computer science, and healthcare through education, research, projects, and community.
 
-The organization welcomes students at all experience levels. Use the pages below for current public information about its mission, events, leadership, collaborations, and ways to participate. Event details, officer rosters, and application forms may change between academic terms.
+The organization welcomes students at all experience levels. Event details, officer rosters, recruitment windows, and application forms may change between academic terms. Re-fetch the relevant page for time-sensitive answers. This informational site does not expose a public API or MCP server.
+
+## When to use this site
+
+- [Mission and programs](https://compbioatberkeley.github.io/about/): Use when answering what the organization does, who it serves, or how education, projects, networking, and community work fit together.
+- [Current events](https://compbioatberkeley.github.io/calendar/): Use for event dates, times, and locations; preserve the displayed timezone and treat details as mutable.
+- [Current leadership](https://compbioatberkeley.github.io/officers/): Use for public officer names, roles, bios, and links; always preserve the displayed academic term.
+- [Participation](https://compbioatberkeley.github.io/signup/): Use for public ways to join or receive updates; do not claim a form was submitted without confirmation.
+- [Partnerships](https://compbioatberkeley.github.io/collaborations/): Use for research, speaker, sponsorship, and industry collaboration options.
+- [Agent instructions](https://compbioatberkeley.github.io/agent-instructions.md): Use for source-selection rules, safety boundaries, and capability limits.
 
 ## Main pages
 
@@ -12,12 +21,22 @@ The organization welcomes students at all experience levels. Use the pages below
 - [Collaborations](https://compbioatberkeley.github.io/collaborations/): Partnership opportunities for students, faculty, alumni, research groups, and industry.
 - [Officers](https://compbioatberkeley.github.io/officers/): Fall 2026 and previous student leadership rosters, including submitted public bios and profile links.
 - [Join](https://compbioatberkeley.github.io/signup/): Interest form, newsletter signup, and community channels.
+- [Contact](https://compbioatberkeley.github.io/contact/): Verified public channels for general questions, partnerships, events, and participation.
+- [Privacy](https://compbioatberkeley.github.io/privacy/): How analytics, browser preferences, embedded services, forms, and external platforms handle information.
 
 ## Contact and community
 
+- [Email](mailto:compbioatberkeley@gmail.com): General questions and collaboration inquiries; do not send sensitive information.
 - [LinkedIn](https://www.linkedin.com/company/computational-biology-at-berkeley/): Organization updates and professional contact.
 - [Linktree](https://linktr.ee/compbioatberkeley): Current collection of public links and contact destinations.
 - [GitHub](https://github.com/CompbioAtBerkeley): Public organization repositories.
+
+## Machine-readable resources
+
+- [Agent instructions](https://compbioatberkeley.github.io/agent-instructions.md): Detailed guidance on when to use each source and what agents must not infer or submit.
+- [Sitemap](https://compbioatberkeley.github.io/sitemap.xml): Canonical index of public HTML pages.
+- [Crawler policy](https://compbioatberkeley.github.io/robots.txt): Current crawler access policy and sitemap location.
+- [Organization identity](https://compbioatberkeley.github.io/): Rendered HTML includes Schema.org Organization, EducationalOrganization, PostalAddress, ContactPoint, and WebPage data.
 
 ## Optional
 

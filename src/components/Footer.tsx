@@ -8,6 +8,8 @@ const quickLinks = [
   { name: "collaborations", path: "/collaborations/" },
   { name: "officers", path: "/officers/" },
   { name: "sign up", path: "/signup/" },
+  { name: "contact", path: "/contact/" },
+  { name: "privacy", path: "/privacy/" },
 ];
 
 const socialLinks = [

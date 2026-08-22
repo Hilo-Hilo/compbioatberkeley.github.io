@@ -88,6 +88,7 @@ const Officers = () => {
           </TabsList>
 
           <TabsContent value="current" className="mt-0">
+            <h2 className="sr-only">Fall 2026 officers</h2>
             {loading ? (
               <Loading />
             ) : error ? (
@@ -98,6 +99,7 @@ const Officers = () => {
           </TabsContent>
 
           <TabsContent value="previous" className="mt-0">
+            <h2 className="sr-only">Previous officer rosters</h2>
             <Accordion type="single" collapsible defaultValue="sp26" className="w-full">
               <AccordionItem value="sp26" className="border-border">
                 <AccordionTrigger className="text-base hover:text-link hover:no-underline">
