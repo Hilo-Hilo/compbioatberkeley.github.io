@@ -3,6 +3,8 @@ import { ArrowRight, Dna, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const dismissalKey = "compbio-fall-2026-recruitment-dismissed";
+const coffeeChatLink =
+  "https://docs.google.com/document/d/1ZGq3KV4MprEdPDUu8v7QO9AuGSpB2eEmsyVCCK9nLDU/edit?usp=sharing";
 const useBrowserLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect;
 
@@ -44,27 +46,42 @@ const RecruitmentBanner = () => {
       />
 
       <div className="mx-auto flex min-h-12 max-w-6xl items-center justify-center px-14 py-2.5 text-center sm:px-16">
-        <div className="flex flex-col items-center justify-center gap-1.5 sm:flex-row sm:gap-3">
-          <div className="flex items-center justify-center gap-2">
+        <div className="flex w-full min-w-0 flex-col items-center justify-center gap-1.5 sm:flex-row sm:gap-3">
+          <div className="flex min-w-0 items-center justify-center gap-2">
             <Dna className="h-4 w-4 shrink-0 text-label" aria-hidden="true" />
-            <p className="text-[13px] leading-5 text-foreground">
+            <p className="min-w-0 text-[13px] leading-5 text-foreground">
               <strong className="font-bold text-heading">
-                We’re recruiting soon for Fall 2026.
+                We are currently recruiting for Fall 2026.
               </strong>{" "}
-              Sign up for updates and stay tuned.
+              Sign up and schedule a coffee chat.
             </p>
           </div>
 
-          <Link
-            to="/signup/"
-            className="group inline-flex min-h-8 shrink-0 items-center gap-1.5 border-b border-heading/40 text-xs font-bold text-heading transition-colors hover:border-heading focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          >
-            sign up
-            <ArrowRight
-              className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
-              aria-hidden="true"
-            />
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              to="/signup/"
+              className="group inline-flex min-h-8 shrink-0 items-center gap-1.5 border-b border-heading/40 text-xs font-bold text-heading transition-colors hover:border-heading focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              sign up
+              <ArrowRight
+                className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
+                aria-hidden="true"
+              />
+            </Link>
+            <a
+              href={coffeeChatLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex min-h-8 shrink-0 items-center gap-1.5 border-b border-heading/40 text-xs font-bold text-heading transition-colors hover:border-heading focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              coffee chats
+              <ArrowRight
+                className="h-3.5 w-3.5 -rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden="true"
+              />
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          </div>
         </div>
       </div>
 

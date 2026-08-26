@@ -8,6 +8,8 @@ import { publicAssetPath } from "@/lib/publicAsset";
 const INTEREST_FORM = "https://forms.gle/EQmWP1JWzDzrFji79";
 const NEWSLETTER_FORM = "https://forms.gle/qCxn93mfunF3Dtep7";
 const RECRUITMENT_POST = "https://www.instagram.com/p/DcUXakNy7cj/";
+const COFFEE_CHAT_LINK =
+  "https://docs.google.com/document/d/1ZGq3KV4MprEdPDUu8v7QO9AuGSpB2eEmsyVCCK9nLDU/edit?usp=sharing";
 
 const forms = [
   {
@@ -60,7 +62,7 @@ const SignUp = () => (
     />
 
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-      <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.15fr_0.85fr]">
         <article className="overflow-hidden rounded border border-border bg-card lg:col-span-2">
           <div className="grid lg:grid-cols-[minmax(280px,0.72fr)_1.28fr]">
             <a
@@ -87,17 +89,24 @@ const SignUp = () => (
 
             <div className="flex flex-col justify-center p-6 md:p-8 lg:p-10">
               <p className="eyebrow">Fall 2026 recruitment</p>
-              <h2 className="mt-3 text-3xl font-bold text-heading">Recruitment starts August 26</h2>
+              <h2 className="mt-3 text-3xl font-bold text-heading">Fall 2026 recruitment is open</h2>
               <p className="mt-4 max-w-[52ch] text-sm leading-relaxed text-muted-foreground">
-                Applications and coffee chats open August 26. Meet us at Calapalooza, join an info
-                session, and get to know our project managers and officers before applications close
-                September 11 at 5 PM.
+                Applications and coffee chats are open now. Meet us at Calapalooza, join an info
+                session, and get to know our project managers and officers before applications
+                close September 11 at 5 PM.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
                 <EnhancedButton asChild variant="gold" size="lg">
                   <a href={INTEREST_FORM} target="_blank" rel="noopener noreferrer">
                     Express interest
+                    <ExternalLink />
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </EnhancedButton>
+                <EnhancedButton asChild variant="outline" size="lg">
+                  <a href={COFFEE_CHAT_LINK} target="_blank" rel="noopener noreferrer">
+                    Schedule a coffee chat
                     <ExternalLink />
                     <span className="sr-only"> (opens in a new tab)</span>
                   </a>
