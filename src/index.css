@@ -326,7 +326,6 @@
 
   .hero-science-art {
     transform-origin: center;
-    animation: hero-science-drift 10s ease-in-out infinite;
   }
 
   .site-logo-system-dark {
@@ -441,17 +440,6 @@
 
   .dark .hero-science-field {
     opacity: 0.84;
-  }
-}
-
-@keyframes hero-science-drift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(0, -5px, 0);
   }
 }
 

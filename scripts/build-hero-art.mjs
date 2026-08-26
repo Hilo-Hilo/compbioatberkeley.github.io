@@ -9,7 +9,7 @@ const sourcePath = path.join(
   "assets-src/hero/compbio-research-atlas-chroma-source.png",
 );
 const outputDirectory = path.join(projectRoot, "public/hero");
-const outputWidths = [800, 1600];
+const outputWidths = [800, 1200, 1600];
 
 const clamp = (value, minimum = 0, maximum = 1) =>
   Math.max(minimum, Math.min(maximum, value));
