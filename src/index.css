@@ -251,6 +251,13 @@
     text-shadow: none;
   }
 
+  .hero-title-mark {
+    display: block;
+    width: fit-content;
+    margin-top: 0.16em;
+    line-height: 0.92;
+  }
+
   .hero-title {
     text-shadow: var(--hero-title-shadow);
   }

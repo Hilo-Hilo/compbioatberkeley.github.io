@@ -37,7 +37,7 @@ const Home = () => (
         <div className="hero-copy max-w-[36rem]">
           <p className="eyebrow">Student org / UC Berkeley</p>
           <h1 className="hero-title mt-5 max-w-[15ch] text-4xl font-bold leading-[1.08] text-heading sm:text-5xl md:text-6xl">
-            Computational Biology at <span className="gold-mark">Berkeley</span>
+            Computational Biology at <span className="gold-mark hero-title-mark">Berkeley</span>
           </h1>
           <p className="mt-6 max-w-[48ch] text-base leading-relaxed text-muted-foreground md:text-lg">
             A student-driven community exploring the intersection of computer science, biology, and healthcare.
