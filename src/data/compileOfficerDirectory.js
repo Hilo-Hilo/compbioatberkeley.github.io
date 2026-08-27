@@ -173,7 +173,14 @@ export const compileOfficerDirectory = (roster, submissions) => {
       unmatchedSubmissions,
       invalidLinks,
       officersWithoutSubmission: roster
-        .filter((entry) => !submissionsByOfficer.has(entry.id))
+        .filter(
+          (entry) =>
+            !submissionsByOfficer.has(entry.id) &&
+            !PROFILE_FIELDS.some(
+              (field) =>
+                field !== "image" && String(entry[field] ?? "").trim(),
+            ),
+        )
         .map((entry) => entry.name),
     },
   };

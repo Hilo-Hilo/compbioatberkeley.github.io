@@ -92,6 +92,29 @@ test("publishes a complete profile without replacing the canonical full name", (
   });
 });
 
+test("uses reviewed public roster content when intake arrives outside Notion", () => {
+  const roster = [
+    {
+      id: "manual-officer",
+      name: "Manual Officer",
+      role: "Professional Development Chair",
+      image: "/officers/fa26/manual-officer.webp",
+      bio: "A reviewed public biography.",
+      linkedin: "https://www.linkedin.com/in/manual-officer",
+    },
+  ];
+
+  const { officers, audit } = compileOfficerDirectory(roster, []);
+
+  assert.equal(officers[0].bio, "A reviewed public biography.");
+  assert.equal(
+    officers[0].linkedin,
+    "https://www.linkedin.com/in/manual-officer",
+  );
+  assert.equal(officers[0].image, "/officers/fa26/manual-officer.webp");
+  assert.deepEqual(audit.officersWithoutSubmission, []);
+});
+
 test("uses the newest nonblank value from duplicate submissions", () => {
   const roster = [
     {

@@ -4,7 +4,8 @@ import profileSnapshot from "@/data/officerProfilesFa26.json";
 import roster from "@/data/officersFa26Roster.json";
 
 // The official roster owns cohort membership, order, roles, stable IDs, and
-// fallback portraits. The form snapshot can enrich only public profile fields.
+// reviewed fallback public content. The form snapshot can enrich only public
+// profile fields.
 const compiled = compileOfficerDirectory(roster, profileSnapshot.profiles);
 
 export const officersFa26 = compiled.officers as Officer[];

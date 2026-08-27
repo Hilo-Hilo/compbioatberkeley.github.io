@@ -54,7 +54,7 @@ This gate passes only when production routes are directly crawlable with consist
 Run this gate whenever the officer roster, a form-response snapshot, profile links, bios, or officer-data build logic changes.
 
 1. Run `npm test` and `npm run validate:officers`.
-2. Confirm `src/data/officersFa26Roster.json` is the only authority for cohort membership, roles, order, stable IDs, and fallback portraits.
+2. Confirm `src/data/officersFa26Roster.json` is the only authority for cohort membership, roles, order, stable IDs, and reviewed fallback public content. For manual submissions received outside Notion, publish only the same allowlisted public content fields and never fabricate a Notion provenance ID.
 3. Treat Notion as private intake. Use `officers:notion:dry-run` or `officers:notion:check` before `officers:notion:write`, then inspect the resulting Git diff. Confirm the sync did not commit, push, deploy, or write back to Notion.
 4. Confirm `src/data/officerProfilesFa26.json` contains the real Notion response page ID for provenance and only the allowlisted public fields: source ID, submission time, full and preferred names, headshot path, bio, personal website, LinkedIn, GitHub, and ORCID. Confirm upstream database/data-source IDs and the intake window are absent from this browser-facing snapshot.
 5. Search the diff for email addresses, phone numbers, birthdays, scheduling information, internal notes, and unknown form properties. None may enter Git, logs, or workflow artifacts.

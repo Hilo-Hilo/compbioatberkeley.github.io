@@ -16,7 +16,7 @@ Run `npm run build` for the same credential-free production build used by GitHub
 
 Fall 2026 deliberately separates approved roster decisions from submitted public profile content:
 
-- `src/data/officersFa26Roster.json` owns cohort membership, roles, order, stable IDs, and fallback portraits.
+- `src/data/officersFa26Roster.json` owns cohort membership, roles, order, stable IDs, and reviewed fallback public content, including submissions received outside Notion.
 - `src/data/officerProfilesFa26.json` is a reviewed, public-only snapshot of in-window officer form responses.
 - `scripts/lib/officer-profile-cohorts.js` owns operational file paths and the explicit intake window; upstream database identifiers stay in protected environment secrets and out of the client bundle.
 - `src/data/compileOfficerDirectory.js` matches responses to the roster, keeps the newest nonblank public fields, normalizes links, and ignores unmatched people.
@@ -34,7 +34,9 @@ Each profile record in the public snapshot is limited to provenance ID,
 submission time, full and preferred names, headshot path, bio, personal
 website, LinkedIn, GitHub, and ORCID. Never copy email, phone number, birthday,
 scheduling data, another private form field, or an upstream database identifier
-into the snapshot. Run:
+into the snapshot or roster. A manually reviewed submission received outside
+Notion may populate only those same publishable content fields on the matching
+approved roster entry; it must not use a fabricated Notion provenance ID. Run:
 
 ```sh
 npm test

@@ -10,6 +10,7 @@ import {
   normalizePublicUrl,
 } from "../src/data/compileOfficerDirectory.js";
 import {
+  OFFICER_PUBLISHABLE_CONTENT_FIELDS,
   OFFICER_PROFILE_FIELDS,
   validateOfficerProfileSnapshot,
 } from "../src/data/officerProfileContract.js";
@@ -24,7 +25,13 @@ const roster = readJson(profileCohort.roster);
 const profileSnapshot = readJson(profileCohort.profiles);
 const profiles = profileSnapshot.profiles ?? [];
 
-const allowedRosterFields = new Set(["id", "name", "role", "image", "aliases"]);
+const allowedRosterFields = new Set([
+  "id",
+  "name",
+  "role",
+  "aliases",
+  ...OFFICER_PUBLISHABLE_CONTENT_FIELDS,
+]);
 const allowedProfileFields = new Set(OFFICER_PROFILE_FIELDS);
 
 const errors = [];
@@ -122,22 +129,30 @@ profiles.forEach((profile, index) => {
     errors.push(`profiles[${index}] has an invalid submittedAt timestamp`);
   }
 
-  for (const field of [
-    "personal website",
-    "linkedin",
-    "github",
-    "orcid",
-  ]) {
-    const value = String(profile[field] ?? "").trim();
-    if (!value) continue;
-    const normalized = normalizePublicUrl(value, field);
-    if (!normalized) {
-      errors.push(`profiles[${index}] has an invalid ${field}`);
-    } else if (normalized !== value) {
-      errors.push(`profiles[${index}] ${field} is not normalized`);
-    }
-  }
 });
+
+for (const [label, records] of [
+  ["roster", roster],
+  ["profiles", profiles],
+]) {
+  records.forEach((record, index) => {
+    for (const field of [
+      "personal website",
+      "linkedin",
+      "github",
+      "orcid",
+    ]) {
+      const value = String(record[field] ?? "").trim();
+      if (!value) continue;
+      const normalized = normalizePublicUrl(value, field);
+      if (!normalized) {
+        errors.push(`${label}[${index}] has an invalid ${field}`);
+      } else if (normalized !== value) {
+        errors.push(`${label}[${index}] ${field} is not normalized`);
+      }
+    }
+  });
+}
 
 let compiled;
 try {

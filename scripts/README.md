@@ -23,6 +23,7 @@ Duplicate form responses are supported. `compileOfficerDirectory.js` takes the n
 - `write` refuses to overwrite dirty managed files, fingerprints the snapshot and portrait tree before network work, and rechecks that state immediately before committing. It validates a complete candidate in temporary storage before atomically replacing the snapshot or a portrait.
 - Repeating a command against unchanged Notion content is idempotent. Portraits are streamed through a 15 MB bound, decoded, metadata-stripped, and normalized before comparison; expiring attachment query strings do not create a diff, while replacing an attachment on an existing response does.
 - The roster remains authoritative for membership, roles, order, stable IDs, and fallback portraits. Form answers may enrich only matched officers.
+- A manually reviewed submission received outside Notion may populate the same public content fields directly on the matching roster entry. Do not fabricate a Notion page ID; exclude all non-public message and scheduling data.
 
 The explicit cohort window and managed paths live in
 `scripts/lib/officer-profile-cohorts.js`. The private upstream database ID is
