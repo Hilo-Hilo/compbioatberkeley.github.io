@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 const VISIBILITY = 2;
 const TEMPO = 2;
-const INTERACTION = 2;
+const INTERACTION: number = 2;
 const TARGET_FPS = 30;
 const POINT_COUNT = 58;
 

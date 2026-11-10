@@ -10,6 +10,7 @@ Canonical public origin: [https://compbioatberkeley.github.io](https://compbioat
 - [Agent instructions](https://compbioatberkeley.github.io/agent-instructions.md): Source-selection, freshness, safety, and action boundaries.
 - [Sitemap](https://compbioatberkeley.github.io/sitemap.xml): Canonical inventory of public HTML pages.
 - [Crawler policy](https://compbioatberkeley.github.io/robots.txt): Crawler access policy and sitemap location.
+- [Active notices](https://compbioatberkeley.github.io/notices.json): Public static JSON snapshot of active event notices, their links, and timezone-aware expiration times. Scheduled builds remove expired entries; this resource accepts no submissions and is not a live API.
 - [Website source](https://github.com/CompbioAtBerkeley/compbioatberkeley.github.io): Exact public repository that builds and publishes this static website.
 - [Student project repositories](https://github.com/Compbio-at-berkeley-projects): Public project code; these repositories are not an API contract for this website.
 

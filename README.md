@@ -4,6 +4,8 @@ The public website for Computational Biology at Berkeley, built with Vite, React
 
 ## Local development
 
+Use Node.js 20.19+ or 22.12+ (including newer supported releases).
+
 ```sh
 npm ci
 npm test
@@ -11,6 +13,14 @@ npm run dev
 ```
 
 Run `npm run build` for the same credential-free production build used by GitHub Pages. The build validates officer data before compiling the site.
+
+Builds copy public assets with a filter that excludes the local `public/fetched/`
+cache. The build validator rejects any release artifact that contains this cache.
+Tracked officer portraits and archive snapshots remain included.
+
+The package overrides select patched `postcss-selector-parser` and `minimatch`
+versions for the typography and TypeScript ESLint tools. Keep these overrides
+until the upstream packages require patched versions themselves.
 
 ## Officer data
 
@@ -55,6 +65,37 @@ The validator reports unmatched responses, invalid public links, missing assets,
 - `public/404.html` is always `noindex`; internal `/concepts` review routes are intentionally absent from the sitemap and static route output.
 
 ## Deployment
+
+### Public notices and scheduled cleanup
+
+`src/data/notices.json` is the reviewed source of public event notices. Use stable
+IDs, verified HTTPS links, and explicit timezone offsets on both `startsAt` and
+`endsAt`. Do not add private Slack discussions or contact information. Run
+`npm run notices:sync` after edits to update the managed notices section of
+`public/llms.txt`.
+
+The home page displays dismissible banners and event cards; the calendar displays
+the same cards. A dismissal lasts for the current browser tab and resets when the
+notice content changes. Open pages hide notices at the event end time.
+
+`npm run build` freezes one active-notice snapshot for the client, server-rendered
+HTML, `dist/notices.json`, and the current-notices section in `dist/llms.txt`.
+Expired notice records can remain in the source as history; they never enter a
+new build. `SITE_NOTICES_NOW` supplies an explicit test clock for expiry checks.
+
+The production Pages workflow runs an expiration check every hour at minute 10.
+It compares the published snapshot with the active source records and deploys
+only when they differ. The November 16 study session ends at 10 p.m. PST; its
+first scheduled cleanup is November 17 at 06:10 UTC (10:10 p.m. PST). GitHub may
+delay scheduled runs. The browser expiry check does not depend on the scheduler.
+The job uses read-only source permissions and the existing Pages deployment;
+it does not edit or push source files. Pushes and manual runs still deploy normally.
+
+The user-authorized Codex automation checks the CompBio Slack workspace on
+Wednesday, Friday, and Sunday at 9 a.m. Pacific. Review `#general` and
+`#publicity-requests-2026`, including corrections in their threads. Publish only
+facts intended for public promotion. Validate, deploy and verify staging before
+promoting the same commit to production; preserve unrelated local work.
 
 - Pushes to `dev` deploy the staging GitHub Pages site from the `Hilo-Hilo` staging repository.
 - Pushes to `main` deploy production from `CompbioAtBerkeley/compbioatberkeley.github.io`.

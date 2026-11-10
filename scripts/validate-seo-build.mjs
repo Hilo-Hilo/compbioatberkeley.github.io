@@ -2,9 +2,15 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { activeNotices, renderNoticeGuide, validateNotices } from "../src/data/siteNotices.js";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distDirectory = path.join(projectRoot, "dist");
+await assert.rejects(
+  fs.access(path.join(distDirectory, "fetched")),
+  { code: "ENOENT" },
+  "Local legacy cache files must not enter the release artifact",
+);
 const siteIdentity = JSON.parse(
   await fs.readFile(path.join(projectRoot, "src/data/siteIdentity.json"), "utf8"),
 );
@@ -17,7 +23,12 @@ const basePath = `/${(process.env.VITE_BASE_PATH || "/").replace(/^\/+|\/+$/g, "
 const pages = JSON.parse(
   await fs.readFile(path.join(projectRoot, "src/data/sitePages.json"), "utf8"),
 );
-const llmsText = await fs.readFile(path.join(projectRoot, "public/llms.txt"), "utf8");
+const notices = process.env.SITE_NOTICES_JSON
+  ? validateNotices(JSON.parse(process.env.SITE_NOTICES_JSON))
+  : activeNotices(JSON.parse(await fs.readFile(path.join(projectRoot, "src/data/notices.json"), "utf8")));
+const llmsText = await fs.readFile(path.join(distDirectory, "llms.txt"), "utf8");
+assert.equal(llmsText, renderNoticeGuide(await fs.readFile(path.join(projectRoot, "public/llms.txt"), "utf8"), notices));
+assert.deepEqual(JSON.parse(await fs.readFile(path.join(distDirectory, "notices.json"), "utf8")), notices);
 const notFoundMarkdownSource = await fs.readFile(
   path.join(projectRoot, "public/404.md"),
   "utf8",
@@ -43,6 +54,13 @@ for (const page of pages) {
     ? distDirectory
     : path.join(distDirectory, page.path.replace(/^\/+|\/+$/g, ""));
   const html = await fs.readFile(path.join(routeDirectory, "index.html"), "utf8");
+  if (["/", "/calendar/"].includes(page.path)) {
+    const sourceNotices = JSON.parse(await fs.readFile(path.join(projectRoot, "src/data/notices.json"), "utf8"));
+    for (const notice of sourceNotices) {
+      const marker = `id="${notice.id}"`;
+      assert.equal(html.includes(marker), notices.some((active) => active.id === notice.id), "Only active notices may appear in initial HTML");
+    }
+  }
   const url = canonicalUrl(page.path);
 
   assert.match(html, /<div id="root">[\s\S]+<\/div>/, `${page.path} must contain rendered React HTML`);

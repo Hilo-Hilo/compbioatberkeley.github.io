@@ -1,6 +1,7 @@
 import { ExternalLink } from "lucide-react";
 import { EnhancedButton } from "@/components/ui/enhanced-button";
 import { PageHeader } from "@/components/PageHeader";
+import { NoticeCards } from "@/components/SiteNotices";
 
 const CALENDAR_SRC =
   "https://calendar.google.com/calendar/embed?src=c_89fd0fd6639f6879e54e29cf6160bd6b715c0d824d84fdc0166332e82c13404c%40group.calendar.google.com&ctz=America%2FLos_Angeles";
@@ -14,6 +15,7 @@ const Calendar = () => (
     />
 
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+      <NoticeCards className="mb-10" />
       <div className="overflow-hidden rounded border border-border">
         <div className="flex flex-col gap-1 border-b border-border bg-muted px-4 py-3 text-[11px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <span className="uppercase tracking-[0.12em]">Google Calendar</span>

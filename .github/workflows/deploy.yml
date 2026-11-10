@@ -8,6 +8,10 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  # Rebuild only when a published notice expires. Current study session cleanup:
+  # November 17 at 06:10 UTC = November 16 at 10:10 p.m. PST.
+  schedule:
+    - cron: '10 * * * *'
 
 # Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
 permissions:
@@ -21,8 +25,32 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  notice-expiry:
+    if: github.repository == 'CompbioAtBerkeley/compbioatberkeley.github.io'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      deploy: ${{ steps.check.outputs.deploy }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Check expiration or accept requested deployment
+        id: check
+        env:
+          TRIGGER: ${{ github.event_name }}
+        run: |
+          if [ "$TRIGGER" = "schedule" ]; then
+            node scripts/check-notice-expiry.mjs
+          else
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          fi
   # Single deploy job since we're just deploying
   deploy:
+    needs: notice-expiry
+    if: needs.notice-expiry.outputs.deploy == 'true'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

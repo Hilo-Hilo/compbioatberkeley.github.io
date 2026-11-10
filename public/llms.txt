@@ -7,7 +7,7 @@ The organization welcomes students at all experience levels. Event details, offi
 ## When to use this site
 
 - [Mission and programs](https://compbioatberkeley.github.io/about/): Use when answering what the organization does, who it serves, or how education, projects, networking, and community work fit together.
-- [Current events](https://compbioatberkeley.github.io/calendar/): Use for event dates, times, and locations; preserve the displayed timezone and treat details as mutable.
+- [Current events](https://compbioatberkeley.github.io/calendar/): Use for event dates, times, locations, and RSVP links; preserve the displayed timezone and treat details as mutable.
 - [Current leadership](https://compbioatberkeley.github.io/officers/): Use for public officer names, roles, bios, and links; always preserve the displayed academic term.
 - [Participation](https://compbioatberkeley.github.io/signup/): Use for the current recruitment status, newsletter, and public ways to stay connected; do not claim a form was submitted without confirmation.
 - [Partnerships](https://compbioatberkeley.github.io/collaborations/): Use for research, speaker, sponsorship, and industry collaboration options.
@@ -15,7 +15,7 @@ The organization welcomes students at all experience levels. Event details, offi
 
 ## Main pages
 
-- [Home](https://compbioatberkeley.github.io/): Overview of the organization, its objectives, and current calls to action.
+- [Home](https://compbioatberkeley.github.io/): Overview of the organization, its objectives, and current calls to action, including dismissible event banners. Use the Calendar page for event details.
 - [About](https://compbioatberkeley.github.io/about/): Mission and work across education, research, professional networking, and community impact.
 - [Calendar](https://compbioatberkeley.github.io/calendar/): Current workshops, meetings, and special events in Pacific time.
 - [Newsletter](https://compbioatberkeley.github.io/newsletter/): Newsletter editions, newest first, with preview slides and community, event, and project updates.
@@ -25,6 +25,12 @@ The organization welcomes students at all experience levels. Event details, offi
 - [Join Us](https://compbioatberkeley.github.io/signup/): Recruitment status, newsletter signup, and community channels.
 - [Contact](https://compbioatberkeley.github.io/contact/): Verified public channels for general questions, partnerships, events, and participation.
 - [Privacy](https://compbioatberkeley.github.io/privacy/): How analytics, browser preferences, embedded services, forms, and external platforms handle information.
+
+<!-- notices:start -->
+## Current notices
+
+- [Group study session](https://forms.gle/mBTKhGNC2JYEMS4S9): Monday, November 16, 2026, 7–10 p.m. Pacific time. Fill out the RSVP form if you plan to attend. The location is to be confirmed and will be sent by email to everyone who fills out the form. Expires 2026-11-16T22:00:00-08:00.
+<!-- notices:end -->
 
 ## Contact and community
 
@@ -40,6 +46,7 @@ The organization welcomes students at all experience levels. Event details, offi
 - [Developer resource index](https://compbioatberkeley.github.io/developers.md): Markdown index of machine-readable resources and explicit API, authentication, webhook, and MCP status.
 - [Sitemap](https://compbioatberkeley.github.io/sitemap.xml): Canonical index of public HTML pages.
 - [Crawler policy](https://compbioatberkeley.github.io/robots.txt): Current crawler access policy and sitemap location.
+- [Active notices](https://compbioatberkeley.github.io/notices.json): Static snapshot of current public notices and their expiration times, refreshed by scheduled builds. This is not a submission API.
 - [Organization identity](https://compbioatberkeley.github.io/): Rendered HTML includes Schema.org Organization, EducationalOrganization, WebSite, PostalAddress, ContactPoint, and WebPage data.
 
 ## Optional

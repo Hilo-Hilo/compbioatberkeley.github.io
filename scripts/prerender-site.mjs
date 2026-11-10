@@ -2,6 +2,7 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { activeNotices, renderNoticeGuide, validateNotices } from "../src/data/siteNotices.js";
 
 import {
   buildNotFoundHtml,
@@ -12,6 +13,13 @@ import {
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distDirectory = path.join(projectRoot, "dist");
+const notices = process.env.SITE_NOTICES_JSON
+  ? validateNotices(JSON.parse(process.env.SITE_NOTICES_JSON))
+  : activeNotices(JSON.parse(await fs.readFile(path.join(projectRoot, "src/data/notices.json"), "utf8")));
+await fs.writeFile(path.join(distDirectory, "notices.json"), `${JSON.stringify(notices, null, 2)}\n`);
+await fs.writeFile(path.join(distDirectory, "llms.txt"), renderNoticeGuide(
+  await fs.readFile(path.join(projectRoot, "public/llms.txt"), "utf8"), notices,
+));
 const serverDirectory = path.join(projectRoot, ".seo-ssr");
 const siteIdentity = JSON.parse(
   await fs.readFile(path.join(projectRoot, "src/data/siteIdentity.json"), "utf8"),

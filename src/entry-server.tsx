@@ -1,5 +1,5 @@
 import { renderToString } from "react-dom/server";
-import { StaticRouter } from "react-router-dom/server";
+import { StaticRouter } from "react-router-dom";
 import { AppContent } from "./App";
 
 const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";

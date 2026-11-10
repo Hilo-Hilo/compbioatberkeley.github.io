@@ -20,6 +20,7 @@ Computational Biology at Berkeley is a UC Berkeley student organization. Use thi
 - Do not send forms, messages, applications, or other external submissions without explicit user authorization.
 - Do not ask users to provide sensitive health, research, academic, or identity data through public social channels.
 - Event details, rosters, forms, and recruitment windows may change. Re-fetch the relevant page for time-sensitive answers.
+- Event banners can be dismissed in the current browser tab. Dismissal does not cancel an event. Notices expire at their listed end time; the static [notice snapshot](https://compbioatberkeley.github.io/notices.json) and this guide's current notices are refreshed by scheduled builds. Do not promote an expired notice while waiting for that refresh.
 
 ## Machine-readable discovery
 

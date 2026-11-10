@@ -4,6 +4,7 @@ import { HeroGenomePathfinder } from "@/components/HeroGenomePathfinder";
 import { HeroScienceGraphic } from "@/components/HeroScienceGraphic";
 import { PartnerLogoWall } from "@/components/PartnerLogoWall";
 import { SectionHeading } from "@/components/PageHeader";
+import { NoticeBanners, NoticeCards } from "@/components/SiteNotices";
 
 const objectives = [
   {
@@ -25,6 +26,7 @@ const objectives = [
 
 const Home = () => (
   <div>
+    <NoticeBanners />
     <section className="hero-shell relative isolate overflow-hidden border-b border-border bg-background">
       <div className="absolute inset-0 z-0 bg-lab-grid" aria-hidden="true" />
       <HeroGenomePathfinder />
@@ -54,6 +56,8 @@ const Home = () => (
         <HeroScienceGraphic className="w-full" />
       </div>
     </section>
+
+    <NoticeCards className="mx-auto max-w-6xl px-4 pt-10 sm:px-6 lg:px-8" />
 
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
       <SectionHeading title="What we aim to do" meta="03 objectives" />

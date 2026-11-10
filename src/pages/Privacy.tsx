@@ -11,7 +11,7 @@ const practices = [
   },
   {
     title: "Local preferences and site operation",
-    body: "The site stores a theme preference in your browser so light, dark, or system appearance can persist across visits. This preference supports display and interface choices; it is not used by the organization to build a member profile.",
+    body: "The site stores a theme preference in your browser so light, dark, or system appearance can persist across visits. Dismissed event banners are stored in session storage for the current browser tab; updated notices can appear again. These preferences support display and interface choices; they are not used by the organization to build a member profile.",
   },
   {
     title: "Choices and questions",
@@ -28,7 +28,7 @@ const Privacy = () => (
     />
 
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-      <SectionHeading title="How the site handles information" meta="updated Sep 15, 2026" />
+      <SectionHeading title="How the site handles information" meta="updated Nov 10, 2026" />
       <p className="mb-10 max-w-[72ch] text-base leading-relaxed text-muted-foreground">
         Computational Biology at Berkeley is a student organization, and this site is published
         through GitHub Pages. We collect only what is needed to operate and understand the public
