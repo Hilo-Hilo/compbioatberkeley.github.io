@@ -22,7 +22,8 @@ permissions:
 # Allow one concurrent deployment
 concurrency:
   group: 'pages'
-  cancel-in-progress: true
+  # Queue expiry checks behind a release instead of canceling its deployment.
+  cancel-in-progress: false
 
 jobs:
   notice-expiry:
