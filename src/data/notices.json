@@ -10,5 +10,17 @@
     "description": "Fill out the RSVP form if you plan to attend. The location is to be confirmed and will be sent by email to everyone who fills out the form.",
     "url": "https://forms.gle/mBTKhGNC2JYEMS4S9",
     "linkLabel": "RSVP for the study session"
+  },
+  {
+    "id": "general-meeting-2026-11-17",
+    "title": "General meeting #3",
+    "startsAt": "2026-11-17T19:00:00-08:00",
+    "endsAt": "2026-11-17T21:00:00-08:00",
+    "dateLabel": "Tuesday, November 17, 2026",
+    "shortDateLabel": "Tue, Nov 17",
+    "timeLabel": "7–9 p.m. Pacific time",
+    "description": "Join CB@B for a general meeting featuring a guest speaker. Follow our public channels for event updates.",
+    "url": "https://www.instagram.com/ucb_compbio/",
+    "linkLabel": "Club Instagram"
   }
 ]
