@@ -36,15 +36,6 @@ export const partners: Partner[] = [
     brandSourceUrl: "https://www.neuroagetx.com/img/logo.webp",
   },
   {
-    name: "NovaFlow",
-    website: "https://www.novaflowapp.com/",
-    logoPath: "partners/raster/novaflow.png",
-    logoClassName: "max-h-24 w-full",
-    collageClassName:
-      "col-span-2 md:left-[6%] md:top-[41%] md:w-[31%]",
-    brandSourceUrl: "https://www.novaflowapp.com/",
-  },
-  {
     name: "Google DeepVariant",
     website: "https://github.com/google/deepvariant",
     logoPath: "partners/raster/google-wordmark.png",
