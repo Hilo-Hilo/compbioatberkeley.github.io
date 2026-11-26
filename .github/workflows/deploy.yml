@@ -48,13 +48,9 @@ jobs:
           else
             echo "deploy=true" >> "$GITHUB_OUTPUT"
           fi
-  # Single deploy job since we're just deploying
-  deploy:
+  build:
     needs: notice-expiry
     if: needs.notice-expiry.outputs.deploy == 'true'
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -77,6 +73,13 @@ jobs:
         with:
           # Upload dist folder
           path: './dist'
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
